@@ -9,6 +9,6 @@ class ApplicationController < ActionController::API
   def employee_not_authorized
     #flash[:alert] = "You are not authorized to perform this action."
     #redirect_back(fallback_location: root_path)
-    render json: "You are not authorized to perform this action"
+    render json: "OOPS! You are not authorized to perform this action"
   end
 end

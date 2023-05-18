@@ -9,7 +9,13 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :employees do
     get "subordinates", on: :member
+    get "queries", on: :member
+    get "reviews", on: :member
   end
 
-  resources :questions
+  resources :questions do
+    get "replies", on: :member
+  end
+
+  resources :answers
 end

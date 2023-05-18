@@ -2873,3 +2873,487 @@ Processing by EmployeesController#index as */*
 Completed 200 OK in 10ms (Views: 5.4ms | ActiveRecord: 0.4ms | Allocations: 4999)
 
 
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Update (0.2ms)[0m  [1m[33mUPDATE "questions" SET "query" = ?, "updated_at" = ? WHERE "questions"."id" = ?[0m  [["query", "Query2"], ["updated_at", "2023-05-18 10:32:37.859946"], ["id", 2]]
+  [1m[36mTRANSACTION (104.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Update (0.2ms)[0m  [1m[33mUPDATE "questions" SET "query" = ?, "updated_at" = ? WHERE "questions"."id" = ?[0m  [["query", "Query3"], ["updated_at", "2023-05-18 10:32:44.381677"], ["id", 3]]
+  [1m[36mTRANSACTION (110.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Update (0.2ms)[0m  [1m[33mUPDATE "questions" SET "query" = ?, "updated_at" = ? WHERE "questions"."id" = ?[0m  [["query", "Query4"], ["updated_at", "2023-05-18 10:32:51.721223"], ["id", 4]]
+  [1m[36mTRANSACTION (115.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Update (0.2ms)[0m  [1m[33mUPDATE "questions" SET "query" = ?, "updated_at" = ? WHERE "questions"."id" = ?[0m  [["query", "Query5"], ["updated_at", "2023-05-18 10:33:04.637950"], ["id", 5]]
+  [1m[36mTRANSACTION (84.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("query", "employee_id", "clarified", "remarks", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["query", "Query6"], ["employee_id", 6], ["clarified", nil], ["remarks", nil], ["created_at", "2023-05-18 10:33:57.918286"], ["updated_at", "2023-05-18 10:33:57.918286"]]
+  [1m[36mTRANSACTION (101.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.6ms)[0m  [1m[32mINSERT INTO "questions" ("query", "employee_id", "clarified", "remarks", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["query", "Query7"], ["employee_id", 7], ["clarified", nil], ["remarks", nil], ["created_at", "2023-05-18 10:34:09.921517"], ["updated_at", "2023-05-18 10:34:09.921517"]]
+  [1m[36mTRANSACTION (101.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("query", "employee_id", "clarified", "remarks", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["query", "Query8"], ["employee_id", 7], ["clarified", nil], ["remarks", nil], ["created_at", "2023-05-18 10:34:14.640163"], ["updated_at", "2023-05-18 10:34:14.640163"]]
+  [1m[36mTRANSACTION (126.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RenameColumnInAnswers (20230518103506)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aanswers" ("id" integer NOT NULL PRIMARY KEY, "reply" text DEFAULT NULL, "question_id" integer NOT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aanswers_on_employee_id" ON "aanswers" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aanswers_on_question_id" ON "aanswers" ("question_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aanswers" ("id","reply","question_id","employee_id","created_at","updated_at")
+                     SELECT "id","answer","question_id","employee_id","created_at","updated_at" FROM "answers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "answers" ("id" integer NOT NULL PRIMARY KEY, "reply" text DEFAULT NULL, "question_id" integer NOT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_68929d2ca2"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+, CONSTRAINT "fk_rails_3d5ed4418f"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_answers_on_question_id" ON "answers" ("question_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_answers_on_employee_id" ON "answers" ("employee_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "answers" ("id","reply","question_id","employee_id","created_at","updated_at")
+                     SELECT "id","reply","question_id","employee_id","created_at","updated_at" FROM "aanswers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aanswers"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518103506"]]
+  [1m[36mTRANSACTION (104.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mAnswer Create (0.3ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer1"], ["question_id", 1], ["employee_id", 4], ["created_at", "2023-05-18 10:37:03.728697"], ["updated_at", "2023-05-18 10:37:03.728697"]]
+  [1m[36mTRANSACTION (100.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mAnswer Create (0.3ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer2"], ["question_id", 1], ["employee_id", 4], ["created_at", "2023-05-18 10:37:13.508864"], ["updated_at", "2023-05-18 10:37:13.508864"]]
+  [1m[36mTRANSACTION (223.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mAnswer Create (0.3ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer3"], ["question_id", 2], ["employee_id", 4], ["created_at", "2023-05-18 10:37:35.296031"], ["updated_at", "2023-05-18 10:37:35.296031"]]
+  [1m[36mTRANSACTION (109.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer4"], ["question_id", 3], ["employee_id", 4], ["created_at", "2023-05-18 10:38:02.313140"], ["updated_at", "2023-05-18 10:38:02.313140"]]
+  [1m[36mTRANSACTION (105.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mAnswer Create (0.5ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer5"], ["question_id", 3], ["employee_id", 8], ["created_at", "2023-05-18 10:38:25.545530"], ["updated_at", "2023-05-18 10:38:25.545530"]]
+  [1m[36mTRANSACTION (106.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mAnswer Create (0.5ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer6"], ["question_id", 6], ["employee_id", 8], ["created_at", "2023-05-18 10:38:48.515130"], ["updated_at", "2023-05-18 10:38:48.515130"]]
+  [1m[36mTRANSACTION (114.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mAnswer Create (0.4ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer7"], ["question_id", 4], ["employee_id", 8], ["created_at", "2023-05-18 11:29:57.562159"], ["updated_at", "2023-05-18 11:29:57.562159"]]
+  [1m[36mTRANSACTION (43.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mAnswer Create (0.6ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer7"], ["question_id", 5], ["employee_id", 4], ["created_at", "2023-05-18 11:30:13.177353"], ["updated_at", "2023-05-18 11:30:13.177353"]]
+  [1m[36mTRANSACTION (471.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT "answers".* FROM "answers" ORDER BY "answers"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mAnswer Update (0.4ms)[0m  [1m[33mUPDATE "answers" SET "reply" = ?, "updated_at" = ? WHERE "answers"."id" = ?[0m  [["reply", "answer8"], ["updated_at", "2023-05-18 11:31:06.364329"], ["id", 8]]
+  [1m[36mTRANSACTION (41.6ms)[0m  [1m[36mcommit transaction[0m
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-18 17:02:30 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::SessionsController#destroy as */*
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 729)
+
+
+  
+JWT::ExpiredSignature (Signature has expired):
+  
+app/controllers/employees/sessions_controller.rb:15:in `respond_to_on_destroy'
+Started POST "/employees/sign_in" for ::1 at 2023-05-18 17:02:42 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee1@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.49ms)
+Completed 200 OK in 282ms (Views: 1.7ms | ActiveRecord: 1.2ms | Allocations: 42998)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-18 17:03:00 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.65ms)
+Completed 200 OK in 10ms (Views: 1.9ms | ActiveRecord: 0.4ms | Allocations: 3376)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Update (446.9ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "bd3e8e18-f3dc-4744-a87e-4c917df30a36"], ["id", 2]]
+Started GET "/employees" for ::1 at 2023-05-18 17:03:07 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 260)
+
+
+Started GET "/employees/1" for ::1 at 2023-05-18 17:03:14 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "employee"=>{"name"=>"sdcc"}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 223)
+
+
+Started GET "/employees" for ::1 at 2023-05-18 17:03:21 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 222)
+
+
+Started POST "/employees/sign_in" for ::1 at 2023-05-18 17:03:26 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee1@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.24ms)
+Completed 200 OK in 243ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 1764)
+
+
+Started GET "/employees" for ::1 at 2023-05-18 17:03:34 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 1826)
+
+
+Started GET "/employees/1" for ::1 at 2023-05-18 17:03:46 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1709)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-18 17:03:53 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.37ms)
+Completed 200 OK in 10ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 4663)
+
+
+Started PUT "/employees/2" for ::1 at 2023-05-18 17:04:09 +0530
+Processing by EmployeesController#update as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:27:in `update'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1675)
+
+
+Started GET "/employees/4" for ::1 at 2023-05-18 17:04:19 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"4", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1660)
+
+
+Started GET "/employees/4/subordinates" for ::1 at 2023-05-18 17:04:27 +0530
+Processing by EmployeesController#subordinates as */*
+  Parameters: {"name"=>"sdcc", "id"=>"4", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:44:in `subordinates'
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 5188)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-18 17:04:35 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.37ms)
+Completed 200 OK in 5ms (Views: 1.0ms | ActiveRecord: 0.2ms | Allocations: 1813)
+
+
+Started GET "/employees/2/queries" for ::1 at 2023-05-18 17:04:43 +0530
+Processing by EmployeesController#queries as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:51:in `queries'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms | Allocations: 5147)
+
+
+  
+NoMethodError (undefined method `queries?' for #<EmployeePolicy:0x00007fef3813f3b0 @employee=#<Employee id: 2, email: "employee1@gmail.com", created_at: "2023-05-17 06:57:19.362625000 +0000", updated_at: "2023-05-17 10:16:52.694923000 +0000", jti: "bd3e8e18-f3dc-4744-a87e-4c917df30a36", name: nil, role: "subordinate", manager_id: 4>, @record=#<Employee id: 2, email: "employee1@gmail.com", created_at: "2023-05-17 06:57:19.362625000 +0000", updated_at: "2023-05-17 10:16:52.694923000 +0000", jti: "bd3e8e18-f3dc-4744-a87e-4c917df30a36", name: nil, role: "subordinate", manager_id: 4>>):
+  
+app/controllers/employees_controller.rb:53:in `queries'
+Started GET "/employees/2/queries" for ::1 at 2023-05-18 17:06:22 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#queries as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:51:in `queries'
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."employee_id" = ?[0m  [["employee_id", 2]]
+  ↳ app/controllers/employees_controller.rb:54:in `queries'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.59ms)
+Completed 200 OK in 27ms (Views: 13.2ms | ActiveRecord: 1.9ms | Allocations: 26742)
+
+
+Started GET "/employees/3/queries" for ::1 at 2023-05-18 17:06:42 +0530
+Processing by EmployeesController#queries as */*
+  Parameters: {"name"=>"sdcc", "id"=>"3", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:51:in `queries'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1799)
+
+
+Started GET "/questions" for ::1 at 2023-05-18 17:06:54 +0530
+Processing by QuestionsController#index as */*
+  Parameters: {"name"=>"sdcc", "question"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.4ms)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 0.4ms | Allocations: 3082)
+
+
+Started GET "/questions/1" for ::1 at 2023-05-18 17:07:04 +0530
+Processing by QuestionsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "question"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:11:in `show'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (0.22ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 1944)
+
+
+Started GET "/questions/1/replies" for ::1 at 2023-05-18 17:07:13 +0530
+Processing by QuestionsController#replies as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "question"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:44:in `replies'
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = ?[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:46:in `replies'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.62ms)
+Completed 200 OK in 19ms (Views: 11.4ms | ActiveRecord: 1.0ms | Allocations: 20224)
+
+
+Started GET "/answers" for ::1 at 2023-05-18 17:07:35 +0530
+Processing by AnswersController#index as */*
+  Parameters: {"name"=>"sdcc", "answer"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/controllers/answers_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.02ms)
+Completed 200 OK in 8ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 3042)
+
+
+Started GET "/questions/2/replies" for ::1 at 2023-05-18 17:07:51 +0530
+Processing by QuestionsController#replies as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "question"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:44:in `replies'
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = ?[0m  [["question_id", 2]]
+  ↳ app/controllers/questions_controller.rb:46:in `replies'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.33ms)
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 0.3ms | Allocations: 2520)
+
+
+Started GET "/employees" for ::1 at 2023-05-18 17:08:07 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1439)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-18 17:08:26 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.35ms)
+Completed 200 OK in 8ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 2760)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Update (44.7ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "8c37efaf-e531-4b6a-94e8-1e1267a97afa"], ["id", 2]]
+Started GET "/employees" for ::1 at 2023-05-18 17:12:07 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 233)
+
+
+Started POST "/employees/sign_in" for ::1 at 2023-05-18 17:12:18 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"man1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"man1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "man1@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Completed 200 OK in 249ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 1900)
+
+
+Started GET "/employees" for ::1 at 2023-05-18 17:12:41 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 1234)
+
+
+Started GET "/employees/4" for ::1 at 2023-05-18 17:13:08 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"4", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.34ms)
+Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 0.2ms | Allocations: 3086)
+
+
+Started GET "/employees/4/subordinates" for ::1 at 2023-05-18 17:13:15 +0530
+Processing by EmployeesController#subordinates as */*
+  Parameters: {"name"=>"sdcc", "id"=>"4", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:44:in `subordinates'
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."manager_id" = ?[0m  [["manager_id", 4]]
+  ↳ app/controllers/employees_controller.rb:47:in `subordinates'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.02ms)
+Completed 200 OK in 11ms (Views: 5.8ms | ActiveRecord: 0.6ms | Allocations: 3127)
+
+
+Started GET "/questions" for ::1 at 2023-05-18 17:14:43 +0530
+Processing by QuestionsController#index as */*
+  Parameters: {"name"=>"sdcc", "question"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.93ms)
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 0.3ms | Allocations: 2919)
+
+
+Started GET "/questions/1" for ::1 at 2023-05-18 17:14:54 +0530
+Processing by QuestionsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "question"=>{}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:11:in `show'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (0.22ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1810)
+
+
+Started GET "/questions/1/replies" for ::1 at 2023-05-18 17:15:00 +0530
+Processing by QuestionsController#replies as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "question"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:44:in `replies'
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = ?[0m  [["question_id", 1]]
+  ↳ app/controllers/questions_controller.rb:46:in `replies'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.74ms)
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 0.4ms | Allocations: 2655)
+
+
+Started GET "/employees" for ::1 at 2023-05-18 17:16:12 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 1229)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-18 17:16:31 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.6ms)
+Completed 200 OK in 5ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 2274)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mEmployee Update (44.5ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "6c1d0a85-a8ba-4882-9254-b93583b25bbf"], ["id", 4]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-18 17:16:50 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.23ms)
+Completed 200 OK in 249ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 1764)
+
+
+Started GET "/employees" for ::1 at 2023-05-18 17:17:12 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  ↳ app/controllers/employees_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.76ms)
+Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 0.3ms | Allocations: 3133)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-18 17:17:17 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.45ms)
+Completed 200 OK in 11ms (Views: 1.7ms | ActiveRecord: 0.3ms | Allocations: 1814)
+
+
+Started GET "/employees/1" for ::1 at 2023-05-18 17:17:22 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.37ms)
+Completed 200 OK in 17ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 1820)
+
+
+Started GET "/employees/4/subordinates" for ::1 at 2023-05-18 17:17:30 +0530
+Processing by EmployeesController#subordinates as */*
+  Parameters: {"name"=>"sdcc", "id"=>"4", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:44:in `subordinates'
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."manager_id" = ?[0m  [["manager_id", 4]]
+  ↳ app/controllers/employees_controller.rb:47:in `subordinates'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.67ms)
+Completed 200 OK in 14ms (Views: 6.7ms | ActiveRecord: 0.4ms | Allocations: 2824)
+
+
