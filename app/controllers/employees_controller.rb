@@ -54,6 +54,13 @@ class EmployeesController < ApplicationController
     render json: queries, status: 200
   end
 
+  def scores
+    employee = Employee.find(params[:id])
+    scores = employee.points
+    authorize employee
+    render json: scores, status: 200
+  end
+
   private
 
   def employee_params

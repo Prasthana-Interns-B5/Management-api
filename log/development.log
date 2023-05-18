@@ -3424,3 +3424,270 @@ Processing by EmployeesController#show as */*
 Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.3ms | Allocations: 2091)
 
 
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePoints (20230518152633)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "points" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "score" varchar, "month" varchar, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_adc3b16f0f"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_points_on_employee_id" ON "points" ("employee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518152633"]]
+  [1m[36mTRANSACTION (100.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RenameColumnInPoints (20230518155128)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apoints" ("id" integer NOT NULL PRIMARY KEY, "self_score" varchar DEFAULT NULL, "month" varchar DEFAULT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_apoints_on_employee_id" ON "apoints" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "apoints" ("id","self_score","month","employee_id","created_at","updated_at")
+                     SELECT "id","score","month","employee_id","created_at","updated_at" FROM "points"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "points"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "points" ("id" integer NOT NULL PRIMARY KEY, "self_score" varchar DEFAULT NULL, "month" varchar DEFAULT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_adc3b16f0f"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_points_on_employee_id" ON "points" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "points" ("id","self_score","month","employee_id","created_at","updated_at")
+                     SELECT "id","self_score","month","employee_id","created_at","updated_at" FROM "apoints"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "apoints"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518155128"]]
+  [1m[36mTRANSACTION (76.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddColumnToPoints (20230518155623)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "points" ADD "manager_score" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518155623"]]
+  [1m[36mTRANSACTION (68.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddColumnToPoint (20230518155713)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "points" ADD "manager_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518155713"]]
+  [1m[36mTRANSACTION (65.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Create (0.3ms)[0m  [1m[32mINSERT INTO "points" ("self_score", "month", "employee_id", "created_at", "updated_at", "manager_score", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["self_score", "3.5"], ["month", "may"], ["employee_id", 2], ["created_at", "2023-05-18 16:26:19.976746"], ["updated_at", "2023-05-18 16:26:19.976746"], ["manager_score", "3"], ["manager_id", nil]]
+  [1m[36mTRANSACTION (83.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPoint Create (0.2ms)[0m  [1m[32mINSERT INTO "points" ("self_score", "month", "employee_id", "created_at", "updated_at", "manager_score", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["self_score", "4"], ["month", "may"], ["employee_id", 3], ["created_at", "2023-05-18 16:26:48.302134"], ["updated_at", "2023-05-18 16:26:48.302134"], ["manager_score", "4"], ["manager_id", nil]]
+  [1m[36mTRANSACTION (99.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPoint Create (0.4ms)[0m  [1m[32mINSERT INTO "points" ("self_score", "month", "employee_id", "created_at", "updated_at", "manager_score", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["self_score", "3"], ["month", "may"], ["employee_id", 5], ["created_at", "2023-05-18 16:27:36.265285"], ["updated_at", "2023-05-18 16:27:36.265285"], ["manager_score", "2.5"], ["manager_id", nil]]
+  [1m[36mTRANSACTION (99.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mPoint Create (0.4ms)[0m  [1m[32mINSERT INTO "points" ("self_score", "month", "employee_id", "created_at", "updated_at", "manager_score", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["self_score", "4"], ["month", "may"], ["employee_id", 6], ["created_at", "2023-05-18 16:27:59.837302"], ["updated_at", "2023-05-18 16:27:59.837302"], ["manager_score", "4.5"], ["manager_id", nil]]
+  [1m[36mTRANSACTION (106.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mPoint Create (0.4ms)[0m  [1m[32mINSERT INTO "points" ("self_score", "month", "employee_id", "created_at", "updated_at", "manager_score", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["self_score", "3.5"], ["month", "may"], ["employee_id", 7], ["created_at", "2023-05-18 16:28:19.492823"], ["updated_at", "2023-05-18 16:28:19.492823"], ["manager_score", "3"], ["manager_id", nil]]
+  [1m[36mTRANSACTION (103.2ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/employees/sign_in" for ::1 at 2023-05-18 22:00:27 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee1@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.46ms)
+Completed 200 OK in 372ms (Views: 21.5ms | ActiveRecord: 0.8ms | Allocations: 44485)
+
+
+Started GET "/points" for ::1 at 2023-05-18 22:00:37 +0530
+Processing by PointsController#index as */*
+  Parameters: {"name"=>"sdcc", "point"=>{}}
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.4ms)[0m  [1m[34mSELECT "points".* FROM "points"[0m
+  ↳ app/controllers/points_controller.rb:7:in `index'
+No serializer found for resource: #<Point id: 1, self_score: "3.5", month: "may", employee_id: 2, created_at: "2023-05-18 16:26:19.976746000 +0000", updated_at: "2023-05-18 16:26:19.976746000 +0000", manager_score: "3", manager_id: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Point::ActiveRecord_Relation (0.71ms)
+Completed 200 OK in 18ms (Views: 12.4ms | ActiveRecord: 1.6ms | Allocations: 18418)
+
+
+Started GET "/points" for ::1 at 2023-05-18 22:02:07 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#index as */*
+  Parameters: {"name"=>"sdcc", "point"=>{}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT "points".* FROM "points"[0m
+  ↳ app/controllers/points_controller.rb:7:in `index'
+No serializer found for resource: #<Point id: 1, self_score: "3.5", month: "may", employee_id: 2, created_at: "2023-05-18 16:26:19.976746000 +0000", updated_at: "2023-05-18 16:26:19.976746000 +0000", manager_score: "3", manager_id: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Point::ActiveRecord_Relation (0.74ms)
+Completed 200 OK in 13ms (Views: 4.4ms | ActiveRecord: 1.8ms | Allocations: 9207)
+
+
+Started GET "/points" for ::1 at 2023-05-18 22:02:38 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#index as */*
+  Parameters: {"name"=>"sdcc", "point"=>{}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 1.8ms | Allocations: 6183)
+
+
+Started GET "/points/1" for ::1 at 2023-05-18 22:02:47 +0530
+Processing by PointsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "point"=>{}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms | Allocations: 3184)
+
+
+  
+NameError (uninitialized constant PointsController::POint):
+  
+app/controllers/points_controller.rb:11:in `show'
+Started GET "/points/1" for ::1 at 2023-05-18 22:03:09 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "point"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Point (0.29ms)
+Completed 200 OK in 15ms (Views: 1.1ms | ActiveRecord: 1.6ms | Allocations: 8788)
+
+
+Started GET "/points/2" for ::1 at 2023-05-18 22:03:17 +0530
+Processing by PointsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "point"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1704)
+
+
+Started GET "/points/4" for ::1 at 2023-05-18 22:03:27 +0530
+Processing by PointsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"4", "point"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1657)
+
+
+Started GET "/points" for ::1 at 2023-05-18 22:03:36 +0530
+Processing by PointsController#index as */*
+  Parameters: {"name"=>"sdcc", "point"=>{}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1438)
+
+
+Started GET "/points/1" for ::1 at 2023-05-18 22:04:53 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "point"=>{}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Point (0.25ms)
+Completed 200 OK in 13ms (Views: 0.9ms | ActiveRecord: 1.5ms | Allocations: 8719)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/points/1" for ::1 at 2023-05-18 22:06:35 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "point"=>{}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers] Rendered PointSerializer with ActiveModelSerializers::Adapter::Attributes (0.66ms)
+Completed 200 OK in 228ms (Views: 195.0ms | ActiveRecord: 1.2ms | Allocations: 59051)
+
+
+Started GET "/points/1" for ::1 at 2023-05-18 22:06:53 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"1", "point"=>{}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers] Rendered PointSerializer with ActiveModelSerializers::Adapter::Attributes (0.53ms)
+Completed 200 OK in 17ms (Views: 2.7ms | ActiveRecord: 1.7ms | Allocations: 8819)
+
+
+Started GET "/employees" for ::1 at 2023-05-18 22:07:06 +0530
+Processing by EmployeesController#index as */*
+  Parameters: {"name"=>"sdcc", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 1898)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-18 22:07:10 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.61ms)
+Completed 200 OK in 38ms (Views: 35.3ms | ActiveRecord: 0.2ms | Allocations: 2318)
+
+
+Started GET "/employees/2/scores" for ::1 at 2023-05-18 22:07:16 +0530
+Processing by EmployeesController#scores as */*
+  Parameters: {"name"=>"sdcc", "id"=>"2", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:58:in `scores'
+  [1m[36mPoint Load (0.3ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."employee_id" = ?[0m  [["employee_id", 2]]
+  ↳ app/controllers/employees_controller.rb:61:in `scores'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.43ms)
+Completed 200 OK in 92ms (Views: 8.5ms | ActiveRecord: 0.7ms | Allocations: 6902)
+
+
+Started GET "/employees/3/scores" for ::1 at 2023-05-18 22:07:23 +0530
+Processing by EmployeesController#scores as */*
+  Parameters: {"name"=>"sdcc", "id"=>"3", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:58:in `scores'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1675)
+
+
+Started GET "/employees/3/scores" for ::1 at 2023-05-18 22:07:31 +0530
+Processing by EmployeesController#scores as */*
+  Parameters: {"name"=>"sdcc", "id"=>"3", "employee"=>{"name"=>"sdcc"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:58:in `scores'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1686)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-18 22:08:01 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.86ms)
+Completed 200 OK in 83ms (Views: 3.1ms | ActiveRecord: 0.3ms | Allocations: 3919)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Update (68.4ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "5348d29a-7168-4679-97b4-3cce6d104a80"], ["id", 2]]
