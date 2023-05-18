@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :employees do
     get "subordinates", on: :member
     get "queries", on: :member
-    get "reviews", on: :member
   end
 
   resources :questions do
