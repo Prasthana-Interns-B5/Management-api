@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_165831) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_092414) do
   create_table "answers", force: :cascade do |t|
     t.text "answer"
     t.integer "question_id", null: false
@@ -39,6 +39,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_165831) do
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "review"
+    t.string "month"
+    t.integer "employee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "subordinate_id"
+    t.boolean "before", default: false
+    t.string "comments"
+    t.index ["employee_id"], name: "index_feedbacks_on_employee_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "query"
     t.integer "employee_id", null: false
@@ -52,5 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_165831) do
   add_foreign_key "answers", "employees"
   add_foreign_key "answers", "questions"
   add_foreign_key "employees", "employees", column: "manager_id"
+  add_foreign_key "feedbacks", "employees"
   add_foreign_key "questions", "employees"
 end

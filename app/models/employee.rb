@@ -25,4 +25,5 @@ class Employee < ApplicationRecord
 
   has_many :questions
   has_many :answers
+  has_many :feedbacks
 end

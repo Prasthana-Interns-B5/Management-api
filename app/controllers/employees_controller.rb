@@ -14,6 +14,13 @@ class EmployeesController < ApplicationController
     render json: subordinates, status: 200
   end
 
+  def reviews
+    employee=Employee.find(params[:id])
+    review=employee.feedbacks
+    authorize employee
+    render json: review,status: 200
+  end
+
   def show
     employee = Employee.find(params[:id])
     authorize employee
@@ -46,6 +53,15 @@ class EmployeesController < ApplicationController
     employee.destroy
     render json: {message: "Record Destroyed Successfully"}
   end
+ 
+  # def reviews
+  #   employee=Employee.find(params[:id])
+  #   review=employee.feedbacks
+  #   render json: review ,status: 200
+
+  # end
+
+  
 
   private
 
@@ -54,3 +70,4 @@ class EmployeesController < ApplicationController
   end
 
 end
+

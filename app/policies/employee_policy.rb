@@ -36,7 +36,10 @@ class EmployeePolicy
   def subordinates?
     @employee.manager? || @employee.HR?
   end
-
+ 
+   def reviews?
+     @employee.id ==@record.id
+   end
 
 
 end
