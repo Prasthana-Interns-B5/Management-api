@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  query: MyText
+  employee: one
+  clarified: false
+  remarks: MyText
+
+two:
+  query: MyText
+  employee: two
+  clarified: false
+  remarks: MyText
