@@ -4372,3 +4372,260 @@ Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.2ms | Allocations: 2
 JWT::ExpiredSignature (Signature has expired):
   
 app/controllers/employees/sessions_controller.rb:15:in `respond_to_on_destroy'
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 14:42:09 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.52ms)
+Completed 200 OK in 28ms (Views: 1.7ms | ActiveRecord: 0.7ms | Allocations: 43215)
+
+
+Started GET "/points" for ::1 at 2023-05-19 14:42:17 +0530
+Processing by PointsController#index as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 3369)
+
+
+Started GET "/points/1" for ::1 at 2023-05-19 14:42:23 +0530
+Processing by PointsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.3ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers] Rendered PointSerializer with ActiveModelSerializers::Adapter::Attributes (0.8ms)
+Completed 200 OK in 27ms (Views: 8.2ms | ActiveRecord: 1.1ms | Allocations: 19226)
+
+
+Started GET "/points/1/average" for ::1 at 2023-05-19 14:42:31 +0530
+Processing by PointsController#average as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:54:in `average'
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT avg(manager_score) as avg_score FROM "points" WHERE "points"."employee_id" = ? GROUP BY "points"."employee_id"[0m  [["employee_id", 2]]
+  ↳ app/controllers/points_controller.rb:56:in `average'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.67ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.4ms | Allocations: 2689)
+
+
+  
+ActiveModel::MissingAttributeError (missing attribute: employee_id):
+  
+app/controllers/points_controller.rb:56:in `average'
+Started GET "/points/1" for ::1 at 2023-05-19 14:45:00 +0530
+Processing by PointsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers] Rendered PointSerializer with ActiveModelSerializers::Adapter::Attributes (0.24ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1827)
+
+
+Started GET "/points/1/average" for ::1 at 2023-05-19 14:45:47 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#average as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:54:in `average'
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT avg(manager_score) as avg_score FROM "points" WHERE "points"."employee_id" = ? GROUP BY "points"."employee_id"[0m  [["employee_id", 2]]
+  ↳ app/controllers/points_controller.rb:56:in `average'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.66ms)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 1.6ms | Allocations: 61796)
+
+
+  
+ActiveModel::MissingAttributeError (missing attribute: employee_id):
+  
+app/controllers/points_controller.rb:56:in `average'
+Started GET "/points/1/average" for ::1 at 2023-05-19 14:46:29 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#average as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:54:in `average'
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT avg(manager_score) as avg_score FROM "points" WHERE "points"."employee_id" = ? GROUP BY "points"."employee_id"[0m  [["employee_id", 1]]
+  ↳ app/controllers/points_controller.rb:56:in `average'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.1ms)
+Completed 200 OK in 20ms (Views: 2.7ms | ActiveRecord: 2.0ms | Allocations: 10984)
+
+
+Started GET "/points/1/average" for ::1 at 2023-05-19 14:48:19 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#average as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT avg(manager_score) as avg_score FROM "points" WHERE "points"."employee_id" = ? GROUP BY "points"."employee_id"[0m  [["employee_id", 1]]
+  ↳ app/controllers/points_controller.rb:55:in `average'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.15ms)
+Completed 200 OK in 11ms (Views: 1.9ms | ActiveRecord: 1.1ms | Allocations: 8450)
+
+
+Started GET "/points/1" for ::1 at 2023-05-19 14:58:46 +0530
+Processing by PointsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers] Rendered PointSerializer with ActiveModelSerializers::Adapter::Attributes (0.47ms)
+Completed 200 OK in 15ms (Views: 1.5ms | ActiveRecord: 0.9ms | Allocations: 5540)
+
+
+Started GET "/points/1/average" for ::1 at 2023-05-19 14:58:57 +0530
+Processing by PointsController#average as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT avg(manager_score) as avg_score FROM "points" WHERE "points"."employee_id" = ? GROUP BY "points"."employee_id"[0m  [["employee_id", 1]]
+  ↳ app/controllers/points_controller.rb:55:in `average'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.12ms)
+Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 0.4ms | Allocations: 1934)
+
+
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT avg(manager_score) FROM "points" WHERE "points"."employee_id" = ? GROUP BY "points"."employee_id"[0m  [["employee_id", 2]]
+  [1m[36mPoint Load (0.5ms)[0m  [1m[34mSELECT avg(manager_score) FROM "points" WHERE "points"."employee_id" = ? GROUP BY "points"."employee_id"[0m  [["employee_id", 2]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT avg(manager_score) FROM "points" WHERE "points"."employee_id" = ? GROUP BY "points"."employee_id"[0m  [["employee_id", 2]]
+  [1m[36mPoint Pluck (0.3ms)[0m  [1m[34mSELECT avg(manager_score) FROM "points" WHERE "points"."employee_id" = ?[0m  [["employee_id", 2]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPoint Create (0.4ms)[0m  [1m[32mINSERT INTO "points" ("self_score", "month", "employee_id", "created_at", "updated_at", "manager_score", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["self_score", 4.0], ["month", "april"], ["employee_id", 3], ["created_at", "2023-05-19 09:46:51.600340"], ["updated_at", "2023-05-19 09:46:51.600340"], ["manager_score", 3.5], ["manager_id", 4]]
+  [1m[36mTRANSACTION (109.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPoint Update (0.2ms)[0m  [1m[33mUPDATE "points" SET "updated_at" = ?, "manager_id" = ? WHERE "points"."id" = ?[0m  [["updated_at", "2023-05-19 09:47:35.472043"], ["manager_id", 4], ["id", 2]]
+  [1m[36mTRANSACTION (104.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPoint Update (0.2ms)[0m  [1m[33mUPDATE "points" SET "updated_at" = ?, "manager_id" = ? WHERE "points"."id" = ?[0m  [["updated_at", "2023-05-19 09:47:46.414150"], ["manager_id", 4], ["id", 3]]
+  [1m[36mTRANSACTION (125.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mPoint Update (0.2ms)[0m  [1m[33mUPDATE "points" SET "updated_at" = ?, "manager_id" = ? WHERE "points"."id" = ?[0m  [["updated_at", "2023-05-19 09:48:02.976610"], ["manager_id", 8], ["id", 4]]
+  [1m[36mTRANSACTION (125.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mPoint Update (0.4ms)[0m  [1m[33mUPDATE "points" SET "updated_at" = ?, "manager_id" = ? WHERE "points"."id" = ?[0m  [["updated_at", "2023-05-19 09:48:17.305105"], ["manager_id", 8], ["id", 5]]
+  [1m[36mTRANSACTION (101.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" ORDER BY "points"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPoint Pluck (0.1ms)[0m  [1m[34mSELECT avg(manager_score) FROM "points" WHERE "points"."employee_id" = ?[0m  [["employee_id", 3]]
+Started GET "/points/1/average" for ::1 at 2023-05-19 15:20:25 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by PointsController#average as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Pluck (0.1ms)[0m  [1m[34mSELECT avg(manager_score) FROM "points" WHERE "points"."employee_id" = ?[0m  [["employee_id", 1]]
+  ↳ app/controllers/points_controller.rb:54:in `average'
+No serializer found for resource: nil
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (0.06ms)
+Completed 200 OK in 29ms (Views: 1.0ms | ActiveRecord: 1.3ms | Allocations: 45967)
+
+
+Started GET "/points/1/average" for ::1 at 2023-05-19 15:22:40 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+  
+AbstractController::ActionNotFound (The action 'average' could not be found for PointsController):
+  
+actionpack (7.0.4.3) lib/abstract_controller/base.rb:146:in `process'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4.3) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4.3) lib/action_dispatch/routing/route_set.rb:852:in `call'
+warden-jwt_auth (0.8.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in `call'
+warden-jwt_auth (0.8.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in `call'
+rack (2.2.7) lib/rack/builder.rb:244:in `call'
+warden-jwt_auth (0.8.0) lib/warden/jwt_auth/middleware.rb:22:in `call'
+rack (2.2.7) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.7) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.7) lib/rack/etag.rb:27:in `call'
+rack (2.2.7) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.7) lib/rack/head.rb:12:in `call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.7) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.7) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/points/1" for ::1 at 2023-05-19 15:22:55 +0530
+Processing by PointsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.1ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers]   [1m[36mPoint Pluck (0.1ms)[0m  [1m[34mSELECT avg(manager_score) FROM "points" WHERE "points"."employee_id" = ?[0m  [["employee_id", 2]]
+[active_model_serializers]   ↳ app/serializers/point_serializer.rb:5:in `avg_score'
+[active_model_serializers] Rendered PointSerializer with ActiveModelSerializers::Adapter::Attributes (4.32ms)
+Completed 200 OK in 51ms (Views: 7.3ms | ActiveRecord: 2.0ms | Allocations: 63205)
+
+
+Started GET "/points/3" for ::1 at 2023-05-19 15:23:14 +0530
+Processing by PointsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.2ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+Completed 200 OK in 7ms (Views: 0.9ms | ActiveRecord: 0.4ms | Allocations: 1799)
+
+
+Started GET "/points/1" for ::1 at 2023-05-19 15:23:21 +0530
+Processing by PointsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPoint Load (0.3ms)[0m  [1m[34mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/points_controller.rb:11:in `show'
+[active_model_serializers]   [1m[36mPoint Pluck (0.3ms)[0m  [1m[34mSELECT avg(manager_score) FROM "points" WHERE "points"."employee_id" = ?[0m  [["employee_id", 2]]
+[active_model_serializers]   ↳ app/serializers/point_serializer.rb:5:in `avg_score'
+[active_model_serializers] Rendered PointSerializer with ActiveModelSerializers::Adapter::Attributes (3.25ms)
+Completed 200 OK in 9ms (Views: 3.9ms | ActiveRecord: 0.7ms | Allocations: 2375)
+
+

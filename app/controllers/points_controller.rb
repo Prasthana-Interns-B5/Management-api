@@ -50,6 +50,7 @@ class PointsController < ApplicationController
     end
   end
 
+  
 
 
 
