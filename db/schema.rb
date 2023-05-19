@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_155713) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_061557) do
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -40,12 +40,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_155713) do
   end
 
   create_table "points", force: :cascade do |t|
-    t.string "self_score"
+    t.float "self_score"
     t.string "month"
     t.integer "employee_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "manager_score"
+    t.float "manager_score"
     t.integer "manager_id"
     t.index ["employee_id"], name: "index_points_on_employee_id"
   end

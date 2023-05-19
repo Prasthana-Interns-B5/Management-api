@@ -20,15 +20,19 @@ class PointPolicy
     @employee.id == @record.employee_id
   end
 
-  # def create?
-  #   @employee.subordinate?
-  # end
+ def manager_score?
+  @employee.manager?
+ end
 
-  # def update?
-  #     @employee.subordinate? && @employee.id == @record.id
-  #   end
+  def create?
+    @employee.subordinate?
+  end
 
-  # def destroy?
-  #   @employee.HR? || @employee.manager?
-  # end
+  def update?
+    @employee.id == @record.employee_id
+  end
+
+  def destroy?
+    @employee.id == @record.employee_id
+  end
 end

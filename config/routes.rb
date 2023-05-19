@@ -18,5 +18,8 @@ Rails.application.routes.draw do
   end
 
   resources :answers
-  resources :points
+
+  resources :points do 
+    put "manager_score", on: :member
+  end
 end
