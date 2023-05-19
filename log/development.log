@@ -4629,3 +4629,482 @@ Processing by PointsController#show as */*
 Completed 200 OK in 9ms (Views: 3.9ms | ActiveRecord: 0.7ms | Allocations: 2375)
 
 
+Started POST "/employees" for ::1 at 2023-05-19 17:00:09 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Devise::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp6@gmail.com"], ["LIMIT", 1]]
+  [1m[36mEmployee Create (0.2ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp6@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-19 11:30:09.682111"], ["updated_at", "2023-05-19 11:30:09.682111"], ["jti", "0fd88f88-7e53-4ede-a50b-7a60ee6b44b8"], ["name", nil], ["role", nil], ["manager_id", nil]]
+  [1m[36mTRANSACTION (138.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 411ms (Views: 0.1ms | ActiveRecord: 139.0ms | Allocations: 48549)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 17:09:29 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp6@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:15:in `respond_with'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 280ms (Views: 5.9ms | ActiveRecord: 0.9ms | Allocations: 49469)
+
+
+Started POST "/employees/sign_up" for ::1 at 2023-05-19 17:10:41 +0530
+  
+ActionController::RoutingError (uninitialized constant Devise::RegistraionsController
+Did you mean?  Devise::RegistrationsController):
+  
+Started POST "/employees/sign_up" for ::1 at 2023-05-19 17:11:13 +0530
+  
+ActionController::RoutingError (uninitialized constant RegistraionsController):
+  
+Started POST "/employees/sign_up" for ::1 at 2023-05-19 17:11:39 +0530
+  
+ActionController::RoutingError (uninitialized constant Employees::RegistraionsController
+Did you mean?  Employees::RegistrationsController):
+  
+Started POST "/employees/sign_up" for ::1 at 2023-05-19 17:16:24 +0530
+  
+ActionController::RoutingError (uninitialized constant RegistraionsController):
+  
+Started POST "/employees/sign_up" for ::1 at 2023-05-19 17:29:07 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/employees/sign_up"):
+  
+Started POST "/employees" for ::1 at 2023-05-19 17:29:25 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp6@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:15:in `respond_with'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 279ms (Views: 6.6ms | ActiveRecord: 0.9ms | Allocations: 49447)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 17:29:58 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp7@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp7@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp7@gmail.com"], ["LIMIT", 1]]
+  [1m[36mEmployee Create (0.3ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp7@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-19 11:59:59.064277"], ["updated_at", "2023-05-19 11:59:59.064277"], ["jti", "e5fc6fb1-74bb-477b-a934-dd8719ce943a"], ["name", nil], ["role", nil], ["manager_id", nil]]
+  [1m[36mTRANSACTION (77.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.54ms)
+Completed 200 OK in 337ms (Views: 1.3ms | ActiveRecord: 78.0ms | Allocations: 5957)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 17:40:48 +0530
+  
+SyntaxError (/home/prasthana/Management-api/config/routes.rb:7: syntax error, unexpected ',', expecting `end'
+    , controllers: {
+    ^
+/home/prasthana/Management-api/config/routes.rb:37: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:7: syntax error, unexpected ',', expecting `end'
+config/routes.rb:37: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:7: syntax error, unexpected ',', expecting `end'
+config/routes.rb:37: syntax error, unexpected `end', expecting end-of-input
+Started POST "/employees" for ::1 at 2023-05-19 17:41:06 +0530
+  
+SyntaxError (/home/prasthana/Management-api/config/routes.rb:7: syntax error, unexpected ':', expecting `end'
+    controllers: {
+               ^
+/home/prasthana/Management-api/config/routes.rb:37: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:7: syntax error, unexpected ':', expecting `end'
+config/routes.rb:37: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:7: syntax error, unexpected ':', expecting `end'
+config/routes.rb:37: syntax error, unexpected `end', expecting end-of-input
+Started POST "/employees" for ::1 at 2023-05-19 17:41:27 +0530
+  
+SyntaxError (/home/prasthana/Management-api/config/routes.rb:4: syntax error, unexpected ',', expecting `end'
+  end, controllers: {
+     ^
+/home/prasthana/Management-api/config/routes.rb:34: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:4: syntax error, unexpected ',', expecting `end'
+config/routes.rb:34: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:4: syntax error, unexpected ',', expecting `end'
+config/routes.rb:34: syntax error, unexpected `end', expecting end-of-input
+Started POST "/employees" for ::1 at 2023-05-19 17:42:52 +0530
+  
+SyntaxError (/home/prasthana/Management-api/config/routes.rb:6: syntax error, unexpected ':', expecting `end'
+  controllers: {
+             ^
+/home/prasthana/Management-api/config/routes.rb:33: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:6: syntax error, unexpected ':', expecting `end'
+config/routes.rb:33: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:6: syntax error, unexpected ':', expecting `end'
+config/routes.rb:33: syntax error, unexpected `end', expecting end-of-input
+Started POST "/employees" for ::1 at 2023-05-19 17:43:10 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Devise::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp8@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp8@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp8@gmail.com"], ["LIMIT", 1]]
+  [1m[36mEmployee Create (0.3ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp8@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-19 12:13:11.063490"], ["updated_at", "2023-05-19 12:13:11.063490"], ["jti", "d73c7df0-1575-4818-9e6d-a9f787ccbdd8"], ["name", nil], ["role", nil], ["manager_id", nil]]
+  [1m[36mTRANSACTION (71.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+Completed 200 OK in 336ms (Views: 0.2ms | ActiveRecord: 72.3ms | Allocations: 9353)
+
+
+Started POST "/employees/signup" for ::1 at 2023-05-19 17:44:13 +0530
+  
+ActionController::RoutingError (No route matches [POST] "/employees/signup"):
+  
+Started POST "/employees" for ::1 at 2023-05-19 17:44:58 +0530
+Processing by Devise::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp9@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp9@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp9@gmail.com"], ["LIMIT", 1]]
+  [1m[36mEmployee Create (0.2ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp9@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-19 12:14:58.772681"], ["updated_at", "2023-05-19 12:14:58.772681"], ["jti", "138714d6-f6fe-48da-9aca-8a5659419432"], ["name", nil], ["role", nil], ["manager_id", nil]]
+  [1m[36mTRANSACTION (94.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+Completed 200 OK in 354ms (Views: 0.1ms | ActiveRecord: 95.0ms | Allocations: 5216)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 17:45:44 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"man4@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"man4@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "man4@gmail.com"], ["LIMIT", 1]]
+  [1m[36mEmployee Create (0.2ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "man4@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-19 12:15:44.801353"], ["updated_at", "2023-05-19 12:15:44.801353"], ["jti", "8fbd2137-9e29-4177-bc54-aedf3d31e0d8"], ["name", nil], ["role", nil], ["manager_id", nil]]
+  [1m[36mTRANSACTION (68.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.41ms)
+Completed 200 OK in 330ms (Views: 1.5ms | ActiveRecord: 70.1ms | Allocations: 10242)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:03:01 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+[31mUnpermitted parameters: :email, :password. Context: { controller: EmployeesController, action: create, request: #<ActionDispatch::Request:0x00007f644017dfa8>, params: {"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}, "controller"=>"employees", "action"=>"create"} }[0m
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 5824)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 18:03:32 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.1ms | Allocations: 2484)
+
+
+  
+JWT::ExpiredSignature (Signature has expired):
+  
+app/controllers/employees/sessions_controller.rb:15:in `respond_to_on_destroy'
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 18:03:46 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.24ms)
+Completed 200 OK in 6ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 1832)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 18:04:30 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.61ms)
+Completed 200 OK in 8ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 2488)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mEmployee Update (146.8ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "d7031a94-12fe-4f03-b0f0-f704ee8aa93f"], ["id", 14]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 18:05:11 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.22ms)
+Completed 200 OK in 254ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 3118)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:05:17 +0530
+Processing by EmployeesController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[31mUnpermitted parameters: :email, :password. Context: { controller: EmployeesController, action: create, request: #<ActionDispatch::Request:0x00007f643c19e360>, params: {"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}, "controller"=>"employees", "action"=>"create"} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 11ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 2707)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:06:01 +0530
+Processing by EmployeesController#create as */*
+  Parameters: {"email"=>"emp10@gmail.com", "password"=>"[FILTERED]", "employee"=>{"email"=>"emp10@gmail.com"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[31mUnpermitted parameter: :email. Context: { controller: EmployeesController, action: create, request: #<ActionDispatch::Request:0x00007f6450875990>, params: {"email"=>"emp10@gmail.com", "password"=>"[FILTERED]", "controller"=>"employees", "action"=>"create", "employee"=>{"email"=>"emp10@gmail.com"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 2390)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 18:09:06 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.39ms)
+Completed 200 OK in 6ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 2291)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Update (68.8ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "3c37a1b3-11bf-43a8-9ac7-5df7ac8c2521"], ["id", 1]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 18:09:29 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.24ms)
+Completed 200 OK in 253ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1771)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:12:05 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#create as */*
+  Parameters: {"email"=>"emp10@gmail.com", "password"=>"[FILTERED]", "employee"=>{"email"=>"emp10@gmail.com"}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:19:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp10@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/employees_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 1.1ms | Allocations: 8277)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:28:24 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"email"=>"emp10@gmail.com", "password"=>"[FILTERED]", "registration"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 22866)
+
+
+  
+NameError (undefined local variable or method `byebug' for #<Employees::RegistrationsController:0x0000000000b630>):
+  
+app/controllers/employees/registrations_controller.rb:7:in `create'
+Started POST "/employees" for ::1 at 2023-05-19 18:29:44 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"email"=>"emp10@gmail.com", "password"=>"[FILTERED]", "registration"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 2594)
+
+
+  
+NameError (undefined local variable or method `byebug' for #<Employees::RegistrationsController:0x0000000000b748>):
+  
+app/controllers/employees/registrations_controller.rb:7:in `create'
+Started POST "/employees" for ::1 at 2023-05-19 18:30:16 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"email"=>"emp10@gmail.com", "password"=>"[FILTERED]", "registration"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}
+Completed 204 No Content in 12187ms (Allocations: 119070)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:35:30 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"email"=>"emp10@gmail.com", "password"=>"[FILTERED]", "registration"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}
+Completed 400 Bad Request in 0ms (Allocations: 318)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: employee):
+  
+app/controllers/employees/registrations_controller.rb:33:in `employee_params'
+app/controllers/employees/registrations_controller.rb:7:in `create'
+Started POST "/employees" for ::1 at 2023-05-19 18:36:20 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mEmployee Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp10@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mEmployee Create (0.2ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp10@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-19 13:06:21.096859"], ["updated_at", "2023-05-19 13:06:21.096859"], ["jti", "937acfd7-05de-4459-ae82-7785e4f4afdf"], ["name", nil], ["role", nil], ["manager_id", nil]]
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (73.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.89ms)
+Completed 200 OK in 346ms (Views: 8.0ms | ActiveRecord: 74.1ms | Allocations: 29884)
+
+
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 18:37:14 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.61ms)
+Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 2255)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 18:37:38 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.31ms)
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 3216)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Update (75.0ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "31290be0-a2c7-40ca-a6c9-87efbefe2150"], ["id", 1]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 18:37:56 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "emp10@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 200 OK in 253ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 3138)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:41:39 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp11@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp11@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:8:in `create'
+Completed 200 OK in 249ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 5641)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 18:42:51 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 200 OK in 9ms (Views: 0.7ms | ActiveRecord: 0.9ms | Allocations: 6828)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mEmployee Update (108.9ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "5c8d68b2-5680-4690-b779-2feb538a6448"], ["id", 15]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 18:43:03 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.24ms)
+Completed 200 OK in 246ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 1903)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:43:11 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp11@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp11@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp11@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mEmployee Create (0.2ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp11@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-19 13:13:11.701513"], ["updated_at", "2023-05-19 13:13:11.701513"], ["jti", "ad9d0297-610a-4133-a612-ff6d8b06a92e"], ["name", nil], ["role", nil], ["manager_id", nil]]
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (89.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.45ms)
+Completed 200 OK in 347ms (Views: 2.6ms | ActiveRecord: 90.1ms | Allocations: 5049)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 18:43:53 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 2286)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Update (131.4ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "dc272763-d4a8-4af7-b6f5-6234797de2a5"], ["id", 1]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 18:47:11 +0530
+  
+SyntaxError (/home/prasthana/Management-api/config/routes.rb:7: syntax error, unexpected local variable or method, expecting '}'
+  resources :employees do
+  ^~~~~~~~~
+):
+  
+config/routes.rb:7: syntax error, unexpected local variable or method, expecting '}'
+config/routes.rb:7: syntax error, unexpected local variable or method, expecting '}'
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 18:47:59 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.36ms)
+Completed 200 OK in 252ms (Views: 0.9ms | ActiveRecord: 0.6ms | Allocations: 6067)
+
+
+Started POST "/employees" for ::1 at 2023-05-19 18:48:32 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp12@gmail.com", "password"=>"[FILTERED]"}, "registration"=>{"employee"=>{"email"=>"emp12@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp12@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mEmployee Create (0.2ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp12@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-19 13:18:32.567585"], ["updated_at", "2023-05-19 13:18:32.567585"], ["jti", "dd0437c1-20f9-496e-92e5-d899c9b870c9"], ["name", nil], ["role", nil], ["manager_id", nil]]
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (72.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:9:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.47ms)
+Completed 200 OK in 329ms (Views: 1.2ms | ActiveRecord: 72.5ms | Allocations: 4849)
+
+
+Started GET "/employees" for ::1 at 2023-05-19 18:50:10 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#index as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  ↳ app/controllers/employees_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.31ms)
+Completed 200 OK in 10ms (Views: 3.2ms | ActiveRecord: 0.9ms | Allocations: 9437)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 18:50:17 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:11:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.15ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 2014)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 18:51:00 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.45ms)
+Completed 200 OK in 6ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 2762)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Update (71.5ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "a6827d42-8684-4507-b02c-b4b578270d0e"], ["id", 1]]
