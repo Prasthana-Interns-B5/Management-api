@@ -1,10 +1,10 @@
-class FeedbackPolicy < ApplicationPolicy
-  class Scope < Scope
+class FeedbackPolicy 
+  # class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
     #   scope.all
     # end
-  end
+  # end
 
 
   attr_reader :employee, :record
@@ -14,24 +14,46 @@ class FeedbackPolicy < ApplicationPolicy
     @record = record
   end
 
-
   def index?
-    @employee.HR?
+    @employee.HR? 
   end
 
   def show?
-    @employee.HR? || @employee.manager? 
-  end
-  
-  def destroy?
-    @employee.manager?
+    @employee.id == @record.employee_id
   end
 
-  def comments?
+ 
+  def create?
     @employee.subordinate?
   end
 
+  def update?
+    @employee.id == @record.employee_id
+  end
+
+  def destroy?
+    @employee.id == @record.employee_id
+  end
+
+  def manager_feedback?
+    @employee.manager?
+   end
+
+   def comments?
+    @employee.subordinate?
+   end
+  
+
 end
+
+
+
+
+
+
+
+
+
 
 
 

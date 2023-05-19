@@ -54,12 +54,12 @@ class EmployeesController < ApplicationController
     render json: {message: "Record Destroyed Successfully"}
   end
  
-  # def reviews
-  #   employee=Employee.find(params[:id])
-  #   review=employee.feedbacks
-  #   render json: review ,status: 200
+  def reviews
+    employee=Employee.find(params[:id])
+    review=employee.feedbacks
+    render json: review ,status: 200
 
-  # end
+  end
 
   
 

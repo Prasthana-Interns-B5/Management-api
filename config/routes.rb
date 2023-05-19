@@ -12,15 +12,16 @@ Rails.application.routes.draw do
     get "reviews", on: :member
   
   end
-
+ 
   resources :questions
 
-  resources  :feedbacks  do
-    put "comments" ,on: :member
+  resources :feedbacks do
+     put "manager_feedback" , on: :member
+     put "comments" ,on: :member
   end
 
   # put "feedbacks/:id/comments" ,to: "feedbacks#comments"
-
+ 
   
    
 end
