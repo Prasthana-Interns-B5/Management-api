@@ -1,9 +1,20 @@
 class EmployeeSerializer < ActiveModel::Serializer
-  attributes :id, :email, :role, :manager_id
-  # belongs_to :manager
-  # has_many :subordinates, if: :manager_id_exists
+  attributes :id, :email, :role, :manager_id ,:notification
 
-  # def manager_id_exists
-  #   self.manager_id.nil?
-  # end
+  
+ def  notification
+    if object.feedbacks.nil?
+      return "please fill the feedback and points"
+    else
+      return "Successfully filled feedbacks and points  please attend the meeting"
+    end
+  end
+ 
+# def  message
+#   true if object.feedbacks.nil?
+#         end
+# end
+
+ 
+
 end

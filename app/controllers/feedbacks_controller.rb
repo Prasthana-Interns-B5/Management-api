@@ -58,12 +58,12 @@ class FeedbacksController < ApplicationController
             feedback.update(comment_param)
                 render json: feedback ,status: 200
         else
-            render json: "Your not allowed to update without manager's Feedback"
+            render json: "Your not allowed to commit  without manager's Feedback"
         end
     end
 
 
-    
+
 
 
 

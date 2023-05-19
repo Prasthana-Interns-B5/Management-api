@@ -8873,3 +8873,652 @@ Processing by FeedbacksController#manager_feedback as */*
 Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1480)
 
 
+Started GET "/employees" for ::1 at 2023-05-19 14:43:14 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#index as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 24ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 41885)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 14:43:43 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (6.22ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.2ms | Allocations: 7228)
+
+
+  
+NoMethodError (undefined method `employee_id' for #<Employee id: 2, email: "employee1@gmail.com", created_at: "2023-05-17 06:57:19.362625000 +0000", updated_at: "2023-05-17 10:16:52.694923000 +0000", jti: "5c8109e8-3421-4730-b9bf-d34cd71ae883", name: nil, role: "subordinate", manager_id: 4>):
+  
+app/serializers/employee_serializer.rb:5:in `notification?'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 14:45:02 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (6.26ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.7ms | Allocations: 10106)
+
+
+  
+NoMethodError (undefined method `employee_id' for #<Employee id: 2, email: "employee1@gmail.com", created_at: "2023-05-17 06:57:19.362625000 +0000", updated_at: "2023-05-17 10:16:52.694923000 +0000", jti: "5c8109e8-3421-4730-b9bf-d34cd71ae883", name: nil, role: "subordinate", manager_id: 4>):
+  
+app/serializers/employee_serializer.rb:5:in `notification?'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 14:46:44 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (6.13ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.8ms | Allocations: 10086)
+
+
+  
+NoMethodError (undefined method `employee_id' for #<Employee id: 2, email: "employee1@gmail.com", created_at: "2023-05-17 06:57:19.362625000 +0000", updated_at: "2023-05-17 10:16:52.694923000 +0000", jti: "5c8109e8-3421-4730-b9bf-d34cd71ae883", name: nil, role: "subordinate", manager_id: 4>):
+  
+app/serializers/employee_serializer.rb:5:in `notification?'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 14:47:31 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (1.34ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.9ms | Allocations: 7997)
+
+
+  
+NoMethodError (undefined method `feedbacks' for 2:Integer):
+  
+app/serializers/employee_serializer.rb:5:in `notification?'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 14:48:54 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (1.17ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.7ms | Allocations: 7971)
+
+
+  
+NoMethodError (undefined method `feedbacks' for 2:Integer):
+  
+app/serializers/employee_serializer.rb:5:in `notification?'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 14:50:04 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (1.44ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 0.6ms | Allocations: 45311)
+
+
+  
+NoMethodError (undefined method `feedbacks' for 2:Integer):
+  
+app/serializers/employee_serializer.rb:5:in `notification?'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 14:51:50 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers]   [1m[36mFeedback Load (0.1ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."employee_id" = ? /* loading for inspect */ LIMIT ?[0m  [["employee_id", 2], ["LIMIT", 11]]
+[active_model_serializers]   ↳ app/controllers/employees_controller.rb:27:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (16.55ms)
+  [1m[36mCACHE Feedback Load (0.0ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."employee_id" = ? /* loading for inspect */ LIMIT ?[0m  [["employee_id", 2], ["LIMIT", 11]]
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 1.1ms | Allocations: 33086)
+
+
+  [1m[36mCACHE Feedback Load (0.0ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."employee_id" = ? /* loading for inspect */ LIMIT ?[0m  [["employee_id", 2], ["LIMIT", 11]]
+  
+NoMethodError (undefined method `nil' for #<ActiveRecord::Associations::CollectionProxy [#<Feedback id: 1, self_feedback: "sf", month: "april", manager_feedback: "mf", manager_id: 4, comments: "satisfied", before: true, employee_id: 2, created_at: "2023-05-19 06:47:33.595248000 +0000", updated_at: "2023-05-19 06:47:33.595248000 +0000">, #<Feedback id: 2, self_feedback: "sf", month: "may", manager_feedback: "mf", manager_id: 4, comments: "satisfied", before: true, employee_id: 2, created_at: "2023-05-19 06:48:01.402677000 +0000", updated_at: "2023-05-19 06:48:01.402677000 +0000">]>
+Did you mean?  nil?):
+  
+app/serializers/employee_serializer.rb:5:in `notification?'
+app/controllers/employees_controller.rb:27:in `show'
+  [1m[36mCACHE Feedback Load (0.0ms)[0m  [1m[34mSELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."employee_id" = ? /* loading for inspect */ LIMIT ?[0m  [["employee_id", 2], ["LIMIT", 11]]
+Started GET "/employees/2" for ::1 at 2023-05-19 14:52:12 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (2.09ms)
+Completed 200 OK in 11ms (Views: 3.2ms | ActiveRecord: 0.8ms | Allocations: 8707)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 14:52:56 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (1.54ms)
+Completed 200 OK in 11ms (Views: 2.7ms | ActiveRecord: 0.8ms | Allocations: 8652)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 14:53:42 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 200 OK in 5ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 3867)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Update (6.3ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "adc978d9-be3b-45e0-bf46-93c9341a9914"], ["id", 2]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 14:54:04 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "emp6@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.29ms)
+Completed 200 OK in 210ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 3192)
+
+
+Started GET "/employees/10" for ::1 at 2023-05-19 14:54:16 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.29ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 1840)
+
+
+Started GET "/employees/10" for ::1 at 2023-05-19 14:57:59 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (1.76ms)
+Completed 200 OK in 10ms (Views: 2.9ms | ActiveRecord: 0.7ms | Allocations: 8668)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 15:00:45 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.27ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.1ms | Allocations: 2775)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Update (5.9ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "002046e2-02fd-4257-8dd9-980b8610942c"], ["id", 10]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 15:00:55 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee1@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.26ms)
+Completed 200 OK in 210ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 1912)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 15:01:06 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.33ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 1844)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 15:02:18 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.8ms | Allocations: 6773)
+
+
+  
+SyntaxError (/home/prasthana/Management-api/app/serializers/employee_serializer.rb:11: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/serializers/employee_serializer.rb:11: syntax error, unexpected end-of-input, expecting `end'
+app/serializers/employee_serializer.rb:11: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:02:38 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (1.88ms)
+Completed 200 OK in 12ms (Views: 3.3ms | ActiveRecord: 1.0ms | Allocations: 8676)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 15:07:18 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.8ms | Allocations: 6763)
+
+
+  
+SyntaxError (/home/prasthana/Management-api/app/serializers/employee_serializer.rb:19: syntax error, unexpected `end', expecting end-of-input):
+  
+app/serializers/employee_serializer.rb:19: syntax error, unexpected `end', expecting end-of-input
+app/serializers/employee_serializer.rb:19: syntax error, unexpected `end', expecting end-of-input
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:07:45 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.7ms | Allocations: 7114)
+
+
+  
+TypeError ({:if=>:message} is not a symbol nor a string):
+  
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:08:06 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.8ms | Allocations: 7143)
+
+
+  
+TypeError ({:if=>:message?} is not a symbol nor a string):
+  
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:08:28 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.7ms | Allocations: 8472)
+
+
+  
+NoMethodError (undefined method `message?' for EmployeeSerializer:Class):
+  
+app/serializers/employee_serializer.rb:3:in `<class:EmployeeSerializer>'
+app/serializers/employee_serializer.rb:1:in `<main>'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:08:47 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.7ms | Allocations: 8589)
+
+
+  
+NameError (undefined local variable or method `message' for EmployeeSerializer:Class):
+  
+app/serializers/employee_serializer.rb:3:in `<class:EmployeeSerializer>'
+app/serializers/employee_serializer.rb:1:in `<main>'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:09:36 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.8ms | Allocations: 8614)
+
+
+  
+NameError (undefined local variable or method `object' for EmployeeSerializer:Class
+Did you mean?  object_id):
+  
+app/serializers/employee_serializer.rb:3:in `<class:EmployeeSerializer>'
+app/serializers/employee_serializer.rb:1:in `<main>'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:09:57 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.8ms | Allocations: 7872)
+
+
+  
+NoMethodError (undefined method `feedbacks' for 165020:Integer):
+  
+app/serializers/employee_serializer.rb:3:in `<class:EmployeeSerializer>'
+app/serializers/employee_serializer.rb:1:in `<main>'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:12:52 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.43ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.8ms | Allocations: 7113)
+
+
+  
+TypeError ({:if=>:message} is not a symbol nor a string):
+  
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:14:34 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.26ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.9ms | Allocations: 7113)
+
+
+  
+TypeError ({:if=>:message} is not a symbol nor a string):
+  
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:16:20 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.24ms)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 1856)
+
+
+  
+TypeError ({:if=>:message} is not a symbol nor a string):
+  
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:16:39 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.7ms | Allocations: 6818)
+
+
+  
+SyntaxError (/home/prasthana/Management-api/app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'
+app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:16:56 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.26ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.7ms | Allocations: 7112)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/serializers/employee_serializer.rb:9:in `include'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:17:09 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (3.01ms)
+Completed 200 OK in 13ms (Views: 4.5ms | ActiveRecord: 0.7ms | Allocations: 8701)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 15:17:52 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.2ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 2776)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Update (6.4ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "decf515e-e59a-4e69-ad1d-053e00682fb1"], ["id", 2]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 15:18:18 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "emp6@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.23ms)
+Completed 200 OK in 203ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 1913)
+
+
+Started GET "/employees/10" for ::1 at 2023-05-19 15:18:33 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.22ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 1854)
+
+
+Started GET "/employees/10" for ::1 at 2023-05-19 15:19:06 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.8ms | Allocations: 6788)
+
+
+  
+SyntaxError (/home/prasthana/Management-api/app/serializers/employee_serializer.rb:16: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/serializers/employee_serializer.rb:16: syntax error, unexpected end-of-input, expecting `end'
+app/serializers/employee_serializer.rb:16: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/10" for ::1 at 2023-05-19 15:19:57 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.7ms | Allocations: 6765)
+
+
+  
+SyntaxError (/home/prasthana/Management-api/app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'
+app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/10" for ::1 at 2023-05-19 15:20:13 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 1.2ms | Allocations: 6765)
+
+
+  
+SyntaxError (/home/prasthana/Management-api/app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'
+app/serializers/employee_serializer.rb:15: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/10" for ::1 at 2023-05-19 15:20:36 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (2.04ms)
+Completed 200 OK in 11ms (Views: 3.3ms | ActiveRecord: 0.7ms | Allocations: 8727)
+
+
+Started DELETE "/employees/sign_out" for ::1 at 2023-05-19 15:21:26 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 2773)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Update (6.6ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "a450cfa3-b076-46ff-931d-c8a581d5111d"], ["id", 10]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-19 15:21:35 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"employee1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "employee1@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.22ms)
+Completed 200 OK in 207ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1904)
+
+
+Started GET "/employees/10" for ::1 at 2023-05-19 15:21:42 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 1757)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 15:21:51 +0530
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (0.26ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 1851)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 15:23:51 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.7ms | Allocations: 6779)
+
+
+  
+SyntaxError (/home/prasthana/Management-api/app/serializers/employee_serializer.rb:20: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/serializers/employee_serializer.rb:20: syntax error, unexpected end-of-input, expecting `end'
+app/serializers/employee_serializer.rb:20: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/employees_controller.rb:27:in `show'
+Started GET "/employees/2" for ::1 at 2023-05-19 15:24:14 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (2.01ms)
+Completed 200 OK in 13ms (Views: 3.1ms | ActiveRecord: 1.0ms | Allocations: 8694)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 15:26:13 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (1.86ms)
+Completed 200 OK in 11ms (Views: 3.1ms | ActiveRecord: 0.7ms | Allocations: 8687)
+
+
+Started GET "/employees/2" for ::1 at 2023-05-19 15:26:26 +0530
+DEPRECATION WARNING: 'include Pundit' is deprecated. Please use 'include Pundit::Authorization' instead.
+ (called from include at /home/prasthana/Management-api/app/controllers/application_controller.rb:2)
+Processing by EmployeesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:25:in `show'
+[active_model_serializers] Rendered EmployeeSerializer with ActiveModelSerializers::Adapter::Attributes (2.37ms)
+Completed 200 OK in 13ms (Views: 3.4ms | ActiveRecord: 1.0ms | Allocations: 8762)
+
+
