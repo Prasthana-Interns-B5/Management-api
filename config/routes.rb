@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "subordinates", on: :member
     get "queries", on: :member
     get "scores", on: :member
+    get "managers", on: :collection
   end
 
   resources :questions do

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Employees::RegistrationsController < Devise::RegistrationsController
+  before_action :authenticate_employee!
   respond_to :json
+
 
   def create
     employee = Employee.new(employee_params)

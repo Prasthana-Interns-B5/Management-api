@@ -44,4 +44,8 @@ class EmployeePolicy
  def scores?
   @employee.id == @record.id
  end
+
+ def managers?
+  @employee.HR?
+ end
 end

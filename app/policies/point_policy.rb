@@ -17,7 +17,7 @@ class PointPolicy
   end
 
   def show?
-    @employee.id == @record.employee_id
+    @employee.HR? || @employee.manager || @employee.id == @record.employee_id
   end
 
  def manager_score?

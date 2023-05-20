@@ -61,6 +61,12 @@ class EmployeesController < ApplicationController
     render json: scores, status: 200
   end
 
+  def managers
+    managers = Employee.where(role: "manager")
+    authorize managers
+    render json: managers, status: 200
+  end
+
   private
 
   def employee_params
