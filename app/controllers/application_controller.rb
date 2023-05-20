@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::API
-  include Pundit
+  include Pundit::Authorization
   alias_method :current_user, :current_employee
 
   rescue_from Pundit::NotAuthorizedError, with: :employee_not_authorized
-  rescue_from NoMethodError, with: :employee_not_HR
+  # rescue_from NoMethodError, with: :employee_not_HR
 
   private
 

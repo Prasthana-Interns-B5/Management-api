@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_employee!
 
   def index
-    questions = Question.all
+    questions = Question.where(anonymous: true)
     # authorize questions
     render json: questions, status: 200
   end
@@ -50,7 +50,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:query, :employee_id, :clarified, :remarks)
+    params.require(:question).permit(:query, :employee_id, :clarified, :remarks, :manager_id)
   end
 
 

@@ -18,11 +18,11 @@ class EmployeePolicy
   end
 
   def show?
-    @employee.HR? || @employee.id == @record.id
+    @employee.HR? || @employee.id == @record.id || @employee.manager_id == @record.id
   end
 
   def update?
-    @employee.HR?
+    @employee.id == @record.id
   end
 
   def create?
@@ -34,7 +34,7 @@ class EmployeePolicy
   end
 
   def subordinates?
-    @employee.manager? || @employee.HR?
+    @employee.manager? || @employee.HR? || @employee.manager_id == @record.id
   end
 
  def queries?
@@ -48,4 +48,9 @@ class EmployeePolicy
  def managers?
   @employee.HR?
  end
+
+  def role?
+    @employee.HR?
+  end
+
 end

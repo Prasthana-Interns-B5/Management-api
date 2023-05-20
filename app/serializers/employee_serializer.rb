@@ -1,5 +1,5 @@
 class EmployeeSerializer < ActiveModel::Serializer
-  attributes :id, :email, :role, :manager_id
+  attributes :id, :employee_no, :name, :email, :role, :manager_name, :manager_id
   # belongs_to :manager
   # has_many :subordinates, if: :manager_id_exists
 
