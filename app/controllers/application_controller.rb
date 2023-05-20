@@ -3,12 +3,17 @@ class ApplicationController < ActionController::API
   alias_method :current_user, :current_employee
 
   rescue_from Pundit::NotAuthorizedError, with: :employee_not_authorized
+  rescue_from NoMethodError, with: :employee_not_HR
 
   private
 
   def employee_not_authorized
     #flash[:alert] = "You are not authorized to perform this action."
     #redirect_back(fallback_location: root_path)
-    render json: "You are not authorized to perform this action"
+    render json: "OOPS! You are not authorized to perform this action"
   end
+
+ def employee_not_HR
+  render json: "Only HR is permitted to do this action!"
+ end
 end

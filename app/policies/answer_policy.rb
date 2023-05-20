@@ -21,16 +21,16 @@ class AnswerPolicy < ApplicationPolicy
   #   @employee.HR? || @employee.manager?
   # end
 
-  def update?
-    @employee.manager?
-  end
-
   def create?
     @employee.manager?
   end
 
+  def update?
+    @employee.manager?
+  end
+
   def destroy?
-    @employee.HR? || @employee.manager?
+    @employee.manager?
   end
 
 end

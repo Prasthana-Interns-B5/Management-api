@@ -21,16 +21,16 @@ class QuestionPolicy
   #   @employee.HR?
   # end
 
-  def create?
-    @employee.subordinate?
-  end
+  # def create?
+  #   @employee.subordinate?
+  # end
 
-  def update?
-      @employee.subordinate? && @employee.id == @record.employee_id
-    end
+  # def update?
+  #     @employee.subordinate? && @employee.id == @record.id
+  #   end
 
-  def destroy?
-    @employee.HR? || @employee.manager?
-  end
+  # def destroy?
+  #   @employee.HR? || @employee.manager?
+  # end
 
 end
