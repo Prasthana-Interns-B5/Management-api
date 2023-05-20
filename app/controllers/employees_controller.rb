@@ -7,6 +7,13 @@ class EmployeesController < ApplicationController
     render json: employees, status: 200
   end
 
+  def subordinates
+    manager = Employee.find(params[:id])
+    subordinates = manager.subordinates
+    authorize manager
+    render json: subordinates, status: 200
+  end
+
   def show
     employee = Employee.find(params[:id])
     authorize employee
@@ -40,37 +47,10 @@ class EmployeesController < ApplicationController
     render json: {message: "Record Destroyed Successfully"}
   end
 
-  def subordinates
-    manager = Employee.find(params[:id])
-    subordinates = manager.subordinates
-    authorize manager
-    render json: subordinates, status: 200
-  end
-
-  def queries
-    employee = Employee.find(params[:id])
-    queries = employee.questions
-    authorize employee
-    render json: queries, status: 200
-  end
-
-  def scores
-    employee = Employee.find(params[:id])
-    scores = employee.points
-    authorize employee
-    render json: scores, status: 200
-  end
-
-  def managers
-    managers = Employee.where(role: "manager")
-    authorize managers
-    render json: managers, status: 200
-  end
-
   private
 
   def employee_params
-    params.require(:employee).permit(:email,:password,:name,:role,:manager_id)
+    params.require(:employee).permit(:name,:role,:manager_id)
   end
 
 end

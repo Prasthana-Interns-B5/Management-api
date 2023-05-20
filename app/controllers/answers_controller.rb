@@ -3,20 +3,23 @@ class AnswersController < ApplicationController
 
   def index
     answers = Answer.all
-    # authorize answers
+
+    # authorize employee
     render json: answers, status: 200
   end
 
 
   def show
     answer = Answer.find(params[:id])
-    # authorize answer
+    employee = answer.employee
+    authorize employee
     render json: answer, status: 200
   end
 
   def create
     answer = Answer.new(answer_params)
-    authorize answer
+    employee = answer.employee
+    authorize employee
     if answer.save
       render json: answer, status: 200
     else
@@ -26,7 +29,8 @@ class AnswersController < ApplicationController
 
   def update
     answer = Answer.find(params[:id])
-    authorize answer
+    employee = answer.employee
+    authorize employee
     if answer.update(answer_params)
       render json: answer, status: 200
     else
@@ -36,7 +40,8 @@ class AnswersController < ApplicationController
 
   def destroy
     answer = Answer.find(params[:id])
-    authorize answer
+    employee = answer.employee
+    authorize employee
     answer.destroy
     render json: {message: "Record Destroyed Successfully"}
   end
@@ -44,7 +49,7 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:reply, :question_id, :employee_id)
+    params.require(:answer).permit(:answer, :employee_id)
   end
 
 end

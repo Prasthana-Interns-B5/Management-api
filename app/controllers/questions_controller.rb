@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
     render json: questions, status: 200
   end
 
+
   def show
     question = Question.find(params[:id])
     # authorize question
@@ -15,7 +16,7 @@ class QuestionsController < ApplicationController
 
   def create
     question = Question.new(question_params)
-    # authorize question
+    authorize question
     if question.save
       render json: question, status: 200
     else
@@ -25,7 +26,7 @@ class QuestionsController < ApplicationController
 
   def update
     question = Question.find(params[:id])
-    # authorize question
+    authorize question
     if question.update(question_params)
       render json: question, status: 200
     else
@@ -35,16 +36,9 @@ class QuestionsController < ApplicationController
 
   def destroy
     question = Question.find(params[:id])
-    # authorize question
+    authorize question
     question.destroy
     render json: {message: "Record Destroyed Successfully"}
-  end
-
-  def replies
-    question = Question.find(params[:id])
-    replies = question.answers
-    render json: replies, status: 200
-
   end
 
   private
@@ -52,6 +46,7 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:query, :employee_id, :clarified, :remarks)
   end
+
 
 
 end

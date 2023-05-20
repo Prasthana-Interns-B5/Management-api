@@ -37,15 +37,6 @@ class EmployeePolicy
     @employee.manager? || @employee.HR?
   end
 
- def queries?
-  @employee.id == @record.id
- end
 
- def scores?
-  @employee.id == @record.id
- end
 
- def managers?
-  @employee.HR?
- end
 end
