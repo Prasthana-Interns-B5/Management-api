@@ -49,6 +49,6 @@ class Employees::RegistrationsController < Devise::RegistrationsController
    end
 
   def employee_params
-    params.require(:employee).permit(:email,:password,:name,:role,:manager_id)
+    params.require(:employee).permit(:email,:password,:role)
   end
 end

@@ -50,7 +50,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:query, :employee_id, :clarified, :remarks, :manager_id)
+    params.require(:question).permit(:query, :employee_id, :clarified, :remarks, :manager_id, :anonymous)
   end
 
 

@@ -6663,3 +6663,676 @@ Processing by EmployeesController#show as */*
 Completed 200 OK in 14ms (Views: 2.3ms | ActiveRecord: 1.0ms | Allocations: 7591)
 
 
+Started POST "/employees/sign_in" for ::1 at 2023-05-21 12:18:46 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"emp10@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "emp10@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 407ms (ActiveRecord: 1.5ms | Allocations: 43901)
+
+
+Started POST "/employees/sign_in" for ::1 at 2023-05-21 12:18:56 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"emp1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "emp1@gmail.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.37ms)
+Completed 200 OK in 300ms (Views: 48.5ms | ActiveRecord: 0.1ms | Allocations: 2801)
+
+
+Started GET "/employees/2/sign_out" for ::1 at 2023-05-21 12:20:05 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/employees/2/sign_out"):
+  
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 12:20:13 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 70ms (ActiveRecord: 0.2ms | Allocations: 2887)
+
+
+  
+NoMethodError (undefined method `split' for nil:NilClass):
+  
+app/controllers/employees/sessions_controller.rb:15:in `respond_to_on_destroy'
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 12:21:27 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms | Allocations: 2348)
+
+
+  
+JWT::DecodeError (No verification key available):
+  
+app/controllers/employees/sessions_controller.rb:18:in `respond_to_on_destroy'
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 12:21:35 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.3ms | Allocations: 2053)
+
+
+  
+JWT::DecodeError (No verification key available):
+  
+app/controllers/employees/sessions_controller.rb:18:in `respond_to_on_destroy'
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 12:22:18 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.45ms)
+Completed 200 OK in 45ms (Views: 2.1ms | ActiveRecord: 1.5ms | Allocations: 44679)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Update (46.6ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "b9ee352a-a4f2-497c-b5f2-492cfec21bf9"], ["id", 2]]
+Started POST "/questions" for ::1 at 2023-05-21 12:33:28 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"query"=>"QueryPersonal", "anonymous"=>false, "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}}
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.6ms | Allocations: 1956)
+
+
+  
+NameError (uninitialized constant ApplicationController::Current):
+  
+app/controllers/application_controller.rb:17:in `set_current_user'
+Started POST "/questions" for ::1 at 2023-05-21 12:34:43 +0530
+Processing by QuestionsController#create as */*
+  Parameters: {"query"=>"QueryPersonal", "anonymous"=>false, "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.5ms | Allocations: 2570)
+
+
+  
+NameError (undefined local variable or method `current' for #<QuestionsController:0x000000000116e8>
+Did you mean?  current_user):
+  
+app/controllers/application_controller.rb:17:in `set_current_user'
+Started POST "/questions" for ::1 at 2023-05-21 12:35:35 +0530
+Processing by QuestionsController#create as */*
+  Parameters: {"query"=>"QueryPersonal", "anonymous"=>false, "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.5ms | Allocations: 1239)
+
+
+Started POST "/employees/sign_in" for ::1 at 2023-05-21 12:35:47 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"emp6@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "emp6@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.33ms)
+Completed 200 OK in 285ms (Views: 1.5ms | ActiveRecord: 0.8ms | Allocations: 43654)
+
+
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 12:36:29 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 200 OK in 9ms (Views: 1.0ms | ActiveRecord: 0.6ms | Allocations: 3501)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mEmployee Update (74.0ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "039418d4-d2e0-468f-aeed-6cfe49676caa"], ["id", 10]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-21 12:36:36 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp4@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"emp4@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "emp4@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.33ms)
+Completed 200 OK in 250ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 1537)
+
+
+Started POST "/questions" for ::1 at 2023-05-21 12:36:42 +0530
+Processing by QuestionsController#create as */*
+  Parameters: {"query"=>"QueryPersonal", "anonymous"=>false, "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_user'
+[31mUnpermitted parameter: :anonymous. Context: { controller: QuestionsController, action: create, request: #<ActionDispatch::Request:0x00007f61d119a598>, params: {"query"=>"QueryPersonal", "anonymous"=>false, "controller"=>"questions", "action"=>"create", "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}} }[0m
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 0.4ms | Allocations: 20473)
+
+
+  
+NameError (undefined local variable or method `current' for #<Question id: nil, query: "QueryPersonal", employee_id: nil, clarified: nil, remarks: nil, created_at: "2023-05-21 07:06:42.913054000 +0000", updated_at: "2023-05-21 07:06:42.913054000 +0000", anonymous: nil, manager_id: nil>):
+  
+app/models/question.rb:8:in `save_manager_id'
+app/controllers/questions_controller.rb:19:in `create'
+Started POST "/questions" for ::1 at 2023-05-21 12:38:36 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"query"=>"QueryPersonal", "anonymous"=>false, "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_user'
+[31mUnpermitted parameter: :anonymous. Context: { controller: QuestionsController, action: create, request: #<ActionDispatch::Request:0x00007f741cfe2580>, params: {"query"=>"QueryPersonal", "anonymous"=>false, "controller"=>"questions", "action"=>"create", "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}} }[0m
+Completed 500 Internal Server Error in 43ms (ActiveRecord: 1.4ms | Allocations: 62785)
+
+
+  
+NameError (undefined local variable or method `current_employee' for #<Question id: nil, query: "QueryPersonal", employee_id: nil, clarified: nil, remarks: nil, created_at: "2023-05-21 07:08:37.042285000 +0000", updated_at: "2023-05-21 07:08:37.042285000 +0000", anonymous: nil, manager_id: nil>):
+  
+app/models/question.rb:8:in `save_manager_id'
+app/controllers/questions_controller.rb:19:in `create'
+Started POST "/questions" for ::1 at 2023-05-21 12:43:56 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20230521071014_create_currents.rb
+
+
+):
+  
+activerecord (7.0.4.3) lib/active_record/migration.rb:627:in `check_pending!'
+activerecord (7.0.4.3) lib/active_record/migration.rb:592:in `block (2 levels) in call'
+activesupport (7.0.4.3) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (7.0.4.3) lib/active_record/migration.rb:597:in `block in call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4.3) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.7) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.7) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCurrents (20230521071014)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "currents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230521071014"]]
+  [1m[36mTRANSACTION (115.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/questions" for ::1 at 2023-05-21 12:45:44 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"query"=>"QueryPersonal", "anonymous"=>false, "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+[31mUnpermitted parameter: :anonymous. Context: { controller: QuestionsController, action: create, request: #<ActionDispatch::Request:0x000055e838c6eac8>, params: {"query"=>"QueryPersonal", "anonymous"=>false, "controller"=>"questions", "action"=>"create", "question"=>{"query"=>"QueryPersonal", "anonymous"=>false}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/questions_controller.rb:19:in `create'
+  [1m[36mQuestion Create (0.6ms)[0m  [1m[32mINSERT INTO "questions" ("query", "employee_id", "clarified", "remarks", "created_at", "updated_at", "anonymous", "manager_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["query", "QueryPersonal"], ["employee_id", 6], ["clarified", nil], ["remarks", nil], ["created_at", "2023-05-21 07:15:44.242346"], ["updated_at", "2023-05-21 07:15:44.242346"], ["anonymous", nil], ["manager_id", 8]]
+  ↳ app/controllers/questions_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (59.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (0.69ms)
+Completed 200 OK in 344ms (Views: 166.0ms | ActiveRecord: 61.1ms | Allocations: 65599)
+
+
+Started POST "/answers/" for ::1 at 2023-05-21 12:51:17 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AnswersController#create as */*
+  Parameters: {"reply"=>"answer", "question_id"=>9, "answer"=>{"reply"=>"answer", "question_id"=>9}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+Completed 200 OK in 37ms (Views: 0.5ms | ActiveRecord: 1.8ms | Allocations: 58888)
+
+
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 12:51:33 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.49ms)
+Completed 200 OK in 9ms (Views: 2.2ms | ActiveRecord: 0.3ms | Allocations: 4273)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mEmployee Update (71.5ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "fa585cd4-30ab-4ade-a39e-88597e5b30db"], ["id", 6]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-21 12:51:43 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"man2@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"man2@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.5ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "man2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.28ms)
+Completed 200 OK in 257ms (Views: 0.7ms | ActiveRecord: 0.5ms | Allocations: 3949)
+
+
+Started POST "/answers/" for ::1 at 2023-05-21 12:51:49 +0530
+Processing by AnswersController#create as */*
+  Parameters: {"reply"=>"answer", "question_id"=>9, "answer"=>{"reply"=>"answer", "question_id"=>9}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:20:in `create'
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:20:in `create'
+  [1m[36mAnswer Create (0.3ms)[0m  [1m[32mINSERT INTO "answers" ("reply", "question_id", "employee_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["reply", "answer"], ["question_id", 9], ["employee_id", 8], ["created_at", "2023-05-21 07:21:50.071712"], ["updated_at", "2023-05-21 07:21:50.071712"]]
+  ↳ app/controllers/answers_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (58.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:20:in `create'
+[active_model_serializers] Rendered AnswerSerializer with ActiveModelSerializers::Adapter::Attributes (0.3ms)
+Completed 200 OK in 172ms (Views: 17.0ms | ActiveRecord: 59.8ms | Allocations: 26900)
+
+
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 12:58:15 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.37ms)
+Completed 200 OK in 30ms (Views: 1.6ms | ActiveRecord: 1.1ms | Allocations: 45404)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mEmployee Update (73.5ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "cf0cca07-e23e-47b2-9129-399c942a9c88"], ["id", 8]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-21 13:10:53 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"hr@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"hr@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "hr@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Completed 200 OK in 258ms (Views: 0.9ms | ActiveRecord: 0.5ms | Allocations: 7125)
+
+
+Started POST "/employees" for ::1 at 2023-05-21 13:13:09 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}, "registration"=>{"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp15@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+Completed 500 Internal Server Error in 292ms (ActiveRecord: 1.1ms | Allocations: 47964)
+
+
+  
+NoMethodError (undefined method `capitalize' for nil:NilClass):
+  
+app/models/employee.rb:36:in `capitalize_name'
+app/controllers/employees/registrations_controller.rb:11:in `create'
+Started POST "/employees" for ::1 at 2023-05-21 13:14:11 +0530
+Error occurred while parsing request parameters.
+Contents:
+
+{
+    "employee": {
+        "name": "arun"
+        "email": "emp15@gmail.com",
+        "password": "123456",
+        "role": "subordinate"
+    }
+}
+Processing by Employees::RegistrationsController#create as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+Completed 400 Bad Request in 10ms (ActiveRecord: 0.9ms | Allocations: 5820)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/employees/registrations_controller.rb:52:in `employee_params'
+app/controllers/employees/registrations_controller.rb:9:in `create'
+Started POST "/employees" for ::1 at 2023-05-21 13:14:56 +0530
+Error occurred while parsing request parameters.
+Contents:
+
+{
+    "employee": {
+        "name": "arun"
+        "email": "emp15@gmail.com",
+        "password": "123456",
+        "role": "subordinate"
+    }
+}
+Processing by Employees::RegistrationsController#create as */*
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+Completed 400 Bad Request in 11ms (ActiveRecord: 1.3ms | Allocations: 5749)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/employees/registrations_controller.rb:52:in `employee_params'
+app/controllers/employees/registrations_controller.rb:9:in `create'
+Started POST "/employees" for ::1 at 2023-05-21 13:15:36 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Error occurred while parsing request parameters.
+Contents:
+
+{
+    "employee": {
+        "name": "arun"
+        "email": "emp15@gmail.com",
+        "password": "123456",
+        "role": "subordinate"
+    }
+}
+Processing by Employees::RegistrationsController#create as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+Completed 400 Bad Request in 35ms (ActiveRecord: 0.6ms | Allocations: 43580)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/employees/registrations_controller.rb:52:in `employee_params'
+app/controllers/employees/registrations_controller.rb:9:in `create'
+Started POST "/employees" for ::1 at 2023-05-21 13:16:42 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}, "registration"=>{"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp15@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Create (0.3ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id", "manager_name", "employee_no") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp15@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-21 07:46:42.418789"], ["updated_at", "2023-05-21 07:46:42.418789"], ["jti", "0802b611-b69d-4804-84a1-865cdd0c38d8"], ["name", nil], ["role", "subordinate"], ["manager_id", nil], ["manager_name", nil], ["employee_no", "2023-1"]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (72.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.57ms)
+Completed 200 OK in 342ms (Views: 3.0ms | ActiveRecord: 73.4ms | Allocations: 11647)
+
+
+Started POST "/employees" for ::1 at 2023-05-21 13:19:00 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp16@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}, "registration"=>{"employee"=>{"email"=>"emp16@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp16@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Create (0.3ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id", "manager_name", "employee_no") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp16@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-21 07:49:01.317333"], ["updated_at", "2023-05-21 07:49:01.317333"], ["jti", "ca70e6e4-1007-4e32-90fc-e40f52cd5786"], ["name", nil], ["role", "subordinate"], ["manager_id", nil], ["manager_name", nil], ["employee_no", "2023-"]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (81.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.56ms)
+Completed 200 OK in 365ms (Views: 3.1ms | ActiveRecord: 82.5ms | Allocations: 49500)
+
+
+Started POST "/employees" for ::1 at 2023-05-21 13:19:33 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp17@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}, "registration"=>{"employee"=>{"email"=>"emp17@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp17@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Create (0.4ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id", "manager_name", "employee_no") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp17@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-21 07:49:33.709915"], ["updated_at", "2023-05-21 07:49:33.709915"], ["jti", "45748ffc-52bb-4cfe-918a-bb18f0555293"], ["name", nil], ["role", "subordinate"], ["manager_id", nil], ["manager_name", nil], ["employee_no", nil]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (69.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.58ms)
+Completed 200 OK in 338ms (Views: 2.0ms | ActiveRecord: 70.8ms | Allocations: 9590)
+
+
+Started DELETE "/employees/23" for ::1 at 2023-05-21 13:19:54 +0530
+Processing by EmployeesController#destroy as */*
+  Parameters: {"id"=>"23"}
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:47:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mEmployee Destroy (0.5ms)[0m  [1m[31mDELETE FROM "employees" WHERE "employees"."id" = ?[0m  [["id", 23]]
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mTRANSACTION (57.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 200 OK in 72ms (Views: 1.6ms | ActiveRecord: 58.8ms | Allocations: 3312)
+
+
+Started DELETE "/employees/22" for ::1 at 2023-05-21 13:20:00 +0530
+Processing by EmployeesController#destroy as */*
+  Parameters: {"id"=>"22"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:47:in `destroy'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mEmployee Destroy (0.3ms)[0m  [1m[31mDELETE FROM "employees" WHERE "employees"."id" = ?[0m  [["id", 22]]
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mTRANSACTION (72.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 200 OK in 80ms (Views: 0.8ms | ActiveRecord: 73.5ms | Allocations: 2813)
+
+
+Started DELETE "/employees/21" for ::1 at 2023-05-21 13:20:05 +0530
+Processing by EmployeesController#destroy as */*
+  Parameters: {"id"=>"21"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:47:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mEmployee Destroy (0.9ms)[0m  [1m[31mDELETE FROM "employees" WHERE "employees"."id" = ?[0m  [["id", 21]]
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mTRANSACTION (69.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 200 OK in 81ms (Views: 1.2ms | ActiveRecord: 70.4ms | Allocations: 2791)
+
+
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 13:20:44 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.79ms)
+Completed 200 OK in 9ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 3237)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Update (70.9ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "82e30c65-73a0-4b04-be55-778088d2d21b"], ["id", 1]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-21 13:21:01 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp1@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"emp1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "emp1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 200 OK in 252ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 1930)
+
+
+Started DELETE "/employees/20" for ::1 at 2023-05-21 13:21:08 +0530
+Processing by EmployeesController#destroy as */*
+  Parameters: {"id"=>"20"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:47:in `destroy'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1445)
+
+
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 13:22:36 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.43ms)
+Completed 200 OK in 5ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 2323)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Update (69.8ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "1f8e699a-3d5b-49a1-b829-3c88ac9b7eb7"], ["id", 2]]
+Started POST "/employees/sign_in" for ::1 at 2023-05-21 13:22:46 +0530
+Processing by Employees::SessionsController#create as */*
+  Parameters: {"employee"=>{"email"=>"hr@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"employee"=>{"email"=>"hr@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "hr@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.23ms)
+Completed 200 OK in 251ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 1532)
+
+
+Started POST "/employees" for ::1 at 2023-05-21 13:23:11 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}, "registration"=>{"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp15@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Create (0.2ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id", "manager_name", "employee_no") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp15@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-21 07:53:11.878121"], ["updated_at", "2023-05-21 07:53:11.878121"], ["jti", "09ccf7b0-7569-49c4-8eda-d83bf26ba343"], ["name", nil], ["role", "subordinate"], ["manager_id", nil], ["manager_name", nil], ["employee_no", nil]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (71.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.83ms)
+Completed 200 OK in 329ms (Views: 1.8ms | ActiveRecord: 72.1ms | Allocations: 3956)
+
+
+Started POST "/employees" for ::1 at 2023-05-21 13:25:06 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp16@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}, "registration"=>{"employee"=>{"email"=>"emp16@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}}}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp16@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Create (0.3ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id", "manager_name", "employee_no") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp16@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-21 07:55:07.012810"], ["updated_at", "2023-05-21 07:55:07.012810"], ["jti", "0b010fe6-e9b4-4080-be40-279a827ecffb"], ["name", nil], ["role", "subordinate"], ["manager_id", nil], ["manager_name", nil], ["employee_no", "2023-"]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (74.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.83ms)
+Completed 200 OK in 339ms (Views: 2.6ms | ActiveRecord: 75.5ms | Allocations: 9571)
+
+
+Started DELETE "/employees/22" for ::1 at 2023-05-21 13:26:10 +0530
+Processing by EmployeesController#destroy as */*
+  Parameters: {"id"=>"22"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:47:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mEmployee Destroy (0.4ms)[0m  [1m[31mDELETE FROM "employees" WHERE "employees"."id" = ?[0m  [["id", 22]]
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mTRANSACTION (39.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 57ms (Views: 1.1ms | ActiveRecord: 40.8ms | Allocations: 8437)
+
+
+Started DELETE "/employees/21" for ::1 at 2023-05-21 13:26:15 +0530
+Processing by EmployeesController#destroy as */*
+  Parameters: {"id"=>"21"}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:47:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mEmployee Destroy (0.5ms)[0m  [1m[31mDELETE FROM "employees" WHERE "employees"."id" = ?[0m  [["id", 21]]
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mTRANSACTION (67.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 200 OK in 77ms (Views: 0.8ms | ActiveRecord: 68.0ms | Allocations: 2788)
+
+
+Started POST "/employees" for ::1 at 2023-05-21 13:26:33 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}, "registration"=>{"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp15@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Create (0.3ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id", "manager_name", "employee_no") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp15@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-21 07:56:33.539364"], ["updated_at", "2023-05-21 07:56:33.539364"], ["jti", "20bf508a-00ac-49c6-bf59-c61cdb20f37c"], ["name", nil], ["role", "subordinate"], ["manager_id", nil], ["manager_name", nil], ["employee_no", nil]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (121.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.53ms)
+Completed 200 OK in 381ms (Views: 1.9ms | ActiveRecord: 122.1ms | Allocations: 4867)
+
+
+Started DELETE "/employees/21" for ::1 at 2023-05-21 13:27:23 +0530
+Processing by EmployeesController#destroy as */*
+  Parameters: {"id"=>"21"}
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/employees_controller.rb:47:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mEmployee Destroy (0.5ms)[0m  [1m[31mDELETE FROM "employees" WHERE "employees"."id" = ?[0m  [["id", 21]]
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+  [1m[36mTRANSACTION (67.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees_controller.rb:49:in `destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.22ms)
+Completed 200 OK in 76ms (Views: 1.3ms | ActiveRecord: 67.9ms | Allocations: 2803)
+
+
+Started POST "/employees" for ::1 at 2023-05-21 13:30:34 +0530
+Processing by Employees::RegistrationsController#create as */*
+  Parameters: {"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}, "registration"=>{"employee"=>{"email"=>"emp15@gmail.com", "password"=>"[FILTERED]", "role"=>"subordinate"}}}
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:17:in `set_current_employee'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "emp15@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mEmployee Create (0.4ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "role", "manager_id", "manager_name", "employee_no") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "emp15@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2023-05-21 08:00:34.350647"], ["updated_at", "2023-05-21 08:00:34.350647"], ["jti", "8b533c81-a985-4bce-b9d1-f0a122d016b0"], ["name", nil], ["role", "subordinate"], ["manager_id", nil], ["manager_name", nil], ["employee_no", nil]]
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (66.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/employees/registrations_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.61ms)
+Completed 200 OK in 371ms (Views: 3.9ms | ActiveRecord: 68.4ms | Allocations: 9581)
+
+
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/employees/sign_out" for ::1 at 2023-05-21 13:31:53 +0530
+Processing by Employees::SessionsController#destroy as */*
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/employees/sessions_controller.rb:17:in `respond_to_on_destroy'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Completed 200 OK in 16ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 2794)
+
+
+  [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Update (70.1ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "d7e0345a-efb3-4be0-85a2-147c651354cd"], ["id", 1]]
