@@ -48,4 +48,9 @@ class EmployeePolicy
  def managers?
   @employee.HR?
  end
+
+ def feedbacks?
+  @employee.manager? ||@employee.id == @record.id
+
+ end
 end

@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::API
   include Pundit
   alias_method :current_user, :current_employee
+  before_action :set_current_employee
 
   rescue_from Pundit::NotAuthorizedError, with: :employee_not_authorized
-  rescue_from NoMethodError, with: :employee_not_HR
+  # rescue_from NoMethodError, with: :employee_not_HR
 
   private
 
@@ -15,5 +16,9 @@ class ApplicationController < ActionController::API
 
  def employee_not_HR
   render json: "Only HR is permitted to do this action!"
+ end
+
+ def set_current_employee
+   Current.employee = current_employee
  end
 end

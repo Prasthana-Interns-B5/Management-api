@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_061557) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_21_114916) do
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -19,6 +19,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_061557) do
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_answers_on_employee_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "currents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "employees", force: :cascade do |t|
@@ -37,6 +42,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_061557) do
     t.index ["jti"], name: "index_employees_on_jti", unique: true
     t.index ["manager_id"], name: "index_employees_on_manager_id"
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "self_feedback"
+    t.string "month"
+    t.integer "manager_id"
+    t.string "manager_feedback"
+    t.string "comments"
+    t.boolean "feedback_submitted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "employee_id", null: false
+    t.index ["employee_id"], name: "index_feedbacks_on_employee_id"
   end
 
   create_table "points", force: :cascade do |t|
@@ -63,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_061557) do
   add_foreign_key "answers", "employees"
   add_foreign_key "answers", "questions"
   add_foreign_key "employees", "employees", column: "manager_id"
+  add_foreign_key "feedbacks", "employees"
   add_foreign_key "points", "employees"
   add_foreign_key "questions", "employees"
 end

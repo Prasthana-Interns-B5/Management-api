@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'feedbacks/index'
+  get 'feedbacks/show'
+  get 'feedbacks/create'
+  get 'feedbacks/update'
+  get 'feedbacks/destroy'
   devise_for :employees, controllers: {
     sessions: "employees/sessions",
     registrations: "employees/registrations" }
@@ -9,6 +14,7 @@ Rails.application.routes.draw do
     get "queries", on: :member
     get "scores", on: :member
     get "managers", on: :collection
+    get "feedbacks" , on: :member
   end
 
   resources :questions do
@@ -20,4 +26,11 @@ Rails.application.routes.draw do
   resources :points do
     put "manager_score", on: :member
   end
+
+  resources :feedbacks do
+    put "manager_feedback", on: :member 
+    put "comments", on: :member
+  end
 end
+
+

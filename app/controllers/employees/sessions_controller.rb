@@ -6,6 +6,7 @@ class Employees::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, options={})
+     EmailMailer.email(current_employee.email).deliver_later
     render json: {
       status: { code: 200, message: "Employee Signed in Successfully", data: current_employee }
     }, status: :ok
@@ -16,6 +17,7 @@ class Employees::SessionsController < Devise::SessionsController
      Rails.application.credentials.fetch(:secret_key_base)).first
   current_employee = Employee.find(jwt_payload["sub"])
   if current_employee
+    EmailMailer.logout(current_employee.email).deliver_later
     render json: {
       status: 200,
       message: "Signed out Successfully",
