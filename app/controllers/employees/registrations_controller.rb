@@ -7,7 +7,8 @@ class Employees::RegistrationsController < Devise::RegistrationsController
 
   def create
     employee = Employee.new(employee_params)
-    authorize employee
+    
+    # authorize employee
     if employee.save
       render json: {message: "Employee Signed Up Successfully",data: employee}, status: 200
     else
@@ -52,3 +53,6 @@ class Employees::RegistrationsController < Devise::RegistrationsController
     params.require(:employee).permit(:email,:password,:name,:role)
   end
 end
+
+
+

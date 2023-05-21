@@ -67,6 +67,7 @@ class EmployeesController < ApplicationController
     render json: managers, status: 200
   end
 
+
    def role
     employee = Employee.find(params[:id])
     authorize employee
@@ -75,7 +76,9 @@ class EmployeesController < ApplicationController
     else
       render json: {message: "Employee cannot be updated", error: employee.errors.full_messages}
     end
-  end
+  
+
+  
 
   private
 

@@ -6,6 +6,13 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
+
+
+         has_many :questions
+         has_many :answers
+         has_many :points
+         has_many  :feedbacks
+      
   ROLES = %w{HR manager subordinate}
 
   def jwt_payload
@@ -23,9 +30,7 @@ class Employee < ApplicationRecord
 
   belongs_to :manager, class_name: "Employee", optional: true
 
-  has_many :questions
-  has_many :answers
-  has_many :points
+
 
   after_create :set_employee_no
 
@@ -35,4 +40,5 @@ class Employee < ApplicationRecord
   def set_employee_no
     self.employee_no = "2023-#{self.id}"
   end
+
 end
