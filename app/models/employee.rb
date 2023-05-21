@@ -26,4 +26,13 @@ class Employee < ApplicationRecord
   has_many :questions
   has_many :answers
   has_many :points
+
+  after_create :set_employee_no
+
+  private
+
+
+  def set_employee_no
+    self.employee_no = "2023-#{self.id}"
+  end
 end

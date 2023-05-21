@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "queries", on: :member
     get "scores", on: :member
     get "managers", on: :collection
+    put "role", on: :member
   end
 
   resources :questions do

@@ -29,8 +29,8 @@ class QuestionPolicy
   #     @employee.subordinate? && @employee.id == @record.id
   #   end
 
-  # def destroy?
-  #   @employee.HR? || @employee.manager?
-  # end
+  def destroy?
+    @employee.id == @record.employee_id
+  end
 
 end

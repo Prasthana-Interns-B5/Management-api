@@ -17,7 +17,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
 
   def update
     employee = Employee.find(params[:id])
-    authorize employee
+     authorize employee
     if employee.update(employee_params)
       render json: employee, status: 200
     else
@@ -49,6 +49,6 @@ class Employees::RegistrationsController < Devise::RegistrationsController
    end
 
   def employee_params
-    params.require(:employee).permit(:email,:password,:name,:role,:manager_id)
+    params.require(:employee).permit(:email,:password,:name,:role)
   end
 end
