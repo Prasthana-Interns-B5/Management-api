@@ -1,3 +1,3 @@
 class Current < ActiveSupport::CurrentAttributes
-    attribute :employee
+  attribute :employee
 end

@@ -30,5 +30,15 @@ class Employee < ApplicationRecord
 
   belongs_to :manager, class_name: "Employee", optional: true
 
-  
+
+
+  after_create :set_employee_no
+
+  private
+
+
+  def set_employee_no
+    self.employee_no = "2023-#{self.id}"
+  end
+
 end

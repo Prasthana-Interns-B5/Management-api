@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     get "queries", on: :member
     get "scores", on: :member
     get "managers", on: :collection
-    get "feedbacks" , on: :member
+    put "role", on: :member
+
   end
 
   resources :questions do
