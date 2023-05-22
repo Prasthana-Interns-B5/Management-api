@@ -79,6 +79,13 @@ class EmployeesController < ApplicationController
 
   end
 
+  def reviews
+    employee=Employee.find(params[:id])
+    feedback=employee.feedbacks
+    authorize employee ,:show?
+    render json: feedback ,status:200
+  end
+
 
   private
 
