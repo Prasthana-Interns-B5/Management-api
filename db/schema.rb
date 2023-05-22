@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_21_114916) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_114916) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.string "self_feedback"
-    t.string "month"
+    t.datetime "month", precision: nil
     t.integer "manager_id"
     t.string "manager_feedback"
     t.string "comments"
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_114916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "employee_id", null: false
+    t.boolean "meeting", default: false
     t.index ["employee_id"], name: "index_feedbacks_on_employee_id"
   end
 
