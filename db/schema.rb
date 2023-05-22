@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
-
-
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -51,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.string "self_feedback"
-    t.datetime "month", precision: nil
+    t.string "month"
     t.integer "manager_id"
     t.string "manager_feedback"
     t.string "comments"
