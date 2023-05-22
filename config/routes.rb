@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'feedbacks/index'
-  get 'feedbacks/show'
-  get 'feedbacks/create'
-  get 'feedbacks/update'
-  get 'feedbacks/destroy'
   devise_for :employees, controllers: {
     sessions: "employees/sessions",
     registrations: "employees/registrations" }
