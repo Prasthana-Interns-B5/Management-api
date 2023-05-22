@@ -76,9 +76,9 @@ class EmployeesController < ApplicationController
     else
       render json: {message: "Employee cannot be updated", error: employee.errors.full_messages}
     end
-  
 
-  
+  end
+
 
   private
 
