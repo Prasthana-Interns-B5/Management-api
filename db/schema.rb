@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
+
+
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -38,6 +41,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
     t.string "name"
     t.string "role"
     t.integer "manager_id"
+    t.string "manager_name"
+    t.string "employee_no"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["jti"], name: "index_employees_on_jti", unique: true
     t.index ["manager_id"], name: "index_employees_on_manager_id"
@@ -76,6 +81,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
     t.text "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "anonymous"
+    t.integer "manager_id"
     t.index ["employee_id"], name: "index_questions_on_employee_id"
   end
 

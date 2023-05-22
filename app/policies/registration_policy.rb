@@ -20,10 +20,11 @@ class RegistrationPolicy
   end
 
   def update?
-    @employee.HR?
+    @employee.id == @record.id
   end
 
   def destroy?
     @employee.HR?
   end
+  
 end

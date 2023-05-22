@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 
   def index
     employees = Employee.all
-    authorize employees
+    # authorize employees
     render json: employees, status: 200
   end
 
@@ -67,17 +67,28 @@ class EmployeesController < ApplicationController
     render json: managers, status: 200
   end
 
-  def feedbacks
-    employee=Employee.find(params[:id])
-    authorize employee 
-    feedback=employee.feedbacks
-    render json: feedback ,status: 200
+
+   def role
+    employee = Employee.find(params[:id])
+    authorize employee
+    if employee.update(role_params)
+      render json: employee, status: 200
+    else
+      render json: {message: "Employee cannot be updated", error: employee.errors.full_messages}
+    end
+
   end
+
 
   private
 
   def employee_params
-    params.require(:employee).permit(:email,:password,:name,:role,:manager_id)
+    params.require(:employee).permit(:email,:password,:name,:role)
   end
+
+  def role_params
+    params.require(:employee).permit(:manager_id)
+  end
+
 
 end
