@@ -38,7 +38,7 @@ class EmployeePolicy
   end
 
  def queries?
-  @employee.id == @record.id
+  @employee.id == @record.id || @employee.id == @record.manager_id
  end
 
  def scores?
