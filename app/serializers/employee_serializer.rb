@@ -1,17 +1,10 @@
 class EmployeeSerializer < ActiveModel::Serializer
-
-  attributes :id, :employee_no, :name, :email, :role, :manager_name, :manager_id
-
+ attributes :id, :employee_no, :name, :email, :role, :manager_name, :manager_id,:notification,:meeting_notifications
 
 
 
-  # def  notification
-  #   if !object.feedbacks.exists? && Date.today.day >= 20
-  #     return "please fill the feedback and points"
-  #   else
-  #     return "Successfully filled feedbacks and points  please attend the meeting"
-  #   end
-  # end
+
+
 
 
 
@@ -25,7 +18,27 @@ class EmployeeSerializer < ActiveModel::Serializer
       return "Please attend the metting"
 
     end
+  end
+
+ 
+  
+
+
+   def meeting_notifications
+    month=Date.new(Time.now.year,Time.now.month)
+    subordinate=object.subordinates
+    subordinate.map do |s|
+      feedback=s.feedbacks.where(meeting: false).where(created_at: month.beginning_of_month..month.end_of_month-8)
+         feedback.map do |f|
+           if !f.nil?
+            "conduct a 1-1 meeting for #{s.id}"
+           end
+           end
+        
+    end
+
 
    end
 
 end
+
