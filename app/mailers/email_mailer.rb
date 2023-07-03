@@ -1,7 +1,7 @@
 class EmailMailer < ApplicationMailer
 
 
-    def email(email)
+    def log_in_email(email)
         mail to: email,
         from: "apimanagement23@gmail.com",
         subject: 'Login mail',

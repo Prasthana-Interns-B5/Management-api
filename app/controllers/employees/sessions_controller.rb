@@ -6,10 +6,10 @@ class Employees::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, options={})
-     EmailMailer.email(current_employee.email).deliver_later
-    render json: {
-      status: { code: 200, message: "Employee Signed in Successfully", data: current_employee }
-    }, status: :ok
+  render json: current_employee, status: :ok, serializer: EmployeeSignInSerializer 
+
+    
+    EmailMailer.log_in_email(current_employee.email).deliver_later
   end
 
  def respond_to_on_destroy

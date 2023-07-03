@@ -3,19 +3,19 @@ class QuestionsController < ApplicationController
 
   def index
     questions = Question.where(anonymous: true)
-    # authorize questions
+    authorize questions
     render json: questions, status: 200
   end
 
   def show
     question = Question.find(params[:id])
-    # authorize question
+    authorize question
     render json: question, status: 200
   end
 
   def create
-    question = Question.new(question_params)
-    # authorize question
+    question = Question.create(question_params)
+    authorize question
     if question.save
       render json: question, status: 200
     else
@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
 
   def update
     question = Question.find(params[:id])
-    # authorize question
+    authorize question
     if question.update(question_params)
       render json: question, status: 200
     else
@@ -52,6 +52,5 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:query, :employee_id, :clarified, :remarks, :manager_id, :anonymous)
   end
-
 
 end

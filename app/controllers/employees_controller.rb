@@ -1,27 +1,27 @@
 class EmployeesController < ApplicationController
-  before_action :authenticate_employee!
-
+before_action :authenticate_employee!
   def index
     employees = Employee.all
-    # authorize employees
+    authorize employees
     render json: employees, status: 200
   end
 
   def show
     employee = Employee.find(params[:id])
-    authorize employee
+   authorize employee
     render json: employee, status: 200
   end
 
-  def create
-    employee = Employee.new(employee_params)
-    authorize employee
-    if employee.save
-      render json: employee, status: 200
-    else
-      render json: {message: "Employee Cannot be created", error: employee.errors.full_messages}
-    end
-  end
+  # def create
+  #   employee = Employee.create(employee_params)
+    
+  #   authorize employee
+  #   if employee.save
+  #     render json: {message: "Employee Signed Up Successfully",data: employee}, status: 200
+  #   else
+  #     render json: {message: "Employee Cannot be created", error: employee.errors.full_messages}
+  #   end
+  # end
 
   def update
     employee = Employee.find(params[:id])
@@ -43,7 +43,7 @@ class EmployeesController < ApplicationController
   def subordinates
     manager = Employee.find(params[:id])
     subordinates = manager.subordinates
-    authorize manager
+     authorize manager
     render json: subordinates, status: 200
   end
 
@@ -63,7 +63,7 @@ class EmployeesController < ApplicationController
 
   def managers
     managers = Employee.where(role: "manager")
-    authorize managers
+   authorize managers
     render json: managers, status: 200
   end
 
@@ -82,9 +82,13 @@ class EmployeesController < ApplicationController
   def reviews
     employee=Employee.find(params[:id])
     feedback=employee.feedbacks
-    authorize employee ,:show?
+     authorize employee ,:show?
     render json: feedback ,status:200
   end
+
+  # def test  
+  #   render json: current_employee
+  # end
 
 
   private
@@ -92,7 +96,6 @@ class EmployeesController < ApplicationController
   def employee_params
     params.require(:employee).permit(:email,:password,:name,:role)
   end
-
   def role_params
     params.require(:employee).permit(:manager_id)
   end
