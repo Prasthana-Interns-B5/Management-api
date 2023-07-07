@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
   end
 
    def employee_not_authorized
-    render json: "OOPS! You are not authorized to perform this action"
+    render json: "OOPS! You are not authorized to perform this action",status: 401
   end
 
 

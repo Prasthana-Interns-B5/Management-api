@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
-before_action :authenticate_employee!
-  def index
+#before_action :authenticate_employee!
+  
+def index
     employees = Employee.all
     authorize employees
     render json: employees, status: 200
@@ -12,16 +13,29 @@ before_action :authenticate_employee!
     render json: employee, status: 200
   end
 
-  # def create
-  #   employee = Employee.create(employee_params)
-    
-  #   authorize employee
-  #   if employee.save
-  #     render json: {message: "Employee Signed Up Successfully",data: employee}, status: 200
-  #   else
-  #     render json: {message: "Employee Cannot be created", error: employee.errors.full_messages}
-  #   end
-  # end
+  def create_first_employee
+    if Employee.count.zero?
+    employee = Employee.create(employee_params)
+    if employee.save
+      render json: {message: "Employee Signed Up Successfully",data: employee}, status: 200
+    else
+      render json: {message: "Employee Cannot be created", error: employee.errors.full_messages}
+    end
+    else
+      render json: {message: "Employee Cannot be created"}
+  end
+end
+
+
+
+def generate_otp
+  updated_password = SecureRandom.random_number(100000..999999).to_s
+  email = params[:email]
+  employee = Employee.find_by(email: email)
+  employee.update!(password: updated_password)
+  EmailMailer.otp_email(email,updated_password).deliver_now
+  render json: {message:'OTP generated and sent!'}
+end
 
   def update
     employee = Employee.find(params[:id])
@@ -37,7 +51,7 @@ before_action :authenticate_employee!
     employee = Employee.find(params[:id])
     authorize employee
     employee.destroy
-    render json: {message: "Record Destroyed Successfully"}
+    render json: {message: "Record Destroyed Successfully"},status: 204
   end
 
   def subordinates
@@ -74,7 +88,7 @@ before_action :authenticate_employee!
     if employee.update(role_params)
       render json: employee, status: 200
     else
-      render json: {message: "Employee cannot be updated", error: employee.errors.full_messages}
+      render json: {message: "Employee cannot be updated", error: employee.errors.full_messages},status: 304
     end
 
   end
@@ -86,19 +100,18 @@ before_action :authenticate_employee!
     render json: feedback ,status:200
   end
 
-  # def test  
-  #   render json: current_employee
-  # end
+  def test  
+    render json: current_employee
+  end
 
 
   private
 
   def employee_params
-    params.require(:employee).permit(:email,:password,:name,:role)
+    params.permit(:email,:password,:name,:role,:manager_name,:manager_id)
   end
   def role_params
-    params.require(:employee).permit(:manager_id)
+    params.require(:employee).permit(:role,:manager_id,:manager_name)
   end
-
 
 end

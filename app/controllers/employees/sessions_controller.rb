@@ -3,13 +3,11 @@
 class Employees::SessionsController < Devise::SessionsController
   respond_to :json
 
+
   private
 
   def respond_with(resource, options={})
-  render json: current_employee, status: :ok, serializer: EmployeeSignInSerializer 
-
-    
-    EmailMailer.log_in_email(current_employee.email).deliver_later
+  render json: current_employee, status: :ok, serializer: EmployeeSignInSerializer   
   end
 
  def respond_to_on_destroy
@@ -17,7 +15,6 @@ class Employees::SessionsController < Devise::SessionsController
      Rails.application.credentials.fetch(:secret_key_base)).first
   current_employee = Employee.find(jwt_payload["sub"])
   if current_employee
-    EmailMailer.logout(current_employee.email).deliver_later
     render json: {
       status: 200,
       message: "Signed out Successfully",
