@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     get "queries", on: :member
     get "scores", on: :member
     get "managers", on: :collection
-    put "role", on: :member
+    get "roles", on: :member
+    get "assigned_members", on: :member
+    get "assigned_manager", on: :member
+    get "assigned_teamlead", on: :member
+    get "assigned_subordinate", on: :member
     get "reviews", on: :member
   end
 
@@ -28,6 +32,12 @@ Rails.application.routes.draw do
   resources :feedbacks do
     put "manager_feedback", on: :member 
     put "comments", on: :member
+  end
+
+  resources :roles
+  resources :employee_roles
+  resources :one_on_one do
+    get "assigned_members", on: :member
   end
 end
 

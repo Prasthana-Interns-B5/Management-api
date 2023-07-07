@@ -1,5 +1,11 @@
 class EmployeeSerializer < ActiveModel::Serializer
- attributes :id, :employee_no, :name, :email, :role, :manager_name, :manager_id,:notification,:meeting_notifications
+  attributes :id, :employee_no, :name, :email
+  has_many :roles, through: :employee_roles, 
+  uniq: true do
+    object.roles.distinct
+  end  
+  # has_one :roles, serializer: RoleSerializer
+
 
 
 

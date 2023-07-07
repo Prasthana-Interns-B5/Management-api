@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_085238) do
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -26,6 +26,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "employee_roles", force: :cascade do |t|
+    t.integer "employee_id", null: false
+    t.integer "role_id", null: false
+    t.integer "assigned_to"
+    t.string "role_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "one_on_one_id"
+    t.index ["employee_id"], name: "index_employee_roles_on_employee_id"
+    t.index ["one_on_one_id"], name: "index_employee_roles_on_one_on_one_id"
+    t.index ["role_id"], name: "index_employee_roles_on_role_id"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -36,13 +49,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
     t.datetime "updated_at", null: false
     t.string "jti", null: false
     t.string "name"
-    t.string "role"
-    t.integer "manager_id"
-    t.string "manager_name"
     t.string "employee_no"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["jti"], name: "index_employees_on_jti", unique: true
-    t.index ["manager_id"], name: "index_employees_on_manager_id"
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
@@ -58,6 +67,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
     t.integer "employee_id", null: false
     t.boolean "meeting", default: false
     t.index ["employee_id"], name: "index_feedbacks_on_employee_id"
+  end
+
+  create_table "one_on_ones", force: :cascade do |t|
+    t.string "team"
+    t.date "date"
+    t.time "time"
+    t.boolean "repeat_monthly", default: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "points", force: :cascade do |t|
@@ -83,9 +102,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_055330) do
     t.index ["employee_id"], name: "index_questions_on_employee_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "role_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "answers", "employees"
   add_foreign_key "answers", "questions"
-  add_foreign_key "employees", "employees", column: "manager_id"
+  add_foreign_key "employee_roles", "employees"
+  add_foreign_key "employee_roles", "roles"
   add_foreign_key "feedbacks", "employees"
   add_foreign_key "points", "employees"
   add_foreign_key "questions", "employees"
