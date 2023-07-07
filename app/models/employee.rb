@@ -7,28 +7,29 @@ class Employee < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
 
-
+         has_many :employee_roles, dependent: :destroy
+         has_many :roles, through: :employee_roles
          has_many :questions
          has_many :answers
          has_many :points
          has_many  :feedbacks
       
-  ROLES = %w{HR manager subordinate}
+  # ROLES = %w{HR manager subordinate}
 
   def jwt_payload
     super
   end
 
 
-  ROLES.each do |role_name|
-    define_method "#{role_name}?" do
-      role == role_name
-    end
-  end
+  # ROLES.each do |role_name|
+  #   define_method "#{role_name}?" do
+  #     role == role_name
+  #   end
+  # end
 
-  has_many :subordinates, class_name: "Employee", foreign_key: "manager_id"
+  # has_many :subordinates, class_name: "Employee", foreign_key: "manager_id"
 
-  belongs_to :manager, class_name: "Employee", optional: true
+  # belongs_to :manager, class_name: "Employee", optional: true
 
 
 
