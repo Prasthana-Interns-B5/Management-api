@@ -12,16 +12,6 @@ class EmployeesController < ApplicationController
     render json: employee, status: 200
   end
 
-  def create
-    employee = Employee.create(employee_params)
-    #authorize employee
-    if employee.save
-      render json: employee, status: 200
-    else
-      render json: {message: "Employee Cannot be created", error: employee.errors.full_messages}
-    end
-  end
-
   def update
     employee = Employee.find(params[:id])
     #authorize employee
@@ -40,13 +30,12 @@ class EmployeesController < ApplicationController
   end
 
   def roles
-    employee = Employee.find(params[:id])
+    employee = current_employee
     render json: employee.roles.distinct, status: 200
-    #authorize manager
   end
 
   def assigned_members
-    employee = Employee.find(params[:id])
+    employee = current_employee
     if employee.roles.pluck(:role_name).include?("manager")
       members = employee.employee_roles.where(role_name:"teamlead").or(employee.employee_roles.where(role_name:"subordinate"))
       render json: members, status: 200
@@ -58,21 +47,20 @@ class EmployeesController < ApplicationController
     end  
   end
 
-
   def assigned_manager
-    employee = Employee.find(params[:id])
+    employee = current_employee
     managers = employee.employee_roles.where(role_name:"manager")
     render json: managers, status: 200
   end  
   
   def assigned_teamlead
-    employee = Employee.find(params[:id])
+    employee = current_employee
     teamleads = employee.employee_roles.where(role_name:"teamlead")
     render json: teamleads, status: 200
   end  
 
   def assigned_subordinate
-    employee = Employee.find(params[:id])
+    employee = current_employee
     subordinates = employee.employee_roles.where(role_name:"subordinate")
     render json: subordinates, status: 200
   end  
@@ -80,14 +68,12 @@ class EmployeesController < ApplicationController
   def queries
     employee = Employee.find(params[:id])
     queries = employee.questions
-    #authorize employee
     render json: queries, status: 200
   end
 
   def scores
     employee = Employee.find(params[:id])
     scores = employee.points
-    #authorize employee
     render json: scores, status: 200
   end
 
@@ -98,12 +84,14 @@ class EmployeesController < ApplicationController
     render json: feedback ,status:200
   end
 
+  def current_employee_info
+    render json: current_employee
+  end
 
   private
 
   def employee_params
-    params.require(:employee).permit(:email,:password,:name)
+    params.permit(:email,:password,:name)
   end
-
 
 end
