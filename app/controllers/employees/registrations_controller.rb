@@ -10,13 +10,12 @@ class Employees::RegistrationsController < Devise::RegistrationsController
     authorize employee
     if employee.save
       render json: {message: "Employee Signed Up Successfully",data: employee}, status: 201
-      EmailMailer.signup_email(employee.email,employee.password).deliver_now
+      EmailMailer.signup_email(employee.email).deliver_now
     else
       render json: {message: "Employee Cannot be created", error: employee.errors.full_messages}
     end
   end
 
-  
   
   
    private

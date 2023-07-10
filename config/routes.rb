@@ -1,10 +1,10 @@
 
 Rails.application.routes.draw do
   
-  post '/employees/create_first_employee', to: 'employees#create_first_employee', as: 'create_first_employee'
-  post '/employees/generate_otp', to: 'employees#generate_otp'
+  post '/employee_sign_up/create_first_employee', to: 'employee_sign_up#create_first_employee'
+  post '/employee_sign_up/generate_otp', to: 'employee_sign_up#generate_otp'
 
-  #post '/employees', to: 'employees/create'
+
   devise_for :employees, controllers: {
     sessions: "employees/sessions",
     registrations: "employees/registrations" }
@@ -20,10 +20,7 @@ Rails.application.routes.draw do
     end
       
 
-   
-
-
-  resources :questions do
+    resources :questions do
     get "replies", on: :member
   end
 
