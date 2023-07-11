@@ -8,13 +8,9 @@ Rails.application.routes.draw do
     get "subordinates", on: :member
     get "queries", on: :member
     get "scores", on: :member
-    get "managers", on: :collection
-    get "roles", on: :collection
-    get "assigned_members", on: :collection
-    get "assigned_manager", on: :collection
-    get "assigned_teamlead", on: :collection
-    get "assigned_subordinate", on: :collection
+    get "subordinates", on: :member
     get "reviews", on: :member
+    get "current_employee_info", on: :collection
   end
 
   resources :questions do
@@ -23,7 +19,6 @@ Rails.application.routes.draw do
 
   resources :answers
 
-  resources :home_page 
 
   resources :points do
     put "manager_score", on: :member
@@ -34,12 +29,9 @@ Rails.application.routes.draw do
     put "comments", on: :member
   end
 
-  resources :roles
-  
-  resources :employee_roles
 
   resources :one_on_one do
-    get "assigned_members", on: :collection
+    get "search", on: :collection
   end
 
 end
