@@ -12,8 +12,9 @@ class Employee < ApplicationRecord
   has_many :answers
   has_many :points
   has_many  :feedbacks
+  has_one :reference_data
       
-  ROLES = %w{HR manager subordinate}
+  ROLES = %w{ur_hr ur_manager ur_sr_software ur_lead ur_software_engineer}
   validates :role, inclusion: { in: ROLES,
   message: "%{value} is not valid." }
 
