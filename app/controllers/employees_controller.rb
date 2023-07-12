@@ -13,7 +13,6 @@ before_action :authenticate_employee!
     render json: employee, status: 200
   end
 
-
   def update
     employee = Employee.find(params[:id])
     authorize employee
@@ -28,7 +27,14 @@ before_action :authenticate_employee!
     employee = Employee.find(params[:id])
     authorize employee
     employee.destroy
-    render json: {message: "Record Destroyed Successfully"},status: 204
+    render json: {message: "Record Destroyed Successfully"}
+  end
+
+  def subordinates
+    manager = Employee.find(params[:id])
+    authorize manager
+    subordinates = manager.subordinates
+    render json: subordinates, status: 200
   end
 
  
@@ -46,21 +52,21 @@ before_action :authenticate_employee!
     render json: scores, status: 200
   end
 
-
   def reviews
     employee=Employee.find(params[:id])
     feedback=employee.feedbacks
-     authorize employee ,:show?
+    authorize employee
     render json: feedback ,status:200
   end
 
-private
-
-  def employee_params
-    params.permit(:email,:password,:name,:role,:manager_name,:manager_id)
+  def current_employee_info
+    render json: current_employee
   end
-  def role_params
-    params.require(:employee).permit(:role,:manager_id,:manager_name)
+
+  private
+
+  def employee_params 
+    params.require(:employee).permit(:email, :password, :name, :role, :reporting_manager_id, :employee_no, :mobile_number)
   end
 
 end

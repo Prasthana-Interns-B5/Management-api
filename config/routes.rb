@@ -15,9 +15,9 @@ Rails.application.routes.draw do
       get "subordinates", on: :member
       get "queries", on: :member
       get "scores", on: :member
-      get "managers", on: :collection
       put "role", on: :member
       get "reviews", on: :member
+      get "current_employee_info", on: :collection
     end
       
 
@@ -39,6 +39,12 @@ Rails.application.routes.draw do
     put "manager_feedback", on: :member 
     put "comments", on: :member
   end
+
+
+  resources :one_on_one do
+    get "search", on: :collection
+  end
+
 end
 
 
