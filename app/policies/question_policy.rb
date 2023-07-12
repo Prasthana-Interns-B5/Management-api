@@ -12,10 +12,25 @@ class QuestionPolicy
     @employee = employee
     @record = record
   end
-
+  def index?
+     @employee.manager?
+  end
+  def show?
+     @employee.manager? || @employee.id == @record.employee_id
+  end
+  def create?
+    @employee.subordinate?
+  end
+  def update?
+    @employee.id == @record.employee_id
+  end
+def replies
+  @employee.id == @record.employee_id
+end
 
   def destroy?
     @employee.id == @record.employee_id
   end
 
 end
+

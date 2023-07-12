@@ -13,7 +13,7 @@ class PointPolicy
   end
 
   def index?
-    @employee.HR? || @employee.manager?
+    @employee.manager?
   end
 
   def show?
@@ -21,7 +21,7 @@ class PointPolicy
   end
 
  def manager_score?
-  @employee.manager?
+  @employee.id == @record.manager_id
  end
 
   def create?
@@ -36,3 +36,5 @@ class PointPolicy
     @employee.id == @record.employee_id
   end
 end
+
+

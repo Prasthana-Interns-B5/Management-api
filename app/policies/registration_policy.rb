@@ -16,15 +16,15 @@ class RegistrationPolicy
   end
 
   def create?
-    @employee.HR?
+    @employee.ur_hr?
   end
 
-  def update?
-    @employee.id == @record.id
-  end
+  # def update?
+  #   @employee.id == @record.id
+  # end
 
-  def destroy?
-    @employee.HR?
-  end
+  # def destroy?
+  #   @employee.HR?
+  # end
   
 end

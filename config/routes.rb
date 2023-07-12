@@ -1,17 +1,25 @@
+
 Rails.application.routes.draw do
+
   devise_for :employees, controllers: {
     sessions: "employees/sessions",
-    registrations: "employees/registrations" }
+    registrations: "employees/registrations"}
 
+    devise_scope :employee do
+      post '/employees/create_first_employee', to: 'employees/registrations#create_first_employee'
+      post '/employees/generate_otp', to: 'employees/sessions#generate_otp'
+    end
+  
 
-  resources :employees do
-    get "subordinates", on: :member
-    get "queries", on: :member
-    get "scores", on: :member
-    get "managers", on: :collection
-    put "role", on: :member
-    get "reviews", on: :member
-  end
+    resources :employees do
+      get "subordinates", on: :member
+      get "queries", on: :member
+      get "scores", on: :member
+      get "managers", on: :collection
+      put "role", on: :member
+      get "reviews", on: :member
+    end
+      
 
   resources :questions do
     get "replies", on: :member
@@ -19,6 +27,8 @@ Rails.application.routes.draw do
 
   resources :answers
   resources :home_page 
+  resources :reference_data
+
 
 
   resources :points do

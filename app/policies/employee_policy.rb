@@ -14,11 +14,11 @@ class EmployeePolicy
   end
 
   def index?
-    @employee.HR?
+    @employee.ur_hr?
   end
 
   def show?
-    @employee.HR? || @employee.id == @record.id || @employee.manager_id == @record.id || @employee.id == @record.manager_id
+    @employee.ur_hr? || @employee.id == @record.id || @employee.manager_id == @record.id || @employee.id == @record.manager_id
   end
 
   def update?
@@ -26,11 +26,11 @@ class EmployeePolicy
   end
 
   def create?
-    @employee.HR?
+    @employee.ur_hr?
   end
 
   def destroy?
-    @employee.HR?
+    @employee.ur_hr?
   end
 
   def subordinates?
@@ -46,10 +46,10 @@ class EmployeePolicy
  end
 
  def managers?
-  @employee.HR?
+  @employee.ur_hr?
  end
 
  def role?
-  @employee.HR?
+  @employee.ur_hr?
  end
 end
