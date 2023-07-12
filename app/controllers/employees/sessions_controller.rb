@@ -19,14 +19,14 @@ end
   end
 
  def respond_to_on_destroy
-  jwt_payload = JWT.decode(request.headers["Authorization"].split(" ")[1],
+  jwt_payload = JWT.decode(request.headers["Authorization"],
      Rails.application.credentials.fetch(:secret_key_base)).first
+     #.split(" ")[1]
   current_employee = Employee.find(jwt_payload["sub"])
   if current_employee
     render json: {
       status: 200,
       message: "Signed out Successfully",
-      data: current_employee
     }, status: :ok
   else
     render json: {
