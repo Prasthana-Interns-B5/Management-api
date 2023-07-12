@@ -1,23 +1,34 @@
+
 Rails.application.routes.draw do
 
   devise_for :employees, controllers: {
     sessions: "employees/sessions",
-    registrations: "employees/registrations" }
+    registrations: "employees/registrations"}
 
-  resources :employees do
-    get "subordinates", on: :member
-    get "queries", on: :member
-    get "scores", on: :member
-    get "subordinates", on: :member
-    get "reviews", on: :member
-    get "current_employee_info", on: :collection
-  end
+    devise_scope :employee do
+      post '/employees/create_first_employee', to: 'employees/registrations#create_first_employee'
+      post '/employees/generate_otp', to: 'employees/sessions#generate_otp'
+    end
+  
+
+    resources :employees do
+      get "subordinates", on: :member
+      get "queries", on: :member
+      get "scores", on: :member
+      put "role", on: :member
+      get "reviews", on: :member
+      get "current_employee_info", on: :collection
+    end
+      
 
   resources :questions do
     get "replies", on: :member
   end
 
   resources :answers
+  resources :home_page 
+  resources :reference_data
+
 
 
   resources :points do

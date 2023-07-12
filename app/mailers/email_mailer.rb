@@ -1,24 +1,19 @@
 class EmailMailer < ApplicationMailer
 
 
-    def email(email)
+    def signup_email(email)
         mail to: email,
         from: "apimanagement23@gmail.com",
-        subject: 'Login mail',
-        body: "Successfully logged in"
+        subject: 'Signup mail',
+        body: email
     end
-        
-    def logout(email)
-        mail to: email,
-        from: "apimanagement23@gmail.com",
-        subject: 'Logout mail ',
-        body: "Successfully logout"
-        
+
+
+    def otp_email(email,otp)
+      mail to: email,
+      from: "apimanagement23@gmail.com",
+      subject: 'OTP FOR LOGIN',
+      body: otp
     end
-    
-        
-        
-        
-        
-        
+         
 end

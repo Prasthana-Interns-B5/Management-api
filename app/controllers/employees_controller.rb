@@ -1,15 +1,15 @@
 class EmployeesController < ApplicationController
-  # before_action :authenticate_employee!
-
+before_action :authenticate_employee!
+  
   def index
-    authorize Employee
-    employees = Employee.filter(params)
+    employees = Employee.all
+    authorize employees
     render json: employees, status: 200
   end
 
   def show
     employee = Employee.find(params[:id])
-    authorize employee
+   authorize employee
     render json: employee, status: 200
   end
 
@@ -37,6 +37,7 @@ class EmployeesController < ApplicationController
     render json: subordinates, status: 200
   end
 
+ 
   def queries
     employee = Employee.find(params[:id])
     queries = employee.questions
@@ -65,7 +66,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params 
-    params.require(:employee).permit(:email, :password, :name, :role, :manager_id, :employee_no)
+    params.require(:employee).permit(:email, :password, :name, :role, :reporting_manager_id, :employee_no, :mobile_number)
   end
 
 end

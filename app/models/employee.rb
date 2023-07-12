@@ -2,6 +2,7 @@ class Employee < ApplicationRecord
 
 
   include Devise::JWT::RevocationStrategies::JTIMatcher
+  validates :name,:role,presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,15 +21,35 @@ class Employee < ApplicationRecord
 
   def self.filter(params)
     if params.present?
-      search_manager = params[:role] if params[:role].present?
-      managers = Employee.where(role: search_manager).where("LOWER(name) LIKE :query ", query: "%#{params[:query]}%")
+      search_role = params[:role] if params[:role].present?
+      roles = Employee.where(role: search_role).where("LOWER(name) LIKE :query ", query: "%#{params[:query]}%")
     else 
       Employee.all 
     end
   end
 
+  def self.name_search(params)
+    if params.present?
+      id = Current.employee.id
+      search_name = params[:name]
+      employees = Employee.where(reporting_manager_id:id).where("LOWER(name) LIKE :query ", query: "%#{search_name}%")
+    end
+  end
+
   def jwt_payload
     super
+  end
+
+  def on_jwt_dispatch(token, payload)
+    @auth_token = token
+  end
+  def auth_token
+    @auth_token
+  end
+  def expiration_time
+    decoded_token = JWT.decode(@auth_token,Rails.application.credentials.fetch(:secret_key_base), true, { algorithm: 'HS256' })
+    payload = decoded_token.first
+    payload['exp']
   end
 
   ROLES = %w{ur_hr ur_manager ur_sr_software ur_lead ur_software_engineer}
@@ -39,4 +60,5 @@ class Employee < ApplicationRecord
       role == role_name
     end
   end
+  
 end

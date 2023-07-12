@@ -93,6 +93,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_132621) do
     t.index ["employee_id"], name: "index_questions_on_employee_id"
   end
 
+  create_table "reference_data", force: :cascade do |t|
+    t.string "data_type"
+    t.string "key"
+    t.string "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "answers", "employees"
   add_foreign_key "answers", "questions"
   add_foreign_key "feedbacks", "employees"
