@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
 
   resources :one_on_one do
-    get "search", on: :collection
+    get "meetings", on: :collection
   end
 
 end
