@@ -1,14 +1,24 @@
 class OneOnOneController < ApplicationController
+    before_action :find_params, only: [:update, :destroy]
+
     def index
-        search_query = params[:search].downcase
-        employees = Employee.where("LOWER(name) LIKE :query ", query: "%#{search_query}%")
-        render json: employees, status: 200
+        employees = Employee.name_search(params)
+        render json: employees
+    end
+    
+    def meetings
+        employee = current_employee
+        if employee.role == "ur_manager"
+            meetings = OneOnOne.where("employee_id=?",employee.id)
+        else
+            meetings = OneOnOne.where("member_id=?",employee.id)  
+        end
+        render json: meetings
     end
 
-    
-    
     def create
-        meeting = OneOnOne.create(meeting_params)
+        meeting = OneOnOne.new(meeting_params)
+        authorize meeting
         if meeting.save
             render json: meeting, status: 200
         else
@@ -17,18 +27,27 @@ class OneOnOneController < ApplicationController
     end
 
     def update
-        meeting = OneOnOne.find(params[:id])
-        if meeting.update(meeting_params)
-            render json: meeting, status: 200
+        authorize @meeting
+        if @meeting.update(meeting_params)
+            render json: @meeting, status: 200
         else
-            render json: {message: "Meeting Cannot be updated", error: meeting.errors.full_messages}  
+            render json: {message: "Meeting Cannot be updated", error: @meeting.errors.full_messages}  
         end
     end
 
-
+    def destroy
+        authorize @meeting
+        @meeting.destroy
+        render json: {message: "Meeting id deleted successfuly"} 
+    end
+    
     private
+
+    def find_params
+        @meeting = OneOnOne.find(params[:id])
+    end
     def meeting_params
-        params.require(:one_on_one).permit(:team,:date,:time,:repeat_monthly,:notes)
+        params.require(:one_on_one).permit(:member_id,:date,:time,:repeat_monthly,:notes)
     end
 
 end
