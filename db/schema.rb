@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_12_102357) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_14_094912) do
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -45,20 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_102357) do
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
-  create_table "feedbacks", force: :cascade do |t|
-    t.string "self_feedback"
-    t.string "month"
-    t.integer "manager_id"
-    t.string "manager_feedback"
-    t.string "comments"
-    t.boolean "feedback_submitted"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "employee_id", null: false
-    t.boolean "meeting", default: false
-    t.index ["employee_id"], name: "index_feedbacks_on_employee_id"
-  end
-
   create_table "one_on_ones", force: :cascade do |t|
     t.integer "member_id"
     t.date "date"
@@ -68,17 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_102357) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "employee_id"
-  end
-
-  create_table "points", force: :cascade do |t|
-    t.float "self_score"
-    t.string "month"
-    t.integer "employee_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float "manager_score"
-    t.integer "manager_id"
-    t.index ["employee_id"], name: "index_points_on_employee_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -93,6 +68,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_102357) do
     t.index ["employee_id"], name: "index_questions_on_employee_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "one_on_one_id", null: false
+    t.float "manager_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["one_on_one_id"], name: "index_ratings_on_one_on_one_id"
+  end
+
   create_table "reference_data", force: :cascade do |t|
     t.string "data_type"
     t.string "key"
@@ -101,9 +84,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_102357) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "one_on_one_id", null: false
+    t.string "review_type"
+    t.text "manager_review"
+    t.boolean "flag", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["one_on_one_id"], name: "index_reviews_on_one_on_one_id"
+  end
+
   add_foreign_key "answers", "employees"
   add_foreign_key "answers", "questions"
-  add_foreign_key "feedbacks", "employees"
-  add_foreign_key "points", "employees"
   add_foreign_key "questions", "employees"
+  add_foreign_key "ratings", "one_on_ones"
+  add_foreign_key "reviews", "one_on_ones"
 end

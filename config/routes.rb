@@ -1,5 +1,6 @@
 
 Rails.application.routes.draw do
+  get 'ratings/reviews'
 
   devise_for :employees, controllers: {
     sessions: "employees/sessions",
@@ -44,7 +45,13 @@ Rails.application.routes.draw do
   resources :one_on_one do
     get "meetings", on: :collection
   end
+  
+  resources :reviews do
+    get 'find_by_type', on: :collection
+  end
 
+  resources :ratings
+  
 end
 
 
