@@ -9,7 +9,7 @@ include Devise::JWT::RevocationStrategies::JTIMatcher
   :jwt_authenticatable, jwt_revocation_strategy: self
 
 
-  
+  has_many :feedbacks,dependent: :destroy
   has_many :questions,dependent: :destroy
   has_many :answers,dependent: :destroy
   has_many :points,dependent: :destroy

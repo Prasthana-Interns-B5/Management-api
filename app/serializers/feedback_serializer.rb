@@ -1,3 +1,3 @@
 class FeedbackSerializer < ActiveModel::Serializer
-  attributes :id ,:self_feedback,:employee_id,:month,:feedback_submitted ,:manager_id,:manager_feedback,:comments,:meeting
+  attributes :id ,:employee_id,:employee_feedback,:feedback_type,:created_at,:flag
 end

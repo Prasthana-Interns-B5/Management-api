@@ -11,20 +11,6 @@ class FeedbackPolicy < ApplicationPolicy
     @employee = employee
     @record = record
   end
-  def index?
-    @employee.manager? 
-   # @employee.id == @record.employee_id || @employee.id == @record.manager_id
-  end
-
-
-  def show?
-    @employee.id == @record.employee_id || @employee.id == @record.manager_id
-  end
-
- 
-  def create?
-    @employee.subordinate?
-  end
 
   def update?
     @employee.id == @record.employee_id
@@ -33,13 +19,5 @@ class FeedbackPolicy < ApplicationPolicy
   def destroy?
     @employee.id == @record.employee_id
   end
-
-  def manager_feedback?
-    @employee.id == @record.manager_id
-   end
-
-   def comments?
-    @employee.id == @record.employee_id
-   end
 
 end
