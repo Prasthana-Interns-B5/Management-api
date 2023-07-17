@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   resources :feedbacks do
     get "get_individual_feedback", on: :member 
     get "get_individual_feedback_type", on: :collection
+    get "get_month_based_records", on: :collection
+    get "flag_based_records",on: :collection
   end
 
 

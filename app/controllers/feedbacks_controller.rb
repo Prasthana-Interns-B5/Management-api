@@ -1,5 +1,6 @@
 class FeedbacksController < ApplicationController
     before_action :find_feedback, only: %i[show update destroy get_individual_feedback ]
+
     def index
         feedback =Feedback.all
         render json: feedback,status: 200
@@ -19,14 +20,16 @@ class FeedbacksController < ApplicationController
     end
 
     def update
+        authorize @feedback
         if @feedback.update(feedback_params)
-            render json:{message:"feedback updated successfully",data:@feedback}
+            render json:{message:"feedback updated successfully",data:@feedback},satus:200
         else
-            render json:{message:"feedback cannot be updated",errors:@feedback.erors.full_messages}
+            render json:{message:"feedback cannot be updated",errors:@feedback.erors.full_messages},status:422
         end
     end
 
     def destroy
+        authorize @feedback
         if @feedback.destroy
             render json:{message:"feedback deleted successfully",data:@feedback}
         else
@@ -35,8 +38,7 @@ class FeedbacksController < ApplicationController
     end
 
     def get_individual_feedback
-        feedback=Feedback.where(employee_id:params[:id])
-        #.where(feedback_type:params[:feedback_type])
+        feedback=Feedback.individual_feedback(params)
         render json: feedback,status: 200
     end
 
@@ -45,10 +47,21 @@ class FeedbacksController < ApplicationController
         render json: feedback,status:200
     end
 
-    private
+    def get_month_based_records
+        feedback=Feedback.with_year_and_month(params[:year].to_i,params[:month].to_i)
+        render json: feedback,status:200
+    end
+
+    def flag_based_records
+        feedback=Feedback.where(flag:params[:flag])
+        render json: feedback,satus:200
+        
+    end
+
+   private
 
     def feedback_params
-        params.require(:feedback).permit(:employee_feedback,:feedback_type)
+        params.require(:feedback).permit(:employee_feedback,:feedback_type,:flag)
     end
 
     def find_feedback
