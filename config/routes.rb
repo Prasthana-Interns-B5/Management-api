@@ -36,8 +36,10 @@ Rails.application.routes.draw do
   end
 
   resources :feedbacks do
-    put "manager_feedback", on: :member 
-    put "comments", on: :member
+    get "get_individual_feedback", on: :member 
+    get "get_individual_feedback_type", on: :collection
+    get "get_month_based_records", on: :collection
+    get "flag_based_records",on: :collection
   end
 
 
