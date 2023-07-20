@@ -34,6 +34,12 @@ class ReviewsController < ApplicationController
         render json: reviews
     end
 
+    def comments
+        review = Review.find(params[:id])
+        comments = review.comments
+        render json: comments
+    end
+
     private
     def review_params
         params.require(:review).permit(:one_on_one_id, :review_type, :manager_review, :flag)

@@ -20,11 +20,11 @@ class Employee < ApplicationRecord
 
 
   def self.filter(params)
-    if params.present?
-      search_role = params[:role] if params[:role].present?
-      roles = Employee.where(role: search_role).where("LOWER(name) LIKE :query ", query: "%#{params[:query]}%")
+    if params[:role].present?
+      search_name = params[:name] 
+      Employee.where(role: "ur_manager").where("LOWER(name) LIKE :query ", query: "%#{search_manager}%")
     else 
-      Employee.all 
+      Employee.where(role: "ur_manager")
     end
   end
 
