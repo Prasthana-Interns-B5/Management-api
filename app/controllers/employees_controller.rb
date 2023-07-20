@@ -4,6 +4,7 @@ class EmployeesController < ApplicationController
 
   def index
     employee = Employee.filter(params)
+    
     authorize employee
     render json: employee, status: 200
   end

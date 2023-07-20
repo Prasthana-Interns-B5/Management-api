@@ -21,11 +21,11 @@ include Devise::JWT::RevocationStrategies::JTIMatcher
 
 
   def self.filter(params)
-    if params[:role].present?
-      search_role = params[:role] 
-      roles = Employee.where(role: search_role).where("LOWER(role) LIKE :query ", query: "%#{search_role}%")
+    if params[:name].present?
+      search_name = params[:name] 
+      name = Employee.where(role: "ur_manager").where("LOWER(name) LIKE :query ", query: "%#{search_name}%")
     else 
-     Employee.all 
+     Employee.where(role: "ur_manager") 
     end
   end
 
