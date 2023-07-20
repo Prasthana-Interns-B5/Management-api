@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
   before_action :authorize_employee, except: [:index, :current_employee_info]
 
   def index
-    employee = Employee.all
+    employee = Employee.filter(params)
     authorize employee
     render json: employee, status: 200
   end
