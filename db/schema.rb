@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_14_092249) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_21_041920) do
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_092249) do
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_answers_on_employee_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "employee_id", null: false
+    t.integer "review_id", null: false
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_comments_on_employee_id"
+    t.index ["review_id"], name: "index_comments_on_review_id"
   end
 
   create_table "currents", force: :cascade do |t|
@@ -64,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_092249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "employee_id"
+    t.float "rating"
   end
 
   create_table "points", force: :cascade do |t|
@@ -97,9 +108,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_092249) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "one_on_one_id", null: false
+    t.string "review_type"
+    t.string "manager_review"
+    t.boolean "flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["one_on_one_id"], name: "index_reviews_on_one_on_one_id"
+  end
+
   add_foreign_key "answers", "employees"
   add_foreign_key "answers", "questions"
+  add_foreign_key "comments", "employees"
+  add_foreign_key "comments", "reviews"
   add_foreign_key "feedbacks", "employees"
   add_foreign_key "points", "employees"
   add_foreign_key "questions", "employees"
+  add_foreign_key "reviews", "one_on_ones"
 end
