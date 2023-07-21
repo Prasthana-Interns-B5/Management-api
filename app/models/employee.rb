@@ -1,6 +1,6 @@
 class Employee < ApplicationRecord
 
-include Devise::JWT::RevocationStrategies::JTIMatcher
+  include Devise::JWT::RevocationStrategies::JTIMatcher
   validates :name,:role,presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -9,23 +9,21 @@ include Devise::JWT::RevocationStrategies::JTIMatcher
   :jwt_authenticatable, jwt_revocation_strategy: self
 
 
-  has_many :feedbacks,dependent: :destroy
-  has_many :questions,dependent: :destroy
-  has_many :answers,dependent: :destroy
-  has_many :points,dependent: :destroy
-  has_many :feedbacks,dependent: :destroy
-  has_many :ur_leads, class_name: "Employee", foreign_key: "reporting_manager_id"
-  has_many :ur_sr_softwares, class_name: "Employee", foreign_key: "reporting_manager_id"
-  has_many :ur_software_engineers, class_name: "Employee", foreign_key: "reporting_manager_id"
-  belongs_to :ur_manager, class_name: "Employee", optional: true
+  
+  has_many :questions
+  has_many :answers
+  has_many :points
+  has_many :feedbacks
+  has_many :subordinates, class_name: "Employee", foreign_key: "reporting_manager_id"
+  belongs_to :manager, class_name: "Employee", optional: true
 
 
   def self.filter(params)
     if params[:name].present?
       search_name = params[:name] 
-      name = Employee.where(role: "ur_manager").where("LOWER(name) LIKE :query ", query: "%#{search_name}%")
+      Employee.where(role: "ur_manager").where("LOWER(name) LIKE :query ", query: "%#{search_manager}%")
     else 
-     Employee.where(role: "ur_manager") 
+      Employee.where(role: "ur_manager")
     end
   end
 
@@ -35,12 +33,6 @@ include Devise::JWT::RevocationStrategies::JTIMatcher
       search_name = params[:name]
       employees = Employee.where(reporting_manager_id:id).where("LOWER(name) LIKE :query ", query: "%#{search_name}%")
     end
-  end
-
-  def self.update_associated_employees(manager)
-    leads=manager.ur_leads
-    leads.update_all(reporting_manager_id:nil)
-    debugger
   end
 
   def jwt_payload
@@ -67,5 +59,4 @@ include Devise::JWT::RevocationStrategies::JTIMatcher
       role == role_name
     end
   end
-  
 end

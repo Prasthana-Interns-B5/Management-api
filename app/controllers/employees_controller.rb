@@ -1,11 +1,9 @@
 class EmployeesController < ApplicationController
-  before_action :find_params, except: [:index, :create, :current_employee_info] 
-  before_action :authorize_employee, except: [:index, :current_employee_info,:update]
+  before_action :find_params, except: [:index, :create, :current_employee_info, :subordinates] 
+  before_action :authorize_employee, except: [:index, :current_employee_info, :subordinates]
 
   def index
     employee = Employee.filter(params)
-    
-    authorize employee
     render json: employee, status: 200
   end
 
@@ -22,16 +20,16 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    if @employee.role=='ur_manager'
-      Employee.update_associated_employees(@employee)
-    end
     @employee.destroy
     render json: {message: "Record Destroyed Successfully"}
   end
 
   def subordinates
-    subordinates = @employee.subordinates
-    render json: subordinates, status: 200
+    employee = current_employee
+    if employee.role = "ur_manager"
+      subordinates = Employee.where(reporting_manager_id:employee.id)
+      render json: subordinates, status: 200
+    end 
   end
 
  
@@ -64,7 +62,7 @@ class EmployeesController < ApplicationController
 
   def find_params
     @employee = Employee.find(params[:id])
-end
+  end
 
   def employee_params 
     params.require(:employee).permit(:email, :password, :name, :role, :reporting_manager_id, :employee_no, :mobile_number)
