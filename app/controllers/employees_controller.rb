@@ -38,6 +38,16 @@ class EmployeesController < ApplicationController
     render json: queries, status: 200
   end
 
+  def scores
+    scores = @employee.points
+    render json: scores, status: 200
+  end
+
+  def reviews
+    feedback=@employee.feedbacks
+    render json: feedback ,status:200
+  end
+
   def current_employee_info
     render json: current_employee
   end

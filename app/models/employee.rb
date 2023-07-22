@@ -12,7 +12,7 @@ class Employee < ApplicationRecord
   
   has_many :questions
   has_many :answers
-  has_many :comments
+  has_many :points
   has_many :feedbacks
   has_many :subordinates, class_name: "Employee", foreign_key: "reporting_manager_id"
   belongs_to :manager, class_name: "Employee", optional: true
@@ -20,7 +20,7 @@ class Employee < ApplicationRecord
 
   def self.filter(params)
     if params[:name].present?
-      search_manager = params[:name] 
+      search_name = params[:name] 
       Employee.where(role: "ur_manager").where("LOWER(name) LIKE :query ", query: "%#{search_manager}%")
     else 
       Employee.where(role: "ur_manager")
