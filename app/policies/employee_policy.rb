@@ -18,7 +18,7 @@ class EmployeePolicy
   end
 
   def show?
-    @employee.ur_hr? || @employee.id == @record.id || @employee.manager_id == @record.id || @employee.id == @record.manager_id
+    @employee.ur_hr? || @employee.id == @record.id || @employee.reporting_manager_id == @record.id || @employee.id == @record.reporting_manager_id
   end
 
   def update?
@@ -34,15 +34,19 @@ class EmployeePolicy
   end
 
   def subordinates?
-    @employee.manager? || @employee.HR? || @employee.manager_id == @record.id
+    @employee.ur_manager? || @employee.ur_hr? || @employee.reporting_manager_id == @record.id
+  end
+
+  def all_employees
+    @employee.ur_hr? || @employee.ur_manager?
   end
 
  def queries?
-  @employee.id == @record.id || @employee.id == @record.manager_id
+  @employee.id == @record.id || @employee.id == @record.reporting_manager_id
  end
 
  def scores?
-  @employee.id == @record.id || @employee.id == @record.manager_id
+  @employee.id == @record.id || @employee.id == @record.reporting_manager_id
  end
 
  def managers?
