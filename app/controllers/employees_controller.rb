@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
-  before_action :find_params, except: [:index, :create, :current_employee_info, :subordinates] 
-  before_action :authorize_employee, except: [:index, :current_employee_info, :subordinates]
+  before_action :find_params, except: [:index, :create, :current_employee_info, :subordinates, :all_employees] 
+  before_action :authorize_employee, except: [:index, :current_employee_info, :subordinates, :all_employees]
 
   def index
     employee = Employee.filter(params)
@@ -30,6 +30,11 @@ class EmployeesController < ApplicationController
       subordinates = Employee.where(reporting_manager_id:employee.id)
       render json: subordinates, status: 200
     end 
+  end
+
+  def all_employees
+    employees = Employee.all
+    render json: employees, status: 200
   end
 
  
@@ -68,4 +73,5 @@ class EmployeesController < ApplicationController
     params.require(:employee).permit(:email, :password, :name, :role, :reporting_manager_id, :employee_no, :mobile_number)
   end
 
+  
 end

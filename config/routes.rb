@@ -12,12 +12,13 @@ Rails.application.routes.draw do
   
 
     resources :employees do
-      get "subordinates", on: :controller
+      get "subordinates", on: :collection
       get "queries", on: :member
       get "scores", on: :member
       put "role", on: :member
       get "reviews", on: :member
       get "current_employee_info", on: :collection
+      get "all_employees", on: :collection
     end
       
 

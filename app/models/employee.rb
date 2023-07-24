@@ -9,6 +9,7 @@ class Employee < ApplicationRecord
   :jwt_authenticatable, jwt_revocation_strategy: self
 
 
+
   
   has_many :questions
   has_many :answers
@@ -21,7 +22,7 @@ class Employee < ApplicationRecord
   def self.filter(params)
     if params[:name].present?
       search_name = params[:name] 
-      Employee.where(role: "ur_manager").where("LOWER(name) LIKE :query ", query: "%#{search_manager}%")
+      Employee.where(role: "ur_manager").where("LOWER(name) LIKE :query ", query: "%#{search_name}%")
     else 
       Employee.where(role: "ur_manager")
     end
