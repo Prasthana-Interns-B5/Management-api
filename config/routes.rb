@@ -12,12 +12,13 @@ Rails.application.routes.draw do
   
 
     resources :employees do
-      get "subordinates", on: :member
+      get "subordinates", on: :collection
       get "queries", on: :member
       get "scores", on: :member
       put "role", on: :member
       get "reviews", on: :member
       get "current_employee_info", on: :collection
+      get "all_employees", on: :collection
     end
       
 
@@ -45,7 +46,16 @@ Rails.application.routes.draw do
 
   resources :one_on_one do
     get "meetings", on: :collection
+    get "reviews", on: :member
+    get "rating", on: :member
   end
+
+  resources :reviews do
+    get 'find_by_type', on: :collection
+    get "comments", on: :member
+  end
+
+  resources :comments
 
 end
 

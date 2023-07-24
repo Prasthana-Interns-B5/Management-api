@@ -40,6 +40,24 @@ class OneOnOneController < ApplicationController
         @meeting.destroy
         render json: {message: "Meeting id deleted successfuly"} 
     end
+
+    def reviews
+        one_on_one = OneOnOne.find(params[:id])
+        reviews = one_on_one.reviews
+        if params[:review_type].present?
+            reviews = reviews.where(review_type:params[:review_type])
+            render json: reviews
+        else
+            render json: reviews
+        end
+    end
+
+    def rating
+        one_on_one = OneOnOne.find(params[:id])
+        rating = one_on_one.rating
+        render json: rating
+    end
+
     
     private
 
@@ -47,7 +65,8 @@ class OneOnOneController < ApplicationController
         @meeting = OneOnOne.find(params[:id])
     end
     def meeting_params
-        params.require(:one_on_one).permit(:member_id,:date,:time,:repeat_monthly,:notes)
+        params.require(:one_on_one).permit(:member_id,:date,:time,:repeat_monthly,:notes, :rating, 
+        reviews_attributes: [:one_on_one_id, :review_type, :manager_review, :flag])
     end
 
 end
