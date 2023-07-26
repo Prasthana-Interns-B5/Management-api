@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :one_on_one do
+  resources :one_on_ones do
     get "meetings", on: :collection
     get "reviews", on: :member
     get "rating", on: :member
@@ -56,6 +56,13 @@ Rails.application.routes.draw do
   end
 
   resources :comments
+
+  resources :notifications do
+    get "send_notification", on: :collection
+  end
+  resources :device_tokens do
+    get "find_by_token", on: :collection
+  end
 
 end
 

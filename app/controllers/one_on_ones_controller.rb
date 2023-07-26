@@ -1,4 +1,4 @@
-class OneOnOneController < ApplicationController
+class OneOnOnesController < ApplicationController
     before_action :find_params, only: [:update, :destroy]
 
     def index

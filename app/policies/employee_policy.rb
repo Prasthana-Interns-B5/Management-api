@@ -38,7 +38,7 @@ class EmployeePolicy
   end
 
   def all_employees
-    @employee.ur_hr? || @employee.ur_manager?
+    @employee.ur_hr?
   end
 
  def queries?
