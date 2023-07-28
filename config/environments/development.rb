@@ -64,9 +64,9 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-  :user_name => '33fcb65648491e',
-  :password => 'b290284f60a567',
+config.action_mailer.smtp_settings = {
+  :user_name => '52d653c8e4ff95',
+  :password => '29b20337f22e91',
   :address => 'sandbox.smtp.mailtrap.io',
   :host => 'sandbox.smtp.mailtrap.io',
   :port => '2525',
