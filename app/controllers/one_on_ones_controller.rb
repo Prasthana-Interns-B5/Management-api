@@ -1,6 +1,6 @@
 class OneOnOnesController < ApplicationController
     before_action :find_params, only: [:update, :destroy]
-
+    
     def index
         employees = Employee.name_search(params)
         render json: employees
@@ -13,13 +13,15 @@ class OneOnOnesController < ApplicationController
         else
             meetings = OneOnOne.where("member_id=?",employee.id)  
         end
+        meetings = employee_details(meetings)
         render json: meetings
     end
 
     def create
-        meeting = OneOnOne.new(meeting_params)
+        meeting = OneOnOne.create(meeting_params)
         authorize meeting
         if meeting.save
+            notification = notifications(meeting)         
             render json: meeting, status: 200
         else
             render json: {message: "Meeting Cannot be created", error: meeting.errors.full_messages}  
@@ -29,6 +31,7 @@ class OneOnOnesController < ApplicationController
     def update
         authorize @meeting
         if @meeting.update(meeting_params)
+            notification = notifications(@meeting)  
             render json: @meeting, status: 200
         else
             render json: {message: "Meeting Cannot be updated", error: @meeting.errors.full_messages}  
@@ -38,6 +41,7 @@ class OneOnOnesController < ApplicationController
     def destroy
         authorize @meeting
         @meeting.destroy
+        notification = notifications(@meeting)  
         render json: {message: "Meeting id deleted successfuly"} 
     end
 
@@ -67,6 +71,22 @@ class OneOnOnesController < ApplicationController
     def meeting_params
         params.require(:one_on_one).permit(:member_id,:date,:time,:repeat_monthly,:notes, :rating, 
         reviews_attributes: [:one_on_one_id, :review_type, :manager_review, :flag])
+    end
+
+    def notifications(meeting)
+        id = meeting.member_id
+        device_tokens = DeviceToken.where(employee_id: id).pluck(:token)
+        NotificationService.new.send_notification(device_tokens, params[:title], params[:body])
+    end
+
+    def employee_details(meetings)
+        meetings.each do |meeting|
+            employee = Employee.find(meeting.member_id) 
+            meeting.employee_attributes = {
+                name: employee.name,
+                role: employee.role
+            }
+        end        
     end
 
 end
