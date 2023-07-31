@@ -15,6 +15,7 @@ class Employee < ApplicationRecord
   has_many :answers
   has_many :points
   has_many :feedbacks
+  has_many :device_tokens
   has_many :subordinates, class_name: "Employee", foreign_key: "reporting_manager_id"
   belongs_to :manager, class_name: "Employee", optional: true
 

@@ -61,7 +61,7 @@ Rails.application.routes.draw do
     get "send_notification", on: :collection
   end
   resources :device_tokens do
-    get "find_by_token", on: :collection
+    get "all_tokens", on: :collection
   end
 
 end

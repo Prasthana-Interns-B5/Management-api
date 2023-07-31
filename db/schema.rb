@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_041920) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_31_103543) do
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -34,6 +34,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_041920) do
   create_table "currents", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "device_tokens", force: :cascade do |t|
+    t.integer "employee_id", null: false
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_device_tokens_on_employee_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -122,6 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_041920) do
   add_foreign_key "answers", "questions"
   add_foreign_key "comments", "employees"
   add_foreign_key "comments", "reviews"
+  add_foreign_key "device_tokens", "employees"
   add_foreign_key "feedbacks", "employees"
   add_foreign_key "points", "employees"
   add_foreign_key "questions", "employees"
