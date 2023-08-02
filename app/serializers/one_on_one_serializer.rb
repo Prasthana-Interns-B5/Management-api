@@ -4,4 +4,8 @@ class OneOnOneSerializer < ActiveModel::Serializer
   def employee_attributes
     object.employee_attributes
   end
+
+  def time
+    self.object.time.strftime("%I:%M%p")
+  end
 end

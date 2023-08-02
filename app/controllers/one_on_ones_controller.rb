@@ -76,7 +76,7 @@ class OneOnOnesController < ApplicationController
     def notifications(meeting)
         id = meeting.member_id
         device_tokens = DeviceToken.where(employee_id: id).pluck(:token)
-        NotificationService.new.send_notification(device_tokens, params[:title], params[:body])
+        NotificationService.send_notification(device_tokens, params[:title], params[:body])
     end
 
     def employee_details(meetings)
