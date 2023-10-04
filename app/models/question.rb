@@ -1,7 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :employee, optional: true, default: -> { Current.employee }
-  has_many :answers, dependent: :destroy
-
+  has_many :answers
   before_create :save_manager_id, :save_employee_id
 
   def save_manager_id

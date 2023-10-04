@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :answers
   resources :home_page 
   resources :reference_data
-
+  resources :device_tokens, on: :collection
 
 
   resources :points do
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   resources :comments
 
   resources :notifications do
-    get "send_notification", on: :collection
+    post "send_notification", on: :collection
   end
   resources :device_tokens do
     get "find_by_token", on: :collection

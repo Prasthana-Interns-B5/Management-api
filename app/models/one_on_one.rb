@@ -1,6 +1,6 @@
 class OneOnOne < ApplicationRecord
   before_save :save_employee_id
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :reviews
   attr_accessor :employee_attributes
   private
