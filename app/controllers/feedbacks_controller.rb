@@ -61,7 +61,7 @@ class FeedbacksController < ApplicationController
    private
 
     def feedback_params
-        params.require(:feedback).permit(:employee_feedback,:feedback_type,:flag)
+        params.require(:feedback).permit(:employee_id ,:employee_feedback,:feedback_type,:flag)
     end
 
     def find_feedback

@@ -7,6 +7,11 @@ class ReviewsController < ApplicationController
         render json: reviews, status: 200
     end
 
+    def show
+        review = Review.find(params[:id])
+        render json: review, status: 200
+    end
+
     def create
         review = Review.create(review_params)
         if review.save

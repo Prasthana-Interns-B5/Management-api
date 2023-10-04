@@ -8,16 +8,13 @@ class Employee < ApplicationRecord
   :recoverable, :rememberable, :validatable,
   :jwt_authenticatable, jwt_revocation_strategy: self
 
-
-
-  
+  has_many :device_tokens
   has_many :questions
   has_many :answers
   has_many :points
   has_many :feedbacks
   has_many :subordinates, class_name: "Employee", foreign_key: "reporting_manager_id"
   belongs_to :manager, class_name: "Employee", optional: true
-
 
   def self.filter(params)
     if params[:name].present?
@@ -26,13 +23,15 @@ class Employee < ApplicationRecord
     else 
       Employee.where(role: "ur_manager")
     end
-  end
+  end 
 
   def self.name_search(params)
+    id = Current.employee.id
     if params.present?
-      id = Current.employee.id
       search_name = params[:name]
       employees = Employee.where(reporting_manager_id:id).where("LOWER(name) LIKE :query ", query: "%#{search_name}%")
+    else
+     employees = Employee.where(reporting_manager_id: id)
     end
   end
 
@@ -46,6 +45,7 @@ class Employee < ApplicationRecord
   def auth_token
     @auth_token
   end
+  
   def expiration_time
     decoded_token = JWT.decode(@auth_token,Rails.application.credentials.fetch(:secret_key_base), true, { algorithm: 'HS256' })
     payload = decoded_token.first
@@ -60,4 +60,5 @@ class Employee < ApplicationRecord
       role == role_name
     end
   end
+
 end

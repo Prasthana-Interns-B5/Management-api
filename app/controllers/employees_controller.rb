@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :find_params, except: [:index, :create, :current_employee_info, :subordinates, :all_employees] 
-  before_action :authorize_employee, except: [:index, :current_employee_info, :subordinates, :all_employees]
+  before_action :authorize_employee, except: [:index, :current_employee_info, :subordinates, :all_employees, :reviews]
 
   def index
     employee = Employee.filter(params)

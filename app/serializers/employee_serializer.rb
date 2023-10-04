@@ -11,7 +11,7 @@ class EmployeeSerializer < ActiveModel::Serializer
     elsif !feedback.select(:manager_feedback).nil?
       return "Manager has to fill the feedback"  
     else
-      return "You are ready to attend the metting"
+      return "You are ready to attend the meeting"
     end
   end
  

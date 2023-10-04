@@ -13,10 +13,10 @@ class QuestionPolicy
     @record = record
   end
   def index?
-     @employee.manager?
+     @employee.ur_manager?
   end
   def show?
-     @employee.manager? || @employee.id == @record.employee_id
+     @employee.ur_manager? || @employee.id == @record.employee_id
   end
   def create?
     @employee.subordinate?
@@ -24,9 +24,9 @@ class QuestionPolicy
   def update?
     @employee.id == @record.employee_id
   end
-def replies
-  @employee.id == @record.employee_id
-end
+  def replies
+    @employee.id == @record.employee_id
+  end
 
   def destroy?
     @employee.id == @record.employee_id
