@@ -45,9 +45,8 @@ class OauthController < Doorkeeper::TokensController
       doorkeeper_token = Doorkeeper::AccessToken.find_by(refresh_token: params[:refresh_token])
       user_login = doorkeeper_token ? UserLogin.find_by(token_id: doorkeeper_token.id) : nil
     else
-      # Note: As we have don't have 'login_token' information for CE, as of now considering latest user_login record
-      ce_user_id = authorize_response&.token&.resource_owner_id
-      user_login = User.find_by(id: ce_user_id)&.user_logins&.first
+      user_id = authorize_response&.token&.resource_owner_id
+      user_login = User.find_by(id: user_id)&.user_logins&.first
     end
 
     return unless token_id && user_login && user_login.user
