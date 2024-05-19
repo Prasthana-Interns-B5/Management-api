@@ -48,9 +48,8 @@ group :development do
   # gem "spring"
 end
 gem "devise"
-
-gem "devise-jwt"
-
+gem 'doorkeeper'
+gem 'doorkeeper-jwt'
 gem "pundit"
 
 gem 'active_model_serializers', '~> 0.10.2'
