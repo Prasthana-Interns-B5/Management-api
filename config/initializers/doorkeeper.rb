@@ -545,7 +545,7 @@ Doorkeeper::JWT.configure do
   # { token: "RANDOM-TOKEN" }
   token_payload do |_opts|
     {
-      iss: 'mind-api',
+      iss: 'feedback-api',
       iat: Time.current.utc.to_i,
       jti: SecureRandom.uuid
     }
