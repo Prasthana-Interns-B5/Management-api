@@ -1,25 +1,22 @@
 
 Rails.application.routes.draw do
-
-  devise_for :employees, controllers: {
-    sessions: "employees/sessions",
-    registrations: "employees/registrations"}
-
-    devise_scope :employee do
-      post '/employees/create_first_employee', to: 'employees/registrations#create_first_employee'
-      post '/employees/generate_otp', to: 'employees/sessions#generate_otp'
-    end
-  
-
-    resources :employees do
-      get "subordinates", on: :collection
-      get "queries", on: :member
-      get "scores", on: :member
-      put "role", on: :member
-      get "reviews", on: :member
-      get "current_employee_info", on: :collection
-      get "all_employees", on: :collection
-    end
+  use_doorkeeper do
+    controllers tokens: 'oauth'
+  end
+  devise_for :users
+  devise_scope :user do
+    post 'generate_otp', to: 'users#generate_otp'
+    post 'verify_email_auth_code', to: 'users#verify_email_auth_code'
+  end
+  resources :employees do
+    get "subordinates", on: :collection
+    get "queries", on: :member
+    get "scores", on: :member
+    put "role", on: :member
+    get "reviews", on: :member
+    get "current_employee_info", on: :collection
+    get "all_employees", on: :collection
+  end
       
 
   resources :questions do

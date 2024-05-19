@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  config.authentication_keys = [:email]
+  # config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '5bafabae08622ae610db110a2ad31d872508a95cfd6f4853af5de7bc75713be61d11c089307ddc71401ffaa459bc605c92d941dd0125308ff4ebc29aa38c60e6'
+  # config.pepper = '1ae3eb82526a997d23d070c09a1b6c6f1d7cb731ba5c4f271e494ebf4bbc68eaffae7ef3bb6ac088be02f587a0e6186113bf0dafdba9bc1acfdb9c195ec30c01'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -263,11 +263,10 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  config.navigational_formats = []
+  # config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  # config.sign_out_via = :delete
-  config.sign_out_via = :get
+  config.sign_out_via = :delete
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
@@ -307,22 +306,8 @@ Devise.setup do |config|
   config.responder.redirect_status = :see_other
 
   # ==> Configuration for :registerable
-  
 
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-  config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
-   
-
-
-    jwt.dispatch_requests = [
-      ["POST",%r{^/employees/sign_in$}]
-    ]
-    jwt.revocation_requests = [
-      ["DELETE", %r{^/employees/sign_out}]
-    ]
-    jwt.expiration_time = 120.minutes.to_i
-  end
 end
