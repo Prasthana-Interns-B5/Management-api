@@ -1,35 +1,28 @@
+# frozen_string_literal: true
+
 class EmployeeSerializer < ActiveModel::Serializer
   attributes :id, :employee_no, :name, :email, :role, :reporting_manager_id
 
-
-
-  def  notification
-    month=Date.new(Time.now.year,Time.now.month)
-    feedback=object.feedbacks.where(created_at: month.beginning_of_month..month.end_of_month-10)
+  def notification
+    month = Date.new(Time.now.year, Time.now.month)
+    feedback = object.feedbacks.where(created_at: month.beginning_of_month..month.end_of_month - 10)
     if !feedback.select(:self_feedback).exists? && !feedback.select(:self_feedback).nil?
-      return "please fill the feedback"
+      'please fill the feedback'
     elsif !feedback.select(:manager_feedback).nil?
-      return "Manager has to fill the feedback"  
+      'Manager has to fill the feedback'
     else
-      return "You are ready to attend the metting"
+      'You are ready to attend the metting'
     end
   end
- 
-  
-
 
   def meeting_notifications
-    month=Date.new(Time.now.year,Time.now.month)
-    subordinate=object.subordinates
+    month = Date.new(Time.now.year, Time.now.month)
+    subordinate = object.subordinates
     subordinate.map do |s|
-      feedback=s.feedbacks.where(meeting: false).where(created_at: month.beginning_of_month..month.end_of_month-8)
+      feedback = s.feedbacks.where(meeting: false).where(created_at: month.beginning_of_month..month.end_of_month - 8)
       feedback.map do |f|
-        if !f.nil?
-          "conduct a 1-1 meeting for #{s.id}"
-        end
-      end      
+        "conduct a 1-1 meeting for #{s.id}" unless f.nil?
+      end
     end
   end
-
 end
-

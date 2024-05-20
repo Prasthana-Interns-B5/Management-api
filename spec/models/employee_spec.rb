@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Employee, type: :model do
-  
   context 'creating an employee' do
-    let(:employee) {create:employee,name:'subordinate1',role:'subordinate',email:'subordinate@gmail.com',password:'123456' }
-    
-    
+    let(:employee) do
+      create :employee, name: 'subordinate1', role: 'subordinate', email: 'subordinate@gmail.com', password: '123456'
+    end
+
     it 'should validate emoloyee' do
       expect(employee.valid?).to eq(true)
     end
@@ -17,6 +19,3 @@ RSpec.describe Employee, type: :model do
     end
   end
 end
-
-
-

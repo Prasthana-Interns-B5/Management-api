@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswerPolicy < ApplicationPolicy
   # class Scope < Scope
   #   # NOTE: Be explicit about which records you allow access to!
@@ -32,5 +34,4 @@ class AnswerPolicy < ApplicationPolicy
   def destroy?
     @employee.manager?
   end
-
 end

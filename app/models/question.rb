@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Question < ApplicationRecord
   belongs_to :employee, optional: true, default: -> { Current.employee }
   has_many :answers, dependent: :destroy

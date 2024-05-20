@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedbackPolicy < ApplicationPolicy
   # class Scope < Scope
   #   # NOTE: Be explicit about which records you allow access to!
@@ -19,5 +21,4 @@ class FeedbackPolicy < ApplicationPolicy
   def destroy?
     @employee.id == @record.employee_id
   end
-
 end

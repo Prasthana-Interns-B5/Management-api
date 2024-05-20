@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswersController < ApplicationController
   before_action :authenticate_employee!
 
@@ -6,7 +8,6 @@ class AnswersController < ApplicationController
     # authorize answers
     render json: answers, status: 200
   end
-
 
   def show
     answer = Answer.find(params[:id])
@@ -20,7 +21,7 @@ class AnswersController < ApplicationController
     if answer.save
       render json: answer, status: 200
     else
-      render json: {message: "Answer Cannot be created", error: answer.errors.full_messages}
+      render json: { message: 'Answer Cannot be created', error: answer.errors.full_messages }
     end
   end
 
@@ -30,7 +31,7 @@ class AnswersController < ApplicationController
     if answer.update(answer_params)
       render json: answer, status: 200
     else
-      render json: {message: "Answer cannot be updated", error: answer.errors.full_messages}
+      render json: { message: 'Answer cannot be updated', error: answer.errors.full_messages }
     end
   end
 
@@ -38,7 +39,7 @@ class AnswersController < ApplicationController
     answer = Answer.find(params[:id])
     authorize answer
     answer.destroy
-    render json: {message: "Record Destroyed Successfully"}
+    render json: { message: 'Record Destroyed Successfully' }
   end
 
   private
@@ -46,5 +47,4 @@ class AnswersController < ApplicationController
   def answer_params
     params.require(:answer).permit(:reply, :question_id, :employee_id)
   end
-
 end

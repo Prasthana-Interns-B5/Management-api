@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuestionsController < ApplicationController
   before_action :authenticate_employee!
 
@@ -19,7 +21,7 @@ class QuestionsController < ApplicationController
     if question.save
       render json: question, status: 200
     else
-      render json: {message: "Question Cannot be created", error: question.errors.full_messages}
+      render json: { message: 'Question Cannot be created', error: question.errors.full_messages }
     end
   end
 
@@ -29,7 +31,7 @@ class QuestionsController < ApplicationController
     if question.update(question_params)
       render json: question, status: 200
     else
-      render json: {message: "Question cannot be updated", error: question.errors.full_messages}
+      render json: { message: 'Question cannot be updated', error: question.errors.full_messages }
     end
   end
 
@@ -37,14 +39,13 @@ class QuestionsController < ApplicationController
     question = Question.find(params[:id])
     authorize question
     question.destroy
-    render json: {message: "Record Destroyed Successfully"}
+    render json: { message: 'Record Destroyed Successfully' }
   end
 
   def replies
     question = Question.find(params[:id])
     replies = question.answers
     render json: replies, status: 200
-
   end
 
   private
@@ -52,5 +53,4 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:query, :employee_id, :clarified, :remarks, :manager_id, :anonymous)
   end
-
 end

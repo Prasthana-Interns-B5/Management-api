@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegistrationPolicy
   # class Scope < Scope
   #   # NOTE: Be explicit about which records you allow access to!
@@ -26,5 +28,4 @@ class RegistrationPolicy
   # def destroy?
   #   @employee.HR?
   # end
-  
 end

@@ -1,22 +1,26 @@
-class OneOnOnePolicy
+# frozen_string_literal: true
 
-  attr_reader :employee, :record
+class OneOnOnePolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      # TODO: This would be restricted once the roles and care tem is implemented.
+      scope.all
+    end
+  end
 
-  def initialize(employee, record)
-    @employee = employee
-    @record = record
+  def index?
+    true
   end
 
   def create?
-    @employee.ur_manager?
+    user.roles.any? { |role| %w[ur_manager].include?(role) }
   end
 
   def update?
-    @employee.id == @record.employee_id
+    true
   end
 
   def destroy?
-    @employee.id == @record.employee_id
+    user.roles.any? { |role| %w[ur_manager].include?(role) }
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuestionPolicy
   # class Scope < Scope
   #   # NOTE: Be explicit about which records you allow access to!
@@ -12,25 +14,28 @@ class QuestionPolicy
     @employee = employee
     @record = record
   end
+
   def index?
-     @employee.manager?
+    @employee.manager?
   end
+
   def show?
-     @employee.manager? || @employee.id == @record.employee_id
+    @employee.manager? || @employee.id == @record.employee_id
   end
+
   def create?
     @employee.subordinate?
   end
+
   def update?
     @employee.id == @record.employee_id
   end
-def replies
-  @employee.id == @record.employee_id
-end
+
+  def replies
+    @employee.id == @record.employee_id
+  end
 
   def destroy?
     @employee.id == @record.employee_id
   end
-
 end
-

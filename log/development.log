@@ -5749,3 +5749,598 @@ Completed 200 OK in 9ms (Views: 1.2ms | ActiveRecord: 0.6ms | Allocations: 4347)
 
   [1m[36mCACHE Employee Load (0.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mEmployee Update (74.3ms)[0m  [1m[33mUPDATE "employees" SET "jti" = ? WHERE "employees"."id" = ?[0m  [["jti", "f524d347-fd69-4156-8932-c8f1a7a127f4"], ["id", 1]]
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateEmployees (20230517063638)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_email" ON "employees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_reset_password_token" ON "employees" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517063638"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddJtiToEmployees (20230517063935)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_reset_password_token" ON "aemployees" ("reset_password_token")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_email" ON "aemployees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at" FROM "employees"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_email" ON "employees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_reset_password_token" ON "employees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at" FROM "aemployees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_jti" ON "employees" ("jti")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517063935"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddRoleToEmployees (20230517071729)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "employees" ADD "name" varchar[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "employees" ADD "role" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517071729"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddColumnToEmployees (20230517081537)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "employees" ADD "manager_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_manager_id" ON "employees" ("manager_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517081537"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddForeignKeyToEmployees (20230517081613)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "role" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_manager_id" ON "aemployees" ("manager_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_jti" ON "aemployees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_reset_password_token" ON "aemployees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_email" ON "aemployees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id" FROM "employees"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "role" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_0fe1519b79"
+FOREIGN KEY ("manager_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_email" ON "employees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_reset_password_token" ON "employees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_jti" ON "employees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_manager_id" ON "employees" ("manager_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id" FROM "aemployees"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517081613"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RemoveColumnFromEmployees (20230517084407)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "role" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_manager_id" ON "aemployees" ("manager_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_jti" ON "aemployees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_reset_password_token" ON "aemployees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_email" ON "aemployees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id" FROM "employees"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "role" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_email" ON "employees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_reset_password_token" ON "employees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_jti" ON "employees" ("jti")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "employees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role" FROM "aemployees"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517084407"]]
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddRefToEmployees (20230517084530)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "employees" ADD "manager_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_manager_id" ON "employees" ("manager_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "role" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_manager_id" ON "aemployees" ("manager_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_jti" ON "aemployees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_reset_password_token" ON "aemployees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_email" ON "aemployees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id" FROM "employees"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "role" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_0fe1519b79"
+FOREIGN KEY ("manager_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_email" ON "employees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_reset_password_token" ON "employees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_jti" ON "employees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_manager_id" ON "employees" ("manager_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id" FROM "aemployees"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517084530"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20230517165334)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "query" text, "employee_id" integer NOT NULL, "clarified" boolean, "remarks" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_296fb43ba9"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_questions_on_employee_id" ON "questions" ("employee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517165334"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAnswers (20230517165831)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "answer" text, "question_id" integer NOT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_3d5ed4418f"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+, CONSTRAINT "fk_rails_68929d2ca2"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_answers_on_question_id" ON "answers" ("question_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_answers_on_employee_id" ON "answers" ("employee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230517165831"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RenameColumnInAnswers (20230518103506)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aanswers" ("id" integer NOT NULL PRIMARY KEY, "reply" text DEFAULT NULL, "question_id" integer NOT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aanswers_on_employee_id" ON "aanswers" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aanswers_on_question_id" ON "aanswers" ("question_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aanswers" ("id","reply","question_id","employee_id","created_at","updated_at")
+                     SELECT "id","answer","question_id","employee_id","created_at","updated_at" FROM "answers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "answers" ("id" integer NOT NULL PRIMARY KEY, "reply" text DEFAULT NULL, "question_id" integer NOT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_68929d2ca2"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+, CONSTRAINT "fk_rails_3d5ed4418f"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_answers_on_question_id" ON "answers" ("question_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_answers_on_employee_id" ON "answers" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "answers" ("id","reply","question_id","employee_id","created_at","updated_at")
+                     SELECT "id","reply","question_id","employee_id","created_at","updated_at" FROM "aanswers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "aanswers"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518103506"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePoints (20230518152633)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "points" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "score" varchar, "month" varchar, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_adc3b16f0f"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_points_on_employee_id" ON "points" ("employee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518152633"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RenameColumnInPoints (20230518155128)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apoints" ("id" integer NOT NULL PRIMARY KEY, "self_score" varchar DEFAULT NULL, "month" varchar DEFAULT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_apoints_on_employee_id" ON "apoints" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "apoints" ("id","self_score","month","employee_id","created_at","updated_at")
+                     SELECT "id","score","month","employee_id","created_at","updated_at" FROM "points"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "points"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "points" ("id" integer NOT NULL PRIMARY KEY, "self_score" varchar DEFAULT NULL, "month" varchar DEFAULT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_adc3b16f0f"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_points_on_employee_id" ON "points" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "points" ("id","self_score","month","employee_id","created_at","updated_at")
+                     SELECT "id","self_score","month","employee_id","created_at","updated_at" FROM "apoints"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "apoints"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518155128"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddColumnToPoints (20230518155623)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "points" ADD "manager_score" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518155623"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddColumnToPoint (20230518155713)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "points" ADD "manager_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230518155713"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to ChangeColumnFromPoints (20230519055723)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apoints" ("id" integer NOT NULL PRIMARY KEY, "self_score" varchar DEFAULT NULL, "month" varchar DEFAULT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "manager_score" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_apoints_on_employee_id" ON "apoints" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "apoints" ("id","self_score","month","employee_id","created_at","updated_at","manager_score","manager_id")
+                     SELECT "id","self_score","month","employee_id","created_at","updated_at","manager_score","manager_id" FROM "points"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "points"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "points" ("id" integer NOT NULL PRIMARY KEY, "self_score" float DEFAULT NULL, "month" varchar DEFAULT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "manager_score" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_adc3b16f0f"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_points_on_employee_id" ON "points" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "points" ("id","self_score","month","employee_id","created_at","updated_at","manager_score","manager_id")
+                     SELECT "id","self_score","month","employee_id","created_at","updated_at","manager_score","manager_id" FROM "apoints"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "apoints"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230519055723"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to ChangeColumnPoints (20230519061557)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apoints" ("id" integer NOT NULL PRIMARY KEY, "self_score" float DEFAULT NULL, "month" varchar DEFAULT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "manager_score" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_apoints_on_employee_id" ON "apoints" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "apoints" ("id","self_score","month","employee_id","created_at","updated_at","manager_score","manager_id")
+                     SELECT "id","self_score","month","employee_id","created_at","updated_at","manager_score","manager_id" FROM "points"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "points"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "points" ("id" integer NOT NULL PRIMARY KEY, "self_score" float DEFAULT NULL, "month" varchar DEFAULT NULL, "employee_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "manager_score" float DEFAULT NULL, "manager_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_adc3b16f0f"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_points_on_employee_id" ON "points" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "points" ("id","self_score","month","employee_id","created_at","updated_at","manager_score","manager_id")
+                     SELECT "id","self_score","month","employee_id","created_at","updated_at","manager_score","manager_id" FROM "apoints"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "apoints"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230519061557"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCurrents (20230521114916)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "currents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230521114916"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddColumnToQuestions (20230521130627)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "questions" ADD "anonymous" boolean[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230521130627"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddColumnManToEmployees (20230521132555)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "employees" ADD "manager_name" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230521132555"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddColumnManToQuestions (20230521132644)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "questions" ADD "manager_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230521132644"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddColumnToEmployee (20230521132713)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "employees" ADD "employee_no" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230521132713"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to Changeemployee (20230706114214)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "role" varchar DEFAULT NULL, "manager_id" integer DEFAULT NULL, "manager_name" varchar DEFAULT NULL, "employee_no" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_manager_id" ON "aemployees" ("manager_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_jti" ON "aemployees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_reset_password_token" ON "aemployees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_email" ON "aemployees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id","manager_name","employee_no")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","role","manager_id","manager_name","employee_no" FROM "employees"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "employee_no" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_email" ON "employees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_reset_password_token" ON "employees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_jti" ON "employees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","employee_no")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","employee_no" FROM "aemployees"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230706114214"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateOneOnOnes (20230707054532)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "one_on_ones" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "team" varchar, "date" date, "time" time, "repeat_monthly" boolean, "notes" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230707054532"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to Changedefaultvalue (20230707060450)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aone_on_ones" ("id" integer NOT NULL PRIMARY KEY, "team" varchar DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT NULL, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aone_on_ones" ("id","team","date","time","repeat_monthly","notes","created_at","updated_at")
+                     SELECT "id","team","date","time","repeat_monthly","notes","created_at","updated_at" FROM "one_on_ones"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "one_on_ones"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "one_on_ones" ("id" integer NOT NULL PRIMARY KEY, "team" varchar DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "one_on_ones" ("id","team","date","time","repeat_monthly","notes","created_at","updated_at")
+                     SELECT "id","team","date","time","repeat_monthly","notes","created_at","updated_at" FROM "aone_on_ones"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aone_on_ones"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230707060450"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddempIdforoneOnOne (20230711063514)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "one_on_ones" ADD "employee_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230711063514"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to Changecolname (20230711071643)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aone_on_ones" ("id" integer NOT NULL PRIMARY KEY, "member" varchar DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "employee_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aone_on_ones" ("id","member","date","time","repeat_monthly","notes","created_at","updated_at","employee_id")
+                     SELECT "id","team","date","time","repeat_monthly","notes","created_at","updated_at","employee_id" FROM "one_on_ones"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "one_on_ones"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "one_on_ones" ("id" integer NOT NULL PRIMARY KEY, "member" varchar DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "employee_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "one_on_ones" ("id","member","date","time","repeat_monthly","notes","created_at","updated_at","employee_id")
+                     SELECT "id","member","date","time","repeat_monthly","notes","created_at","updated_at","employee_id" FROM "aone_on_ones"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aone_on_ones"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230711071643"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddMobileColumnToEmployees (20230711094626)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "employees" ADD "mobile_number" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230711094626"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddManagerIdToEmployee (20230711112613)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "employees" ADD "manager_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230711112613"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to Changetypetorole (20230711113503)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230711113503"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateReferenceData (20230711130750)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "reference_data" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "data_type" varchar, "key" varchar, "label" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230711130750"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to ChangeColnameToReportingManagerInEmployees (20230711132621)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "employee_no" varchar DEFAULT NULL, "mobile_number" integer DEFAULT NULL, "reporting_manager_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_jti" ON "aemployees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_reset_password_token" ON "aemployees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aemployees_on_email" ON "aemployees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","employee_no","mobile_number","reporting_manager_id")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","employee_no","mobile_number","manager_id" FROM "employees"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer NOT NULL PRIMARY KEY, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar DEFAULT NULL, "reset_password_sent_at" datetime(6) DEFAULT NULL, "remember_created_at" datetime(6) DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "jti" varchar NOT NULL, "name" varchar DEFAULT NULL, "employee_no" varchar DEFAULT NULL, "mobile_number" integer DEFAULT NULL, "reporting_manager_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_email" ON "employees" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_reset_password_token" ON "employees" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_employees_on_jti" ON "employees" ("jti")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","employee_no","mobile_number","reporting_manager_id")
+                     SELECT "id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","created_at","updated_at","jti","name","employee_no","mobile_number","reporting_manager_id" FROM "aemployees"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230711132621"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to ChangeColumnToOneOnOne (20230712063818)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aone_on_ones" ("id" integer NOT NULL PRIMARY KEY, "member_id" varchar DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "employee_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aone_on_ones" ("id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id")
+                     SELECT "id","member","date","time","repeat_monthly","notes","created_at","updated_at","employee_id" FROM "one_on_ones"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "one_on_ones"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "one_on_ones" ("id" integer NOT NULL PRIMARY KEY, "member_id" varchar DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "employee_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "one_on_ones" ("id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id")
+                     SELECT "id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id" FROM "aone_on_ones"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aone_on_ones"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230712063818"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to ChangeTypeOfMemberId (20230712064332)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aone_on_ones" ("id" integer NOT NULL PRIMARY KEY, "member_id" varchar DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "employee_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aone_on_ones" ("id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id")
+                     SELECT "id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id" FROM "one_on_ones"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "one_on_ones"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "one_on_ones" ("id" integer NOT NULL PRIMARY KEY, "member_id" integer DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "employee_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "one_on_ones" ("id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id")
+                     SELECT "id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id" FROM "aone_on_ones"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aone_on_ones"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230712064332"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddRolesColumnToEmployees (20230712102357)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "employees" ADD "role" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230712102357"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFeedbacks (20230714092249)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "feedbacks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "employee_feedback" text, "feedback_type" varchar, "employee_id" integer NOT NULL, "flag" boolean DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_7a5c204d4b"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_feedbacks_on_employee_id" ON "feedbacks" ("employee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230714092249"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddRatingColumnToOneOnOnes (20230721041459)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "one_on_ones" ADD "rating" float[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230721041459"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateReviews (20230721041806)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "one_on_one_id" integer NOT NULL, "review_type" varchar, "manager_review" varchar, "flag" boolean, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_bf2c9a4831"
+FOREIGN KEY ("one_on_one_id")
+  REFERENCES "one_on_ones" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_one_on_one_id" ON "reviews" ("one_on_one_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230721041806"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20230721041920)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "employee_id" integer NOT NULL, "review_id" integer NOT NULL, "comment" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_1025abb5cb"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+, CONSTRAINT "fk_rails_5350d1b47c"
+FOREIGN KEY ("review_id")
+  REFERENCES "reviews" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_comments_on_employee_id" ON "comments" ("employee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_comments_on_review_id" ON "comments" ("review_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230721041920"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2024-05-19 12:56:21.850560"], ["updated_at", "2024-05-19 12:56:21.850560"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReferenceDatum Create (0.3ms)[0m  [1m[32mINSERT INTO "reference_data" ("data_type", "key", "label", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["data_type", "role"], ["key", "ur_hr"], ["label", "Hr"], ["created_at", "2024-05-19 12:56:27.611152"], ["updated_at", "2024-05-19 12:56:27.611152"]]
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReferenceDatum Create (0.2ms)[0m  [1m[32mINSERT INTO "reference_data" ("data_type", "key", "label", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["data_type", "role"], ["key", "ur_manager"], ["label", "Manager"], ["created_at", "2024-05-19 12:56:27.616863"], ["updated_at", "2024-05-19 12:56:27.616863"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReferenceDatum Create (0.2ms)[0m  [1m[32mINSERT INTO "reference_data" ("data_type", "key", "label", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["data_type", "role"], ["key", "ur_sr_software"], ["label", "Senior Software"], ["created_at", "2024-05-19 12:56:27.621625"], ["updated_at", "2024-05-19 12:56:27.621625"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReferenceDatum Create (0.2ms)[0m  [1m[32mINSERT INTO "reference_data" ("data_type", "key", "label", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["data_type", "role"], ["key", "ur_lead"], ["label", "Lead"], ["created_at", "2024-05-19 12:56:27.626296"], ["updated_at", "2024-05-19 12:56:27.626296"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReferenceDatum Create (0.2ms)[0m  [1m[32mINSERT INTO "reference_data" ("data_type", "key", "label", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["data_type", "role"], ["key", "ur_software_engineer"], ["label", "Software Engineer"], ["created_at", "2024-05-19 12:56:27.630933"], ["updated_at", "2024-05-19 12:56:27.630933"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "sr_software2@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "sr_software2@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "sr_software2@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "sr_software2@gmail.com"], ["LIMIT", 1]]
+  [1m[36mEmployee Create (0.3ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "employee_no", "mobile_number", "reporting_manager_id", "role") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "sr_software2@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-05-19 13:04:29.097116"], ["updated_at", "2024-05-19 13:04:29.097116"], ["jti", "a509fc20-d393-478b-ad94-0874e25be8cb"], ["name", "SrSoftware2"], ["employee_no", nil], ["mobile_number", nil], ["reporting_manager_id", nil], ["role", "ur_sr_software"]]
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "sr_software2@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEmployee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?[0m  [["email", "sr_software1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mEmployee Create (0.3ms)[0m  [1m[32mINSERT INTO "employees" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "jti", "name", "employee_no", "mobile_number", "reporting_manager_id", "role") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "sr_software1@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-05-19 13:05:25.595788"], ["updated_at", "2024-05-19 13:05:25.595788"], ["jti", "a7649071-bee5-4821-afc6-78cfd57ee504"], ["name", "SrSoftware1"], ["employee_no", nil], ["mobile_number", nil], ["reporting_manager_id", 1], ["role", "ur_sr_software"]]
+  [1m[36mTRANSACTION (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."reporting_manager_id" = ?[0m  [["reporting_manager_id", 2]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."reporting_manager_id" = ?[0m  [["reporting_manager_id", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddEmployeeToOneOnOne (20240519160959)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "one_on_ones" ADD "employee_id" integer[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeColumnMemberIdOneOnOne (20240519163901)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aone_on_ones" ("id" integer NOT NULL PRIMARY KEY, "member_id" integer DEFAULT NULL, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "employee_id" integer DEFAULT NULL, "rating" float DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aone_on_ones" ("id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id","rating")
+                     SELECT "id","member_id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id","rating" FROM "one_on_ones"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "one_on_ones"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "one_on_ones" ("id" integer NOT NULL PRIMARY KEY, "date" date DEFAULT NULL, "time" time DEFAULT NULL, "repeat_monthly" boolean DEFAULT 0, "notes" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "employee_id" integer DEFAULT NULL, "rating" float DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "one_on_ones" ("id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id","rating")
+                     SELECT "id","date","time","repeat_monthly","notes","created_at","updated_at","employee_id","rating" FROM "aone_on_ones"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aone_on_ones"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "one_on_ones" ADD "team_member_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20240519163901"]]
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateEmployeePoints (20240519181121)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "employee_points" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "self_score" varchar, "month" varchar, "employee_id" integer NOT NULL, "manager_id" integer, "manager_score" float, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_4cbde52d07"
+FOREIGN KEY ("employee_id")
+  REFERENCES "employees" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_employee_points_on_employee_id" ON "employee_points" ("employee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20240519181121"]]
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DropTablePoints (20240519182017)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "points"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20240519182017"]]
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddColumnInOneOnOne (20240519185425)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "one_on_ones" ADD "status" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20240519185425"]]
+  [1m[36mTRANSACTION (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

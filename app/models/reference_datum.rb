@@ -1,3 +1,4 @@
-class ReferenceDatum < ApplicationRecord
+# frozen_string_literal: true
 
+class ReferenceDatum < ApplicationRecord
 end
