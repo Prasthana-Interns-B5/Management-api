@@ -1,12 +1,12 @@
 class UserLogin < ApplicationRecord
   before_validation :generate_auth_token, on: :create
   belongs_to :user
-  after_create :send_passcode
+  after_create :send_otp_to_user
 
-  def send_passcode
+  def send_otp_to_user
     return if email.blank?
 
-    mailer = LoginMailer.send_auth_code(user.email, email_auth_code, id)
+    mailer = LoginMailer.send_auth_code(user.email, email_auth_code)
     mailer.deliver_later
     mark_as_email_auth_code_sent
   end
@@ -25,7 +25,7 @@ class UserLogin < ApplicationRecord
   end
 
   def validate_email_auth_code(code)
-    # return false if email_auth_code_verified_at || user.blank?
+    return false if email_auth_code_verified_at || user.blank?
 
     email_auth_code == code
   end

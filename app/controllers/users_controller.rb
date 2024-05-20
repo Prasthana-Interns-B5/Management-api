@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, :set_user_login
-  def generate_otp
+  def generate_and_send_otp
     if @user
       user_login = @user.user_logins.create!(user_login_params)
       render json: user_login, status: :ok
@@ -23,9 +23,9 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    if params[:email]
-      @user = User.find_by(email: params[:email].to_s.strip.downcase)
-    end
+    return unless params[:email]
+
+    @user = User.find_by(email: params[:email].to_s.strip.downcase)
   end
 
   def set_user_login
