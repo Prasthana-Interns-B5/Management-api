@@ -3,11 +3,14 @@ Rails.application.routes.draw do
   use_doorkeeper do
     controllers tokens: 'oauth'
   end
+
   devise_for :users
+
   devise_scope :user do
     post 'generate_and_send_otp', to: 'users#generate_and_send_otp'
     post 'verify_email_auth_code', to: 'users#verify_email_auth_code'
   end
+
   resources :employees do
     get 'subordinates', on: :collection
     get 'queries', on: :member
@@ -25,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :answers
-  resources :home_page 
+  resources :home_page
   resources :reference_data
 
   resources :feedbacks do
@@ -53,5 +56,3 @@ Rails.application.routes.draw do
     get 'send_notification', on: :collection
   end
 end
-
-

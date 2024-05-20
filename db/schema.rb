@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_19_135646) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_20_024937) do
   create_table "answers", force: :cascade do |t|
     t.text "reply"
     t.integer "question_id", null: false
@@ -34,6 +34,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_135646) do
   create_table "currents", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "employee_points", force: :cascade do |t|
+    t.string "self_score"
+    t.string "month"
+    t.integer "employee_id", null: false
+    t.integer "manager_id"
+    t.float "manager_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_employee_points_on_employee_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -101,7 +112,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_135646) do
   end
 
   create_table "one_on_ones", force: :cascade do |t|
-    t.integer "member_id"
     t.date "date"
     t.time "time"
     t.boolean "repeat_monthly", default: false
@@ -110,17 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_135646) do
     t.datetime "updated_at", null: false
     t.integer "employee_id"
     t.float "rating"
-  end
-
-  create_table "points", force: :cascade do |t|
-    t.float "self_score"
-    t.string "month"
-    t.integer "employee_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float "manager_score"
-    t.integer "manager_id"
-    t.index ["employee_id"], name: "index_points_on_employee_id"
+    t.integer "team_member_id"
+    t.string "status"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -201,7 +202,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_135646) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "employee_id"
-    t.string "role", default: "--- []\n"
+    t.string "role"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -212,10 +213,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_19_135646) do
   add_foreign_key "answers", "questions"
   add_foreign_key "comments", "employees"
   add_foreign_key "comments", "reviews"
+  add_foreign_key "employee_points", "employees"
   add_foreign_key "feedbacks", "employees"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
-  add_foreign_key "points", "employees"
   add_foreign_key "questions", "employees"
   add_foreign_key "reviews", "one_on_ones"
   add_foreign_key "user_logins", "users"
