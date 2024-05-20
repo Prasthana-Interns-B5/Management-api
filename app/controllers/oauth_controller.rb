@@ -27,7 +27,7 @@ class OauthController < Doorkeeper::TokensController
     access_token_value[:domain] = 'feedback.com' unless Rails.env.development? || Rails.env.test?
 
     cookie_prefix = Rails.env.tr('-', '_')
-    cookies[(cookie_prefix + '_access_token').to_sym] = access_token_value
+    cookies["#{cookie_prefix}_access_token".to_sym] = access_token_value
   end
 
   def add_token_headers(authorize_response)
