@@ -1,59 +1,52 @@
-class EmployeePolicy
-  # class Scope < Scope
-  #   # NOTE: Be explicit about which records you allow access to!
-  #   def resolve
-  #     scope.all
-  #   end
-  # end
-
-  attr_reader :employee, :record
-
-  def initialize(employee, record)
-    @employee = employee
-    @record = record
+class EmployeePolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      # TODO: This would be restricted once the roles and care tem is implemented.
+      scope.all
+    end
   end
 
   def index?
-    @employee.ur_hr?
+    user.ur_hr?
   end
 
   def show?
-    @employee.ur_hr? || @employee.id == @record.id || @employee.reporting_manager_id == @record.id || @employee.id == @record.reporting_manager_id
+    user.ur_hr? || user.manager?
   end
 
   def update?
-    @employee.id == @record.id
+    user.ur_hr?
   end
 
   def create?
-    @employee.ur_hr?
+    user.ur_hr?
   end
 
   def destroy?
-    @employee.ur_hr?
+    user.ur_hr?
   end
 
   def subordinates?
-    @employee.ur_manager? || @employee.ur_hr? || @employee.reporting_manager_id == @record.id
+    true
   end
 
   def all_employees
-    @employee.ur_hr?
+    true
   end
 
- def queries?
-  @employee.id == @record.id || @employee.id == @record.reporting_manager_id
- end
+  def queries?
+    true
+  end
 
- def scores?
-  @employee.id == @record.id || @employee.id == @record.reporting_manager_id
- end
+  def scores?
+    true
+  end
 
- def managers?
-  @employee.ur_hr?
- end
+  def managers?
+    true
+  end
 
- def role?
-  @employee.ur_hr?
- end
+  def role?
+    true
+  end
 end
