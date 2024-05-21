@@ -53,7 +53,7 @@ class Employee < ApplicationRecord
     return true if ReferenceDatum::EMPLOYEE_CREATE_ROLES.include?(user.role)
 
     if user.manager?
-      record.team_members.pluck(:id).include?(user.employee_id)
+      user.employee.team_members.pluck(:id).include?(record.id)
     else
       user.employee.reporting_manager_id == record.id
     end
