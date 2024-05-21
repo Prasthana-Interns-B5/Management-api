@@ -1,52 +1,35 @@
 class EmployeePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      # TODO: This would be restricted once the roles and care tem is implemented.
       scope.all
     end
   end
 
+  def permitted_attributes
+    %i[email name role reporting_manager_id employee_no mobile_number]
+  end
+
   def index?
-    user.ur_hr?
+
   end
 
   def show?
-    user.ur_hr? || user.manager?
+    record.id == user.employee_id || record.can_view_employee?(user, record)
   end
 
   def update?
-    user.ur_hr?
+    if record.instance_of?(Employee)
+      (record.id == user.employee_id) || create?
+    else
+      false
+    end
   end
 
   def create?
-    user.ur_hr?
+    ReferenceDatum::EMPLOYEE_CREATE_ROLES.include?(user.role)
   end
 
   def destroy?
-    user.ur_hr?
-  end
-
-  def subordinates?
-    true
-  end
-
-  def all_employees
-    true
-  end
-
-  def queries?
-    true
-  end
-
-  def scores?
-    true
-  end
-
-  def managers?
-    true
-  end
-
-  def role?
     true
   end
 end

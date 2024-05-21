@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, :set_user_login
-  def generate_and_send_otp
+  def send_email_auth_code
     if @user
       user_login = @user.user_logins.create!(user_login_params)
       render json: user_login, status: :ok
     else
-      render json: 'Not Authenticated', status: :unprocessable_entity
+      render json: 'User Not Present', status: :unprocessable_entity
     end
   end
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @user_login.process_email_access_code_verified
       render json: @user_login
     else
-      render json: 'invalid_access_code_error', status: :unprocessable_entity
+      render json: 'Invalid otp', status: :unprocessable_entity
     end
   end
 

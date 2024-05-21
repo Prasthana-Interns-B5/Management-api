@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 class EmployeesController < ApplicationController
   before_action :set_employee, except: %i[index create current_employee_info subordinates all_employees]
-  before_action :authorize_employee, except: %i[index current_employee_info subordinates all_employees]
 
   def index
     employee = Employee.filter(current_user, params)
@@ -10,29 +7,25 @@ class EmployeesController < ApplicationController
   end
 
   def show
+    authorize @employee
     render json: @employee, status: :ok
   end
 
   def update
-    if @employee.update(employee_params)
-      render json: @employee, status: :ok
-    else
-      render json: { message: 'Employee cannot be updated', error: @employee.errors.full_messages }
-    end
+    authorize @employee
+    @employee.update!(employee_params)
+    render json: @employee, status: :ok
   end
 
   def create
-    employee = Employee.new(employee_params)
-    if employee.save
-      employee.create_user
-      render json: employee, status: :created
-    else
-      render json: { message: 'employee cannot be created', errors: feedback.errors.full_messages }, status: 422
-    end
+    authorize Employee
+    @employee = Employee.create!(employee_params)
+    render json: @employee, status: :created
   end
 
   def destroy
-    @employee.destroy
+    authorize @employee
+    @employee.destroy!
     render json: { message: 'Record Destroyed Successfully' }
   end
 
@@ -79,7 +72,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:email, :password, :name, :role, :reporting_manager_id, :employee_no,
-                                     :mobile_number)
+    permitted_attributes(Employee)
   end
 end

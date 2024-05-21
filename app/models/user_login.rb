@@ -1,7 +1,10 @@
 class UserLogin < ApplicationRecord
+  validates :email, :device_name, :device_type, :mobile_type, :device_uid, presence: true
   before_validation :generate_auth_token, on: :create
   belongs_to :user
   after_create :send_otp_to_user
+
+  default_scope { order('id DESC') }
 
   def send_otp_to_user
     return if email.blank?

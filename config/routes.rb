@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  devise_scope :user do
-    post 'generate_and_send_otp', to: 'users#generate_and_send_otp'
-    post 'verify_email_auth_code', to: 'users#verify_email_auth_code'
+  resources :users do
+    post 'send_email_auth_code', on: :collection
+    post 'verify_email_auth_code', on: :collection
   end
 
   resources :employees do

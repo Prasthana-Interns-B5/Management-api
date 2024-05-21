@@ -23,6 +23,15 @@ Doorkeeper.configure do
     user_login&.user if authenticated
   end
 
+  access_token_methods lambda { |request|
+    if request.headers['HTTP_AUTHORIZATION'].present? && request.headers['HTTP_AUTHORIZATION'].split(' ').size > 1
+      request.headers['HTTP_AUTHORIZATION'].split(' ')[1]
+    else
+      cookie_prefix = Rails.env.tr('-', '_')
+      request.cookies[("#{cookie_prefix}_access_token")]
+    end
+  }
+
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
   # file then you need to declare this block in order to restrict access to the web interface for
   # adding oauth authorized applications. In other case it will return 403 Forbidden response
@@ -235,7 +244,7 @@ Doorkeeper.configure do
   # `grant_type` - the grant type of the request (see Doorkeeper::OAuth)
   # `scopes` - the requested scopes (see Doorkeeper::OAuth::Scopes)
   #
-  # use_refresh_token
+  use_refresh_token
 
   # Provide support for an owner to be assigned to each registered application (disabled by default)
   # Optional parameter confirmation: true (default: false) if you want to enforce ownership of
