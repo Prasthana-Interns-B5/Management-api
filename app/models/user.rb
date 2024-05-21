@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true
   belongs_to :employee
-  has_many :user_logins
+  has_many :user_logins, dependent: :destroy
 
   ReferenceDatum.where(data_type: :employee_role).pluck(:key).each do |employee_role|
     define_method "#{employee_role.gsub('ur_', '')}?" do
