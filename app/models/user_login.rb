@@ -1,5 +1,5 @@
 class UserLogin < ApplicationRecord
-  validates :email, :device_name, :device_type, :mobile_type, :device_uid, presence: true
+  validates :email, presence: true
   before_validation :generate_auth_token, on: :create
   belongs_to :user
   after_create :send_otp_to_user

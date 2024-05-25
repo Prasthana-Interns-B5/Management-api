@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,13 +22,17 @@ module Employees
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+
+    config.x.release_number = '@build_date@'
+    config.x.release_branch = '@build_release_branch@'
+    config.x.release_commit = '@build_release_commit@'
     config.api_only = true
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use config.session_store, config.session_options
     config.autoload_paths << "#{Rails.root}/lib"
     config.after_initialize do
-        require 'custom_token_response'
+      require 'custom_token_response'
     end
   end
 end
