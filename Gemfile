@@ -50,7 +50,11 @@ end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem 'spring'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma', '5.0'
 end
 
 gem 'devise'
