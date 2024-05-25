@@ -6,11 +6,7 @@ class ReferenceDatum < ApplicationRecord
   validates :key, uniqueness: { case_sensitive: false }
   validates :data_type, inclusion: { in: DATA_TYPES }
 
-  UR_HR = 'ur_hr'.freeze
-  UR_ADMIN = 'ur_admin'.freeze
-  UR_MANAGER = 'ur_manager'.freeze
-  UR_LEAD = 'ur_lead'.freeze
-  UR_SOFTWARE_ENGINEER = 'ur_software_engineer'.freeze
-  UR_SR_SOFTWARE_ENGINEER = 'ur_sr_software_engineer'.freeze
-  EMPLOYEE_CREATE_ROLES = [UR_HR, UR_ADMIN].freeze
+  KEY_ENABLED = 'enabled'.freeze
+  KEY_DISABLED = 'disabled'.freeze
+  KEY_NOT_AVAILABLE = 'not_available'.freeze
 end

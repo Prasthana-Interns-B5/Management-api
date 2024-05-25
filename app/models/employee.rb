@@ -1,21 +1,25 @@
 class Employee < ApplicationRecord
-  validates :name, :role, presence: true
+  validates :name, :designation, presence: true
 
   has_many :questions
   has_many :answers
   has_many :employee_points
   has_many :feedbacks
   has_one :user, dependent: :destroy
-  has_many :one_on_ones, class_name: 'OneOnOne', foreign_key: 'team_member_id'
-  has_many :team_one_on_ones, class_name: 'OneOnOne'
   belongs_to :manager, class_name: 'Employee', optional: true, foreign_key: 'reporting_manager_id'
+  has_many :team_members, class_name: 'Employee', foreign_key: 'reporting_manager_id'
+  has_many :one_on_ones, lambda { |employee|
+    unscope(:where).where('employee_id = ? OR participant_id = ?', employee.id, employee.id)
+  }, class_name: 'OneOnOne'
   after_create_commit :create_user
 
-  def create_user
-    user = User.find_by(email: email)
-    return user.update!(employee: self, mobile_number: mobile_number, role: role) if user
+  default_scope { where('active = true') }
 
-    User.create!(employee: self, email: email, password: Devise.friendly_token(8), mobile_number: mobile_number, role: role)
+  def create_or_update_user
+    user = User.find_by(email: email)
+    return user.update!(employee: self, mobile_number: mobile_number, active: active) if user
+
+    User.create!(employee: self, email: email, password: Devise.friendly_token(8), mobile_number: mobile_number, active: active)
   end
 
   def self.filter(current_user, params)
@@ -32,30 +36,26 @@ class Employee < ApplicationRecord
   end
 
   def self.filter_by_user(current_user, where_conditions, where_values)
-    return if current_user.hr? || !current_user.manager?
+    return if current_user.is_admin
 
     where_conditions << 'reporting_manager_id = :reporting_manager_id'
     where_values[:reporting_manager_id] = current_user.employee.id
   end
 
   def self.filter_by_name(query, where_conditions, where_values)
-    return unless params[:query].present?
+    return unless query.present?
 
     where_conditions << 'LOWER(name) LIKE :query '
     where_values[:query] = "%#{query}%"
   end
 
-  def team_members
-    Employee.where(reporting_manager_id: id)
-  end
-
-  def can_view_employee?(user, record)
-    return true if ReferenceDatum::EMPLOYEE_CREATE_ROLES.include?(user.role)
+  def can_view_employee?(user)
+    return true if user.is_admin
 
     if user.manager?
-      user.employee.team_members.pluck(:id).include?(record.id)
+      user.employee.team_members.pluck(:id).include?(id)
     else
-      user.employee.reporting_manager_id == record.id
+      user.employee.reporting_manager_id == id
     end
   end
 end

@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
+  include CurrentSessionConcern
   before_action :set_user, :set_user_login
   def send_email_auth_code
     if @user
       user_login = @user.user_logins.create!(user_login_params)
-      render json: user_login, status: :ok
+      render json: user_login, serializer: UserLoginSimpleSerializer, status: :ok
     else
       render json: 'User Not Present', status: :unprocessable_entity
     end
@@ -18,6 +19,10 @@ class UsersController < ApplicationController
     else
       render json: 'Invalid otp', status: :unprocessable_entity
     end
+  end
+
+  def prepare
+    render json: current_user, serializer: CurrentUserPermissionSerializer, status: :ok
   end
 
   private

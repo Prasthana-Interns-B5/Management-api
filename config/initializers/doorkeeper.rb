@@ -77,6 +77,14 @@ Doorkeeper.configure do
   #   end
   # end
 
+  custom_access_token_expires_in do
+    if Rails.env.production?
+      40.hours.to_i
+    else
+      1.month.to_i
+    end
+  end
+
   # Enables polymorphic Resource Owner association for Access Tokens and Access Grants.
   # By default this option is disabled.
   #

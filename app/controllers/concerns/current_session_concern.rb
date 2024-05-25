@@ -3,33 +3,31 @@ module CurrentSessionConcern
 
   def employee_permissions
     {
-      'employee.index': true,
-      'employee.create': true,
-      'employee.show': true,
-      'employee.update': true,
-      'employee.destroy': true
+      'employee.index': policy(Employee).index?,
+      'employee.create': policy(Employee).create?,
+      'employee.show': policy(Employee).show?,
+      'employee.update': policy(Employee).update?,
+      'employee.destroy': policy(Employee).destroy?
     }
   end
 
   def one_on_one_permissions
-   {
-     'one_on_one.index': true,
-     'one_on_one.create': true,
-     'one_on_one.show': true,
-     'one_on_one.update': true,
-     'one_on_one.destroy': true
-   }
- end
+    {
+      'one_on_one.index': policy(OneOnOne).index?,
+      'one_on_one.create': policy(OneOnOne).create?,
+      'one_on_one.show': policy(OneOnOne).show?,
+      'one_on_one.update': policy(OneOnOne).update?,
+      'one_on_one.destroy': policy(OneOnOne).destroy?
+    }
+  end
 
- def employee_points_permissions
-   {
-     'employee_points.index': true,
-     'employee_points.create': true,
-     'employee_points.show': true,
-     'employee_points.update': true,
-     'employee_points.destroy': true
-   }
- end
-
-
+  def employee_points_permissions
+    {
+      'employee_points.index': true,
+      'employee_points.create': true,
+      'employee_points.show': true,
+      'employee_points.update': true,
+      'employee_points.destroy': true
+    }
+  end
 end

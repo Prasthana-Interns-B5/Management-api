@@ -1,7 +1,4 @@
 class OneOnOneSerializer < ActiveModel::Serializer
-  attributes :id, :employee_id, :member_id, :date, :time, :repeat_monthly, :notes
-  attribute :employee_attributes 
-  def employee_attributes
-    object.employee_attributes
-  end
+  attributes :id, :start_date_time, :end_date_time, :status, :notes
+  belongs_to :participant, serializer: EmployeeSimpleSerializer
 end

@@ -5,9 +5,19 @@ class User < ApplicationRecord
   belongs_to :employee
   has_many :user_logins, dependent: :destroy
 
-  ReferenceDatum.where(data_type: :employee_role).pluck(:key).each do |employee_role|
-    define_method "#{employee_role.gsub('ur_', '')}?" do
-      employee_role == role
-    end
+  default_scope { where(active: true) }
+
+  def self.current_user
+    Thread.current[:current_user]
+  end
+
+  def self.current_user=(user)
+    Thread.current[:current_user] = user
+  end
+
+  def manager?
+    return if employee.blank?
+
+    employee.team_members.present?
   end
 end

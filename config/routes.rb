@@ -9,19 +9,22 @@ Rails.application.routes.draw do
   resources :users do
     post 'send_email_auth_code', on: :collection
     post 'verify_email_auth_code', on: :collection
+    get 'prepare', on: :collection
   end
 
   resources :employees do
-    get 'subordinates', on: :collection
+    get 'team', on: :member
     get 'queries', on: :member
     get 'scores', on: :member
     put 'role', on: :member
     get 'reviews', on: :member
     get 'current_employee_info', on: :collection
     get 'all_employees', on: :collection
-    resources :one_on_one, only: :index
+    resources :one_on_ones, only: :index
     resources :employee_points
   end
+
+  resources :one_on_ones
 
   resources :questions do
     get 'replies', on: :member
